@@ -7,7 +7,7 @@ import { Bell, CalendarDays, Folder } from "lucide-react";
 export function NotificationsScreeen(){
     const notificatiosn:any[] =[1,2]
     return(
-        <div className="container mt-10">
+        <div className="container pt-10">
             <Card className="mt-4">
                 <CardHeader>
                 <CardTitle className="flex gap-5">

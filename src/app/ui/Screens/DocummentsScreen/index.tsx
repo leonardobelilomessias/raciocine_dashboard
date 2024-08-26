@@ -12,7 +12,7 @@ export function DocumentsScreeen(){
       }
       const documentsIsEmpty = IsEmpty(documents)
     return(
-        <div className="container mt-10">
+        <div className="container pt-10">
             <Card className="mt-4">
                 <CardHeader>
                 <CardTitle className="flex gap-5">

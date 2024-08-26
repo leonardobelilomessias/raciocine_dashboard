@@ -1,5 +1,7 @@
 'use client';
  
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import { useEffect } from 'react';
  
 export default function Error({
@@ -15,17 +17,22 @@ export default function Error({
   }, [error]);
  
   return (
-    <main className="flex h-full flex-col items-center justify-center">
-      <h2 className="text-center">Something went wrong!</h2>
-      <button
-        className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-sm text-white transition-colors hover:bg-blue-400"
+    <main className="flex h-full flex-col items-center justify-center pt-10 gap-5">
+      <h2 className="text-center font-bold ">Algo deu errado!</h2>
+      <p>Tente novamente ou entre em contato com o suporte de nossa equipe</p>
+      <Button className='w-[150px]'
         onClick={
           // Attempt to recover by trying to re-render the invoices route
           () => reset()
         }
       >
-        Try again
-      </button>
+        Tentar novamente
+      </Button>
+      <Link href='/suporte'>
+        <Button className='w-[150px]'>
+          Chamar Suporte
+        </Button>
+      </Link>
     </main>
   );
 }

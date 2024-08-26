@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from "@/components/ui/table";
 import { getFinanceProfile } from "@/lib/firebase/getFinanceProfile";
+import { getUserById } from "@/lib/firebase/getUserById";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 
 export default async  function TableDataFinance(){
-    const dataFinanceProfile = await getFinanceProfile("kpJsmJzlEIc4oBPDitHbDucYMyu1") as IFormInputFinance
+    const dataFinanceProfile = await getUserById("kpJsmJzlEIc4oBPDitHbDucYMyu1") as IFormInputFinance
     const nascimento = Number(String(dataFinanceProfile?.dataNascimento).split('-')[2])
     const handspay = dataFinanceProfile?.entrada?dataFinanceProfile.entrada:0
     const fgts = dataFinanceProfile?.saldoFgts?dataFinanceProfile.saldoFgts:0
@@ -94,7 +96,9 @@ export default async  function TableDataFinance(){
     <h3 className="text-primaryPalet mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">{formatPriceToBRL(power).split(',')[0]}</h3>
 
     </div>
+<Link href={'/perfil'}>
 <Button className="bg-primaryPalet">Editar Perfil</Button>
+</Link>
   </CardFooter>
 </Card>
         </div>

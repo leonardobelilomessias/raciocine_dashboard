@@ -15,11 +15,23 @@ export interface IFormInputFinance {
 }
 
 export interface IUser{
+
   name?: string;
   phone?: string;
   email?: string;
-  id?: string;
+  id: string;
+  renda?: number; // Agora os campos são opcionais
+  entrada?: number;
+  saldoFgts?: number;
+  estadoCivil?: string;
+  filhosDependentes?: string;
+  trabalho3Anos?: string;
+  primeiroImovel?: string;
+  financiamento?: string;
+  dataNascimento?: Date | null |string; // Agora é opcional
+  tipoRenda?:string
 }
+
 
 export interface INewPost{
   name?: string;

@@ -1,17 +1,18 @@
 import { IFormInputFinance, IUser, INewPost, INewPostForm, INewSuportForm, INewSuport, IPost, IVideoParams } from "../types/types";
 
 // Exemplo de dados para IFormInputFinance
+export const fakeUserId = 'kpJsmJzlEIc4oBPDitHbDucYMyu1'
 const formInputFinance: IFormInputFinance = {
     renda: 5000,
     entrada: 20000,
     saldoFgts: 15000,
     estadoCivil: "Solteiro",
-    filhosDependentes: "Não",
-    trabalho3Anos: "Sim",
-    primeiroImovel: "Sim",
-    financiamento: "Sim",
+    filhosDependentes: "nao",
+    trabalho3Anos: "sim",
+    primeiroImovel: "sim",
+    financiamento: "nao",
     dataNascimento: "1990-01-15",
-    tipoRenda: "Assalariado"
+    tipoRenda: "formal"
   };
   
   // Exemplo de dados para IUser

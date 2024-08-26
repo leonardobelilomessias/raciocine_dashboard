@@ -5,15 +5,16 @@ import { LaunchContainer } from "./LaunchContainer";
 import { SelectedContainer } from "./SelectedContainer";
 import { Suspense } from "react";
 import { TableDataFinanceSkeleton } from "./TableDataFinanceSkeleton";
+import { HomeCarousel } from "../../components/Carousels/HomeCarousel";
 
 export async function DashboardScreen(){
 
 
     return(
         
-        <div className="sm:container p-2 mt-5">
-            
-        <HeroDashboard/>
+        <div className="sm:container p-2 pt-5">
+                <HomeCarousel/>
+        {/* <HeroDashboard/>1 */}
         <Suspense fallback={<TableDataFinanceSkeleton/>}>
             <TableDataFinance  />
         </Suspense>

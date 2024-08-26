@@ -1,7 +1,6 @@
 import { Bell, BookText, CalendarDays, Flag, Folder, Heart, Hotel, House, HousePlus, List, ListCollapse, MessageCircleQuestion, Radar, Rocket, TvMinimalPlay, User } from "lucide-react";
 
 export const navigationElementsAccount = [
-  { title: 'Home', link: '/dashboard', icon: House  },
   { title: 'Perfil', link: '/perfil', icon: User },
   { title: 'Favoritos', link: "/favoritos", icon: Heart },
   { title: 'Agendamentos', link: "/agendamentos", icon: CalendarDays },
@@ -16,6 +15,7 @@ export const navigationElementsTools = [
 
 ];
 export const navigationElementsCommunity= [
+  { title: 'Home', link: '/dashboard', icon: House  },
   { title: 'Videos', link: '/videos', icon: TvMinimalPlay },
   { title: 'Ebooks', link: "/ebooks", icon: BookText }, 
   { title: 'Forum', link: "/forum", icon: MessageCircleQuestion },

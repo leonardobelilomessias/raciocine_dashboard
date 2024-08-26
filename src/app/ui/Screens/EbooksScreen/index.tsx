@@ -19,7 +19,7 @@ export function EbookScreen(){
   
       ]
     return(
-        <div className="sm:container mt-10 mx-2">
+        <div className="sm:container pt-10 mx-2">
             <Card className="mt-4">
                 <CardHeader>
                 <CardTitle className="flex gap-5">
