@@ -43,16 +43,19 @@ interface IValidationSchema {
   area: string;
   amenities?:string[] | null |undefined
 }
-import { z } from "zod"
-import { useRouter } from "next/navigation";
+import { object, z } from "zod"
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { DeleteIcon, Save } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import { AlertNewProduct } from "../AlertNewProduct";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { Toaster } from "@/components/ui/toaster";
+import { IProductResponse } from "@/app/types/types";
+import { Value } from "@radix-ui/react-select";
+import { axiosApi } from "@/lib/axios/axios";
 import { Label } from "@/components/ui/label";
 const amenitiesFields = [
   {label:'pool',name:'Piscina'},
@@ -74,8 +77,6 @@ const amenitiesFields = [
 
 
 
-
-
 const validationSchema = z.object({
   title: z.string(),
   description: z.string(),
@@ -90,25 +91,49 @@ const validationSchema = z.object({
   area: z.string(),
   amenities: z.array(z.string()).nullish()
 });
-export function NewProductForm(){
+export   function EditProductForm({product, images}:{product:IProductResponse, images:string[]}){
+  const amenities1 = product?.amenities.filter((amenities)=>{
+    Object.keys
+    // console.log("chave=",Object.keys(amenities)[0], "valor=",Object.values(amenities)[0])
+    if(Object.values(amenities)[0] ===true) return Object.keys(amenities)[0]
+  }).map((amenities)=>{
+     return Object.keys(amenities)[0]
+  })
+  const amenities2 = amenitiesFields.filter((item)=>{return amenities1.includes(item.label)}).map((item)=>{return item.name})
+  const [coverChange,setCoverChange]=useState(false)
   const [load, setLoad] = useState(false);
-  const [messageModal,setMessageModal] = useState('')
+  const [imagesBucket, setImagesBucket] = useState<string[]>(images);
+  const [imagesDelet, setImagesDelet] = useState<string[]>([]);
   const [show, setShow] = useState(false);
-  const [cover, setCover] = useState<File | null>(null);
-  const [previewCover, setPreviewCover] = useState<string | undefined>();
-
+  const [cover, setCover] = useState<File | null| string>(product.cover);
+  const [previewCover, setPreviewCover] = useState<string | undefined>(product.cover);
   const [files, setFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [folderName, setFolderName] = useState('');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-    const router = useRouter()
-    const form = useForm<z.infer<typeof validationSchema>>({
+  const router = useRouter()
+  const form = useForm<z.infer<typeof validationSchema>>({
         resolver: zodResolver(validationSchema),
-      },)
-    async   function setSubmit(data:IValidationSchema ){
-        const filterAmenitiesToBollean = []
+        defaultValues: {
+         title:product.title,
+         description:product.description,
+         address:product.address,
+         area:product.area,
+         bathrooms:product.bathrooms,
+         bedrooms:product.bedrooms,
+         city:product.city,
+         garages:product.garages,
+         neighborhood:product.neighborhood,
+         price:product.price,
+         zip:product.zip,
+
+          amenities:amenities2,
+
+        },
+      })
+  async   function setSubmit(data:IValidationSchema ){
         const formatedData = amenitiesFields.map((item)=>{
           const result: any = {
             [`${item.label}`]:false
@@ -127,7 +152,7 @@ export function NewProductForm(){
       }
       const onSubmit = async (data: IValidationSchema) => {
         
-        if (files.length <= 0) {
+        if (files.length <= 0 && imagesBucket.length<=0) {
           console.log('sem capa')
           toast({
             title:"Nenhuma imagem adicionada",
@@ -153,22 +178,18 @@ export function NewProductForm(){
           for (const file of files) {
             formData.append('files', file);
           }
-          formCover.append('files', cover);
           const uuidv4 = v4().split('-')[0]
           const slug = data.title.split(" ").join('-')+`-${uuidv4}`
           Object.assign(data,{slug:slug})
-          const filesInFormData = formData.getAll('files');
-          toast({
-            title: `Irem adicionald ${data.title}`,
-            description: "Friday, February 10, 2023 at 5:57 PM",
-          })
-           const response = await axios.post('/api/createproduct', data);
-          console.log(response.data)
-           const id = response.data
-           formData.append('bucket', `${id}`);
-           formCover.append('bucket', `${id}`);
-    
-         
+          const response = await axiosApi.post('/api/updateProduct', {docId:product.id, data, bombom:"lego"});
+          console.log('productId aquiiiii', response.data)
+          const {id} = response.data as IProductResponse
+          if(imagesDelet.length>0){
+            await axiosApi.post('/api/deleteImages',{productId:product.id,imageUrls:imagesDelet});
+          }
+          formCover.append('files', cover);
+          formData.append('bucket', `${id}`);
+          formCover.append('bucket', `${id}`);   
           if(files.length>0){
             const responseUploadImages = await axios.post('/api/image', formData, {
               headers: {
@@ -176,18 +197,21 @@ export function NewProductForm(){
               },
             });
           }
-          if(files.length>0){
-    
+          if(coverChange){
+
             const responseUploadCover= await axios.post('/api/uploadCover', formCover, {
               headers: {
                 'Content-Type': 'multipart/form-data',
               },
-            });
+            });     
           }
-    
-          // if (response.status ==200) {
-          //   router.push(`/sucesso/${slug}`);
-          // }
+          const filesInFormData = formData.getAll('files');
+          toast({
+            title: `Irem adicionald ${data.title}`,
+            description: "Friday, February 10, 2023 at 5:57 PM",
+          })
+          toast({title:`operação realizado${data.title}`})
+          
     
         } catch (error) {
           console.error('Erro ao enviar os dados:', error);
@@ -203,6 +227,7 @@ export function NewProductForm(){
         if (file) {
           setPreviewCover(URL.createObjectURL(file));
         }
+        setCoverChange(true)
       };
       const handleRemoveCover = () => {
         setCover(null)
@@ -227,27 +252,38 @@ export function NewProductForm(){
           (fileInputRef.current as HTMLInputElement).value = '';
         }
       };
+      const handleRemoveImageBucket = useCallback((e: React.MouseEvent<HTMLButtonElement>, url: string, index: number) => {
+        e.preventDefault();
+        setImagesDelet((prevDeletions) => [...prevDeletions, url]);
+        setImagesBucket((prevUrls) => prevUrls.filter((_, i) => i !== index));
+    }, []);
+      const handleClickFileInput = () => {
+        const input = fileInputRef.current;
+        if (input) {
+          input.click();
+        }
+      };
+
     return(
         <>
         <Toaster/>
         <Form {...form}>
       <form onSubmit={form.handleSubmit(setSubmit)} className="space-y-1">
-      <Label className="font-bold">Titulo</Label>
+        <Label>Titulo</Label>
         <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
             <FormItem>
-        
+
               <FormControl>
-                <Input placeholder="Titulo" {...field} />
+                <Input placeholder="Titulo"  {...field} />
               </FormControl>
 
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Descriçao</Label>
     <FormField
           control={form.control}
           name="description"
@@ -261,8 +297,6 @@ export function NewProductForm(){
             </FormItem>
           )}
         />
-      <Label className="font-bold">Preço</Label>
-
         <FormField
           control={form.control}
           name="price"
@@ -270,13 +304,12 @@ export function NewProductForm(){
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Preço" {...field} />
+                <Input placeholder="Preço"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Endereço</Label>
                 <FormField
           control={form.control}
           name="address"
@@ -284,13 +317,12 @@ export function NewProductForm(){
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Endereço" {...field} />
+                <Input placeholder="Endereço"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Cidade</Label>
                 <FormField
           control={form.control}
           name="city"
@@ -298,14 +330,12 @@ export function NewProductForm(){
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Cidade" {...field} />
+                <Input placeholder="Cidade"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Bairro</Label>
-
                 <FormField
           control={form.control}
           name="neighborhood"
@@ -313,14 +343,12 @@ export function NewProductForm(){
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Bairro" {...field} />
+                <Input placeholder="Bairro"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Cep</Label>
-
                 <FormField
           control={form.control}
           name="zip"
@@ -328,14 +356,12 @@ export function NewProductForm(){
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Local" {...field} />
+                <Input placeholder="Cep"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Quartos</Label>
-
                 <FormField
           control={form.control}
           name="bedrooms"
@@ -343,14 +369,12 @@ export function NewProductForm(){
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Quartos" {...field} />
+                <Input placeholder="Quartos"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Banheiros</Label>
-
                         <FormField
           control={form.control}
           name="bathrooms"
@@ -358,29 +382,26 @@ export function NewProductForm(){
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Banheiros" {...field} />
+                <Input placeholder="Banheiros"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Vagas de garagem</Label>
-
                 <FormField
           control={form.control}
           name="garages"
+        
           render={({ field }) => (
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Vagas de Garagem" {...field} />
+                <Input placeholder="Vagas de garagem"    {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Area</Label>
-
                 <FormField
           control={form.control}
           name="area"
@@ -400,9 +421,12 @@ export function NewProductForm(){
           render={() => (
             <FormItem>
               <div className="mb-4">
-                <FormLabel className="text-base, font-bold">Amenidades</FormLabel>
-                
+                <FormLabel className="text-base">Sidebar</FormLabel>
+                <FormDescription>
+                  Select the items you want to display in the sidebar.
+                </FormDescription>
               </div>
+              
               {amenitiesFields.map((item) => (
                 <FormField
                   key={item.name}
@@ -411,13 +435,16 @@ export function NewProductForm(){
                   render={({ field }) => {
                     return (
                       <FormItem
-                        key={item.name}
-                        className="flex flex-row items-start space-x-3 space-y-0"
+                      key={item.name}
+                      className="flex flex-row items-start space-x-3 space-y-0"
                       >
                         <FormControl>
+                        
                           <Checkbox
                             checked={field.value?.includes(item.name)}
+
                             onCheckedChange={(checked) => {
+                            console.log(field.value)
                               if(!!field.value){
                                 
                                 return checked? field.onChange([...field.value, item.name]): field.onChange (field.value?.filter((value) => value !== item.name))
@@ -458,10 +485,10 @@ export function NewProductForm(){
                                     </label>
                                 </span>
                                     
-                                  {previewCover && (
+                                {previewCover && (
                                     <div className="image-preview">
-                                      <Image src={previewCover} alt="Capa" width={100} height={100} />
-                                      <button type="button" onClick={handleRemoveCover}>
+                                      <Image src={previewCover} alt="Capa" width={220} height={150} />
+                                      <button style={{position:"absolute", top:0, right:0}} type="button" onClick={handleRemoveCover}>
                                         <DeleteIcon />
                                       </button>
                                     </div>
@@ -487,6 +514,12 @@ export function NewProductForm(){
                                 </span >
 
                                   <div className="flex gap-2 wrap">
+                                  {imagesBucket.map((url, index) => (
+                                <div key={index} style={{position:"relative", width:'220px', height:'150px', margin:"1rem"}}>
+                                <img key={index} src={url} alt={`Preview ${index}`} style={{position:"relative", width:'220px', height:'150px'}}/>
+                                <button style={{position:"absolute", top:0, right:0}} onClick={(e) => handleRemoveImageBucket(e,url,index)}><DeleteIcon /></button>
+                                </div>
+                                ))}
                                     {previewUrls.map((url, index) => (
                                       <div className="image-preview" key={index}>
                                         <Image src={url} alt={`Imagem ${index + 1}`} width={100} height={100} />

@@ -13,14 +13,10 @@ export const getUserById = async (userId: string) => {
     // Buscar o documento
     const docSnapshot = await getDoc(profileRef);
 
-    if (docSnapshot.exists()) {
-      // O documento foi encontrado, retornar os dados
+    
       return docSnapshot.data() as IUser;
-    } else {
-      // Documento não encontrado
-      console.log('Perfil financeiro não encontrado');
-      return null;
-    }
+
+    
   } catch (error) {
     if (error instanceof FirebaseError) {
       // Lidar com erros específicos do Firebase

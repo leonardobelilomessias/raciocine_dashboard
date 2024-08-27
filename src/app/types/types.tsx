@@ -83,6 +83,8 @@ export interface IProduct{
   bathrooms: string;
   garages: string;
   area: string;
+  cover:string
+  
   amenities:  {
     pool?: boolean;
     porter?: boolean;
@@ -102,6 +104,26 @@ export interface IProduct{
   }
 }
 
+
+export interface IProductResponse{
+  id?:string
+  title: string;
+  description: string;
+  price: string;
+  address: string;
+  city: string;
+  neighborhood: string;
+  zip: string;
+  bedrooms: string;
+  bathrooms: string;
+  garages: string;
+  area: string;
+  cover:string
+  
+  amenities:  {
+    item:boolean
+  }[]
+}
 export interface IVideoParams{
 width?:number | undefined, 
 height?:number |undefined

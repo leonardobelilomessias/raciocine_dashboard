@@ -9,9 +9,7 @@ import { notFound } from "next/navigation";
 
 export async function ProfileScreen(){
      const dataUser =  await  getUserById(fakeUserId) 
-     if (!dataUser) {
-         notFound();
-       }
+
     try{
 
     }catch(e){
