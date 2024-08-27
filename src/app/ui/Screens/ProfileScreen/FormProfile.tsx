@@ -45,8 +45,8 @@ const formSchema = z.object({
 
 export function FormProfile({dataUser}:{dataUser:IUser}){ 
 // Divide a string em dia, mês e ano
-const [day, month, year] = String(dataUser?.dataNascimento).split("-");
-const [realDate,setRealDate] = useState(new Date(Number(year), Number(month) - 1, Number(day)));
+const [day, month, year] = String(dataUser?.dataNascimento).split("/");
+const [realDate,setRealDate] = useState(new Date(`${year}-${month}-${day}`));
   const [edit,setEdit] = useState(false)
   const [values,setValues] = useState(dataUser)
     const router = useRouter()
@@ -66,17 +66,38 @@ const [realDate,setRealDate] = useState(new Date(Number(year), Number(month) - 1
           trabalho3Anos:  dataUser.trabalho3Anos,
           primeiroImovel:  dataUser.primeiroImovel,
           financiamento: dataUser.financiamento,
-          dataNascimento:  new Date(Number(year), Number(month) - 1, Number(day)) , 
+          dataNascimento:  new Date(`${year}-${month}-${day}`) , 
           tipoRenda:  dataUser.tipoRenda
         },
       })
       async function onSubmit(values: z.infer<typeof formSchema>) {
-        
+        console.log(values.dataNascimento)
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
         try{
-        await   updateAccountUser(values,dataUser.id)
+          const formattedDate = new Intl.DateTimeFormat('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+          }).format(values.dataNascimento);
+          const   preparedData = {id:values.id,
+            dataNascimento: formattedDate,
+            email:values.email,
+            entrada:values.entrada,
+            estadoCivil:values.estadoCivil,
+            filhosDependentes: values.filhosDependentes,
+            financiamento: values.financiamento,
+            name:values.name,
+            phone:values.phone,
+            primeiroImovel:values.primeiroImovel,
+            renda:values.renda,
+            saldoFgts: values.saldoFgts,
+            tipoRenda: values.tipoRenda,
+            trabalho3Anos:values.trabalho3Anos
+            
+        }as IUser
+        await   updateAccountUser(preparedData,dataUser.id)
         setEdit(false)
         }catch(e){
           console.log(e)
@@ -250,14 +271,28 @@ const [realDate,setRealDate] = useState(new Date(Number(year), Number(month) - 1
               <FormControl>
               
               <DatePicker disabled={!edit} className={
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          
-        } selected={realDate} 
-   onChange={(value)=>{field.onChange(value);  setRealDate(new Date(field.value))
+          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"} 
+       locale={'pt-BR'}  selected={field.value} 
+         dateFormat="P"
+   onChange={(value)=>{field.onChange(value);
    }} />
+
+
               </FormControl>
+
               <FormMessage />
+  {/* <div className="bg-red-300">
+    <p>real date</p>
+   {String(realDate)} 
+  </div>
+<div className="bg-blue-300">
+  <p>fild value</p>
             {String(field.value)}
+</div>
+<p>
+
+{String(new Date())}
+</p> */}
             </FormItem>
           )}
         />
