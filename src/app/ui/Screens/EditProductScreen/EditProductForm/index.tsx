@@ -57,6 +57,7 @@ import { IProductResponse } from "@/app/types/types";
 import { Value } from "@radix-ui/react-select";
 import { axiosApi } from "@/lib/axios/axios";
 import { Label } from "@/components/ui/label";
+import { formatarMoedaBRL } from "@/app/util/formatPrice";
 const amenitiesFields = [
   {label:'pool',name:'Piscina'},
   {label:'porter',name:'Portaria 24hrs'},
@@ -134,6 +135,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
         },
       })
   async   function setSubmit(data:IValidationSchema ){
+    // console.log(data.price.split("$"))
+    
         const formatedData = amenitiesFields.map((item)=>{
           const result: any = {
             [`${item.label}`]:false
@@ -148,6 +151,7 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
         })
         console.log('amenidades',formatedData)
         data.amenities = formatedData
+        data.price =data.price.split("$")[1]
         await  onSubmit(data)
       }
       const onSubmit = async (data: IValidationSchema) => {
@@ -269,7 +273,7 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
         <Toaster/>
         <Form {...form}>
       <form onSubmit={form.handleSubmit(setSubmit)} className="space-y-1">
-        <Label>Titulo</Label>
+        <Label className="font-bold">Titulo</Label>
         <FormField
           control={form.control}
           name="title"
@@ -284,6 +288,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Descrição</Label>
+
     <FormField
           control={form.control}
           name="description"
@@ -297,6 +303,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Preço</Label>
+
         <FormField
           control={form.control}
           name="price"
@@ -304,12 +312,14 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Preço"  {...field} />
+                <Input placeholder="Preço"  {...field} onChange={(e)=> field.onChange(formatarMoedaBRL(e.target.value))} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+        <Label className="font-bold">Endereço</Label>
+
                 <FormField
           control={form.control}
           name="address"
@@ -323,6 +333,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Cidade</Label>
+
                 <FormField
           control={form.control}
           name="city"
@@ -336,6 +348,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Bairro</Label>
+
                 <FormField
           control={form.control}
           name="neighborhood"
@@ -349,6 +363,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Cep</Label>
+
                 <FormField
           control={form.control}
           name="zip"
@@ -362,6 +378,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Quartos</Label>
+
                 <FormField
           control={form.control}
           name="bedrooms"
@@ -375,6 +393,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Banheiros</Label>
+
                         <FormField
           control={form.control}
           name="bathrooms"
@@ -388,6 +408,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Vagas de garagem</Label>
+
                 <FormField
           control={form.control}
           name="garages"
@@ -402,6 +424,7 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        <Label className="font-bold">Area</Label>
                 <FormField
           control={form.control}
           name="area"
@@ -415,16 +438,16 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             </FormItem>
           )}
         />
+        
+
 <FormField
           control={form.control}
           name="amenities"
           render={() => (
             <FormItem>
               <div className="mb-4">
-                <FormLabel className="text-base">Sidebar</FormLabel>
-                <FormDescription>
-                  Select the items you want to display in the sidebar.
-                </FormDescription>
+              <Label className="font-bold">Amenidades</Label>
+
               </div>
               
               {amenitiesFields.map((item) => (

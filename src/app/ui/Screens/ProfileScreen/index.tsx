@@ -8,7 +8,7 @@ import { fakeUserId } from "@/app/mocks/fakeDatabase";
 import { notFound } from "next/navigation";
 
 export async function ProfileScreen(){
-     const dataUser =  await  getUserById(fakeUserId) 
+     const dataUser =  await  getUserById() 
 
     try{
 

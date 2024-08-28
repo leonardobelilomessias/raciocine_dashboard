@@ -22,7 +22,7 @@ export async function singin(data:{email:string, password:string}) {
         if(user?.uid){
         
          // console.log('usuario invalido')
-          await AuthService.createSessionToken({name:"beleza", admin:true}) 
+          await AuthService.createSessionToken({user_id:user.uid}) 
         }
         return user
         console.log("Usuário logado com sucesso:", user);

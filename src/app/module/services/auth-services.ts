@@ -8,13 +8,18 @@ async function openSessionToken(token:string) {
     return payload
 }
 
-async function createSessionToken(payload={}){
+async function createSessionToken(payload:{user_id:string}){
     const secret = new TextEncoder().encode(process.env.AUTH_SECRET)
     const session = await new jose.SignJWT(payload).setProtectedHeader({
         alg:"HS256"
     }).setExpirationTime('1d').sign(secret)
     const {exp} = await openSessionToken(session)
     cookies().set('sessions',session,{
+        expires:(exp as number)*1000,
+        path:'/',
+        httpOnly:true
+    })
+    cookies().set('user_id',payload.user_id,{
         expires:(exp as number)*1000,
         path:'/',
         httpOnly:true
@@ -46,4 +51,6 @@ export const AuthService = {
  
 async function deleteSession() {
   cookies().delete('sessions')
+  cookies().delete('user_id')
+
 }

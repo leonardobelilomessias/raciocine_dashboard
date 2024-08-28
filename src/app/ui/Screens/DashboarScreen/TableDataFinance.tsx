@@ -11,8 +11,8 @@ import { ReactNode } from "react";
 
 
 export default async  function TableDataFinance(){
-    const dataFinanceProfile = await getUserById("kpJsmJzlEIc4oBPDitHbDucYMyu1") as IFormInputFinance
-    const nascimento = Number(String(dataFinanceProfile?.dataNascimento).split('-')[2])
+    const dataFinanceProfile = await getUserById() as IFormInputFinance
+    const nascimento = Number(String(dataFinanceProfile?.dataNascimento).split('/')[2])
     const handspay = dataFinanceProfile?.entrada?dataFinanceProfile.entrada:0
     const fgts = dataFinanceProfile?.saldoFgts?dataFinanceProfile.saldoFgts:0
     const renda = dataFinanceProfile?.renda?dataFinanceProfile.renda:0
@@ -65,6 +65,7 @@ export default async  function TableDataFinance(){
     return(
         <div>
 <Card className="mb-10">
+    
   <CardHeader>
     <CardTitle>Perfil de Compra</CardTitle>
     <CardDescription>

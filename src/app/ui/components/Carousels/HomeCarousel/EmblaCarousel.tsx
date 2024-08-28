@@ -14,6 +14,8 @@ type PropType = {
   options?: EmblaOptionsType
 }
 
+import Banner from '@/app/public/images/banner.png'
+
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
@@ -71,7 +73,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             <div className="embla__slide" key={index}>
                 <div className='w-full h-full relative'>
 
-                <Image src="https://github.com/shadcn.png" fill  alt='carrousel' className='w-400 h-600 px-3' style={{borderRadius:24}}/>
+                <Image src={Banner} fill  alt='carrousel' className='w-400 h-600 px-3' style={{borderRadius:24}}/>
                 </div>
               <div className="embla__slide__number"> 
               </div>

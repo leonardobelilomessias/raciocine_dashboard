@@ -2,11 +2,11 @@ import { formatPriceToBRL } from "@/app/util/formatPrice";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReactNode } from "react";
-import {  ProductCard } from "../../components/ProductCard";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Sparkles, TextSelect } from "lucide-react";
 import { IProduct } from "@/app/types/types";
 import { listProducts } from "@/lib/firebase/listProducts";
+import { ProductCard } from "../../components/ProductCard";
 
 export async function SelectedContainer(){
   const products = await listProducts()
