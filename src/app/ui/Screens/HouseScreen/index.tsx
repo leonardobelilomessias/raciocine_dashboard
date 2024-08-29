@@ -1,6 +1,12 @@
 import { axiosApi } from "@/lib/axios/axios";
 import { HouseCarousel } from "../../components/Carousels/HouseCarousel";
 import { HouseContainer } from "./HouseContainer";
+import { ContactBannerHouse } from "./ContactBannerHouseScreen";
+import { CardContent } from "@/components/ui/card";
+import { TextContent } from "./TextCantent";
+import { ListFeaturesHome } from "./ListFeaturesHome";
+import { LocationHouse } from "./LocationHouse";
+import { HeaderHouse } from "./HeaderHouse";
 
 export async  function HouseScreen({id}:{id:String}){
     const data = await axiosApi.get(`/api/listImagesByIdProduct?id=${id}`)
@@ -13,7 +19,15 @@ export async  function HouseScreen({id}:{id:String}){
     <>
 
     <HouseCarousel  images={urls}/>
-    <HouseContainer product={product}/>
+    <HouseContainer >
+    <HeaderHouse   product={product}/>
+        <CardContent>
+        <TextContent  text={product.description}/>
+        <ListFeaturesHome product={product}/>
+        <LocationHouse/>      
+        </CardContent>
+        <ContactBannerHouse/>
+    </HouseContainer>
     </>
 )
 }

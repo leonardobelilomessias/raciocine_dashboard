@@ -1,11 +1,11 @@
 import { Bell, BookText, CalendarDays, Flag, Folder, Heart, Hotel, House, HousePlus, List, ListCollapse, MessageCircleQuestion, Radar, Rocket, TvMinimalPlay, User } from "lucide-react";
 
 export const navigationElementsAccount = [
-  { title: 'Perfil', link: '/perfil', icon: User },
+
   { title: 'Favoritos', link: "/favoritos", icon: Heart },
   { title: 'Agendamentos', link: "/agendamentos", icon: CalendarDays },
   { title: 'Documentos', link: "/documentos", icon: Folder },
-  { title: 'Notificações', link: '/notificacoes', icon: Bell },
+
 
 ];
 
