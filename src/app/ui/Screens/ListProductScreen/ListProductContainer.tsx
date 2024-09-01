@@ -15,7 +15,7 @@ import { listProducts } from "@/lib/firebase/listProducts";
 
  export async function ListProductsContainer(){
     const data =  await listProducts() 
-     let products = data as IProduct[]
+     let products = data as IProductResponse[]
      async function handleDeleteProduct(idToDelete:string){
         await axios.delete(`/api/deleteProduct?id=${idToDelete}`,)
      }

@@ -10,13 +10,14 @@ export const createNewSupport = async (data:INewSuport) => {
     
     try {
       // Referencia a coleção onde o documento será adicionado
-      const docRef = await setDoc(doc(db, "support",data.id), {
+      const docRef = await addDoc(collection( db, "support"), {
         title: data.title,
         message: data.message,
         name:data.name,
-        id:data.id,
+        user_id:data.id,
         created_at: new Date(),
-        updated_at:new Date()
+        updated_at:new Date(),
+        status:'awaiting'
       });
       revalidatePath('/suporte');
       return{message:"oii"}

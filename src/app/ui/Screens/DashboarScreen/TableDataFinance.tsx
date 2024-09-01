@@ -6,8 +6,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from "@/components/ui/table";
 import { getFinanceProfile } from "@/lib/firebase/getFinanceProfile";
 import { getUserById } from "@/lib/firebase/getUserById";
+import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { PricePowerBuy } from "./PricePowerBuy";
 
 
 export default async  function TableDataFinance(){
@@ -91,15 +93,14 @@ export default async  function TableDataFinance(){
                 <TypographyField value={dataFinanceProfile?.primeiroImovel}>Primeiro Imóvel:</TypographyField>
   </CardContent>
   </div>
-  <CardFooter className="sm:flex p-4 sm:flex-col bg-blue-100 justify-between sm:flex-row justify-items-start grid justify-items-start">
-    <div className="flex ">
-    <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight min-w-[180px] md:min-w-[300px]">Poder de compra</h3>
-    <h3 className="text-primaryPalet mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">{formatPriceToBRL(power).split(',')[0]}</h3>
-
+  <CardFooter className="flex p-6  bg-blue-100 items-center justify-center sm:justify-start">
+    <div className="flex  flex-col sm:flex-row wrap  gap-3 items-center sm:justify-center">
+        <h3 className=" flex   text-2xl font-semibold tracking-tight min-w-[180px] md:min-w-[300px] ">Potencial de Compra:</h3>
+        <PricePowerBuy value={power}/>
+        <Link href={'/perfil'} className="sm:ml-10">
+            <Button className="bg-primaryPalet">Editar Perfil</Button>
+        </Link>
     </div>
-<Link href={'/perfil'}>
-<Button className="bg-primaryPalet">Editar Perfil</Button>
-</Link>
   </CardFooter>
 </Card>
         </div>

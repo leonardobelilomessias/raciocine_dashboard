@@ -1,31 +1,31 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { truncateText } from "@/app/util/textTrincate";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { listSupportsByUserId } from "@/lib/firebase/listSupportsByUserId";
+import { SupportCard } from "./SupportCard";
 
 export async function SupportList() {
     const supports = await listSupportsByUserId("kpJsmJzlEIc4oBPDitHbDucYMyu1")
 
     return(
-        <div className="w-[400px] h-[500px] ">
-            <h6 className="text-bold">
+        <section className="flex flex-col ">
+            <h6 className="font-bold  text-lg">
                 Lista de Suportes
             </h6>
-            <Card >
+            
+            <div className="flex flex-wrap gap-3">
 
             {
                 supports&&
                 supports?.map((element)=>(
-                <CardContent key={element.title}>
-                    <div>
-                        {element.title}
-                    </div>
-                    <div>
-                        {element.message}
-                    </div>
-                </CardContent>
+                    
+                    <SupportCard  message={element.message} status={element.status} title={element.title}  key={element.title}/>
                 ))
             }
+            </div>
 
-            </Card>
-        </div>
+            
+        </section>
     )
 }
+

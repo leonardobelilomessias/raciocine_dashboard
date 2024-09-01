@@ -8,10 +8,10 @@ import imageHeader from '@/app/assets/looking-ahead.png'
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { truncateText } from "@/app/util/textTrincate";
 import { BedDouble, Car, Eye, Heart, MapPin, MessageSquareMore, Ruler, ShowerHead } from "lucide-react";
-import { IProduct } from "@/app/types/types";
+import { IProduct, IProductResponse } from "@/app/types/types";
 import { FooterProductCard } from "./FooterProductCard";
 import Link from "next/link";
-export function ProductCard({product}:{product:IProduct}){
+export function ProductCard({product}:{product:IProductResponse}){
 
     return(
         <div className="w-[280px]  ">

@@ -1,8 +1,8 @@
 import { listProducts } from "@/lib/firebase/listProducts";
 import { ApartamentContainer } from "./ApartamentContainer";
-import { IProduct } from "@/app/types/types";
+import { IProduct, IProductResponse } from "@/app/types/types";
 
-export  function ApartamentScreen({products}:{products:IProduct[]| undefined}){
+export  function ApartamentScreen({products}:{products:IProductResponse[]| undefined}){
 
     return(
         <>

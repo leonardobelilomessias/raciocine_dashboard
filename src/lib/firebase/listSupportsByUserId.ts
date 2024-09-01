@@ -4,6 +4,8 @@ import { db } from "./firebase";
  interface ISupportResponse{
   title:string
   message:string
+  status:'awaiting' |'ansered'
+
  }
 // Função para buscar um documento pelo campo "id"
 export async function listSupportsByUserId(userId: string) {
@@ -14,7 +16,7 @@ export async function listSupportsByUserId(userId: string) {
   const collectionRef = collection(db, "support");
 
   // Criando uma consulta para encontrar o documento com o campo "id" igual ao userId
-  const q = query(collectionRef, where("id", "==", userId));
+  const q = query(collectionRef, where("user_id", "==", userId),);
 
   try {
     // Executando a consulta

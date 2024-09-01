@@ -7,9 +7,9 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Heart, Rocket } from "lucide-react";
 import { FAvoriteCard } from "../../components/FavoriteCard";
 import { ProductCard } from "../../components/ProductCard";
-import { IProduct } from "@/app/types/types";
+import { IProduct, IProductResponse } from "@/app/types/types";
 
-export function ApartamentContainer({products}:{products:IProduct[]| undefined}){
+export function ApartamentContainer({products}:{products:IProductResponse[]| undefined}){
     return(
         <div className="md:p-10">
         <Card className="mb-10 p-4">

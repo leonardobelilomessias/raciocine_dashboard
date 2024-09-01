@@ -1,6 +1,6 @@
 import { collection, getDocs, QuerySnapshot } from "firebase/firestore";
 import { db } from "./firebase";
-import { IProduct } from "@/app/types/types";
+import { IProduct, IProductResponse } from "@/app/types/types";
 
 export async function listProducts(){
     try {
@@ -13,7 +13,7 @@ export async function listProducts(){
           ...doc.data() // Inclui os dados do documento
         })) 
         
-        return productList as IProduct[]
+        return productList as IProductResponse[]
       } catch (error) {
     
           console.log(error)

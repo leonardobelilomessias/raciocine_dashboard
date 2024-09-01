@@ -38,7 +38,7 @@ export function SupportForm(){
     return(
         <>
         <Form {...form} >
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1 w-[400px]">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-[400px]">
         <FormField
           control={form.control}
           name="title"
@@ -61,7 +61,7 @@ export function SupportForm(){
             <FormItem>
               
               <FormControl>
-                <Textarea placeholder="Escreva sua mensagem" {...field} />
+                <Textarea placeholder="Escreva sua mensagem" rows={12} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

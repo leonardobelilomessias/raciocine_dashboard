@@ -539,7 +539,7 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
                                   <div className="flex gap-2 wrap">
                                   {imagesBucket.map((url, index) => (
                                 <div key={index} style={{position:"relative", width:'220px', height:'150px', margin:"1rem"}}>
-                                <img key={index} src={url} alt={`Preview ${index}`} style={{position:"relative", width:'220px', height:'150px'}}/>
+                                <Image key={index} src={url} alt={`Preview ${index}`} style={{position:"relative", width:'220px', height:'150px'}}/>
                                 <button style={{position:"absolute", top:0, right:0}} onClick={(e) => handleRemoveImageBucket(e,url,index)}><DeleteIcon /></button>
                                 </div>
                                 ))}
