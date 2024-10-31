@@ -38,8 +38,8 @@ export  function ListFeaturesHome({product}:{product:IProduct}) {
   
   function BoxFeature({children, title}:{title:string,children:React.ReactNode}){
       return(
-          <div className="rounded-full flex radius-100 flex-col m-auto items-center justify-center m-w-[300px] m-w-[140px] " style={{display:"flex", alignContent:'center', justifyContent:'center', justifyItems:"center", alignItems:"center"}}>
-          <div className=" rounded-full color-white items-center justify-center bg-primaryPalet w-[4rem] h-[4rem] gap-3" style={{display:"flex",alignContent:'center', justifyContent:'center', justifyItems:"center", alignItems:"center"}} >
+          <div className="rounded-full flex radius-100 flex-col m-auto items-center justify-center m-w-[100px] m-w-[100px] " style={{display:"flex", alignContent:'center', justifyContent:'center', justifyItems:"center", alignItems:"center"}}>
+          <div className=" rounded-full color-white items-center justify-center bg-primaryPalet w-[3rem] h-[3rem] gap-3 p-2" style={{display:"flex",alignContent:'center', justifyContent:'center', justifyItems:"center", alignItems:"center"}} >
               {children}
           </div>
               <p  className=" font-bold text-center text-primaryPalet text=[1.2rem] text-center">{title}</p>

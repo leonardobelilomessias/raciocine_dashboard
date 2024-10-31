@@ -13,7 +13,6 @@ export function HouseCarousel ({images}:{images:string[]}) {
   const SLIDE_COUNT = images.length | 5
   const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
  return(
-
    <>
     <EmblaCarousel images={images} slides={SLIDES} options={OPTIONS} />
   </>

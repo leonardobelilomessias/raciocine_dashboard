@@ -78,9 +78,9 @@ export default async  function TableDataFinance(){
   <div className="flex flex-col  lg:flex-row">
 
   <CardContent >
-                <TypographyField value={String(dataFinanceProfile?.renda)}>Renda:</TypographyField>
-                <TypographyField value={String(dataFinanceProfile?.entrada)}>Entrada:</TypographyField>
-                <TypographyField value={String(dataFinanceProfile?.saldoFgts)}>Saldo Fgts:</TypographyField>
+                <TypographyField value={String(formatPriceToBRL(dataFinanceProfile?.renda as number))}>Renda:</TypographyField>
+                <TypographyField value={String(formatPriceToBRL( dataFinanceProfile?.entrada as number))}>Entrada:</TypographyField>
+                <TypographyField value={String(formatPriceToBRL( dataFinanceProfile?.saldoFgts as number ))}>Saldo Fgts:</TypographyField>
                 <TypographyField value={dataFinanceProfile?.primeiroImovel}>Tipo de renda:</TypographyField>
                 <TypographyField value={dataFinanceProfile?.filhosDependentes}>Filhos ou dependentes:</TypographyField>
 

@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { AsideDashBoard } from "../ui/components/AsideDashboard";
 import { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
+import { inter, nunito } from "../ui/fonts";
 
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default  function RootLayout({
 
   return (
     <html lang="pt-br"  style={{paddingTop:0,marginTop:0, boxSizing: 'border-box'}}>
-      <body >
+      <body className={`${inter.className} antialiased`}>
       <main>
           <div>
             <NavbarDashboard/>

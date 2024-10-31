@@ -49,7 +49,7 @@ export function NavMenuMobile(){
     return(
         <>
                   {/* mobile */}
-                  <span className="flex md:hidden">
+  <span className="flex md:hidden">
             {/* <ModeToggle /> */}
 
             <Sheet
@@ -65,10 +65,10 @@ export function NavMenuMobile(){
                 </Menu>
               </SheetTrigger>
 
-              <SheetContent side={"left"}>
+              <SheetContent side={"left"} className="overflow-y-scroll">
                   {/* navigation comunidade */}
 
-              <nav className="flex flex-col  gap-2 mt-4">
+              <nav className="flex flex-col  gap-2 mt-0">
                 <p className='flex h-[32px] grow   gap-2 rounded-md  p-3 text-sm font-medium   md:flex-none  md:p-2 md:px-3'>Comunidade</p>
                 <Separator />
                   {navigationElementsCommunity.map((element) => (
@@ -118,7 +118,7 @@ export function NavMenuMobile(){
 
             
                 {/* navigation tools */}
-                <nav className="flex flex-col  gap-2 mt-4">
+                <nav className="flex flex-col  gap-2 mt-0">
                 <p className='flex h-[32px] grow   gap-2 rounded-md  p-3 text-sm font-medium   md:flex-none  md:p-2 md:px-3'>Produtos</p>
                 <Separator />
                   {navigationElementsTools.map((element) => (

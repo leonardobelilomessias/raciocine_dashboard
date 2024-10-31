@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ReactNode } from "react";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Heart, Rocket } from "lucide-react";
+import { Heart, Hotel, Rocket } from "lucide-react";
 import { FAvoriteCard } from "../../components/FavoriteCard";
 import { ProductCard } from "../../components/ProductCard";
 import { IProduct, IProductResponse } from "@/app/types/types";
@@ -14,7 +14,7 @@ export function ApartamentContainer({products}:{products:IProductResponse[]| und
         <div className="md:p-10">
         <Card className="mb-10 p-4">
         <CardHeader>
-    <CardTitle className="flex" > <Heart className="mr-1"/> Todos Apartamentos</CardTitle>
+    <CardTitle className="flex" > <Hotel className="mr-1"/> Todos Apartamentos</CardTitle>
     <CardDescription>
         Aqui estão a lista de todos os produtos
     </CardDescription>

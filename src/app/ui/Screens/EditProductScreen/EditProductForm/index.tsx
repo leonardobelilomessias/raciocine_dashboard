@@ -58,6 +58,7 @@ import { Value } from "@radix-ui/react-select";
 import { axiosApi } from "@/lib/axios/axios";
 import { Label } from "@/components/ui/label";
 import { formatarMoedaBRL } from "@/app/util/formatPrice";
+import { Textarea } from "@/components/ui/textarea";
 const amenitiesFields = [
   {label:'pool',name:'Piscina'},
   {label:'porter',name:'Portaria 24hrs'},
@@ -271,8 +272,8 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
     return(
         <>
         <Toaster/>
-        <Form {...form}>
-      <form onSubmit={form.handleSubmit(setSubmit)} className="space-y-1">
+        <Form {...form}  >
+      <form onSubmit={form.handleSubmit(setSubmit)} className="space-y-2 w-full lg:w-[80%]">
         <Label className="font-bold">Titulo</Label>
         <FormField
           control={form.control}
@@ -297,7 +298,7 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Descrição" {...field} />
+                <Textarea  placeholder="Descrição" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -539,7 +540,7 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
                                   <div className="flex gap-2 wrap">
                                   {imagesBucket.map((url, index) => (
                                 <div key={index} style={{position:"relative", width:'220px', height:'150px', margin:"1rem"}}>
-                                <Image key={index} src={url} alt={`Preview ${index}`} style={{position:"relative", width:'220px', height:'150px'}}/>
+                                <Image key={index} src={url} alt={`Preview ${index}`} width={100} height={100} style={{position:"relative", width:'220px', height:'150px'}}/>
                                 <button style={{position:"absolute", top:0, right:0}} onClick={(e) => handleRemoveImageBucket(e,url,index)}><DeleteIcon /></button>
                                 </div>
                                 ))}

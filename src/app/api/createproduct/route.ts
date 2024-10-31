@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase/firebase';
+import { revalidatePath } from 'next/cache';
 
 
 // Definindo a interface para o produto
@@ -34,6 +35,7 @@ export async function POST(request: Request) {
           'Content-Type': 'application/json'
         }
       });
+      revalidatePath('/lista')
       return response
     } catch (error) {
       console.error('Erro ao adicionar produto:', error);

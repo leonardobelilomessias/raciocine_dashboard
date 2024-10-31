@@ -11,14 +11,12 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
   import { Button } from "@/components/ui/button"
+import { handleDeleteProduct } from "@/lib/actions/deleteProduct"
 import axios from "axios"
 import { Trash2 } from "lucide-react"
   
   export function DeleteProductDialog({idToDelete}:{idToDelete?:string }) {
-    async function handleDeleteProduct(){
-        console.log('delete product')
-         await axios.delete(`/api/deleteProduct?id=${idToDelete}`,)
-     }
+    
     return (
       <AlertDialog>
         <AlertDialogTrigger asChild>
@@ -33,7 +31,7 @@ import { Trash2 } from "lucide-react"
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDeleteProduct} className="bg-red-500">Deletar</AlertDialogAction>
+            <AlertDialogAction onClick={()=>handleDeleteProduct(idToDelete)}  className="bg-red-500">Deletar</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

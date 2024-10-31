@@ -14,12 +14,12 @@ type PropType = {
   options?: EmblaOptionsType
 }
 
-import Banner from '@/app/public/images/banner.png'
+import Banner from '@/app/public/images/bannertv.png'
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-    Autoplay({ playOnInit: true, delay: 3000 })
+    Autoplay({ playOnInit: true, delay: 4000 })
   ])
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -71,9 +71,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className="embla__container">
           {slides.map((index) => (
             <div className="embla__slide" key={index}>
-                <div className='w-full h-full relative'>
+                <div className='md:h-[350px] lg:h-[500px] w-[100%] ' >
 
-                <Image src={Banner} fill  alt='carrousel' className='w-400 h-600 px-3' style={{borderRadius:24}}/>
+                <Image src={Banner}  fill   alt='carrousel'  className=' px-3 w-full' style={{borderRadius:30}}/>
                 </div>
               <div className="embla__slide__number"> 
               </div>

@@ -27,7 +27,7 @@ export const HeroLogin = () => {
             <span className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text">
               Planta
             </span>{" "}
-            Belo Horizonte
+            Minas Gerais
           </h2>
          </div>
         </main>
@@ -38,7 +38,7 @@ export const HeroLogin = () => {
     className="min-h-60 md:min-h-[420px] xl:min-h-[420px]"
     width={'100%'}
     height={"100%"}
-    src="https://www.youtube.com/embed/--slRywdonM?si=uqwuqtbR1MdvRSJB?controls=0"
+src="https://www.youtube.com/embed/OhagXaxl72k?si=uoYsOfHG1GuVS2NL&amp;controls=0"
     title="YouTube video player"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     ></iframe>

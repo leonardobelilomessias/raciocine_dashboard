@@ -128,5 +128,22 @@ export interface IVideoParams{
 width?:number | undefined, 
 height?:number |undefined
 }
+export interface IAmenities {
+  pool?: boolean;
+  porter?: boolean;
+  gym?: boolean;
+  private_area?: boolean;
+  lift?: boolean;
+  salon_party?: boolean;
+  playground?: boolean;
+  sauna?: boolean;
+  bike_rack?: boolean;
+  coworking?: boolean;
+  washing?: boolean;
+  handicapped?: boolean;
+  backyard?: boolean;
+  pet_place?: boolean;
+  service_area?: boolean;
+}
 
 export interface INavigationElemets{ title: string, link: string, icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> }
