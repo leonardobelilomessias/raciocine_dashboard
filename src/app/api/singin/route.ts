@@ -12,7 +12,6 @@ export async function POST(request: Request) {
      
         // const session =  await AuthService.isSessionValid()
         // console.log('response',email,password)
-        console.log(response)
         return NextResponse.json(response)
     }catch(error){
         if (error instanceof FirebaseError) {

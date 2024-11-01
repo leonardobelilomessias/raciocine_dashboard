@@ -24,7 +24,6 @@ export async function listSupportsByUserId(userId: string) {
 
     // Verificando se encontrou algum documento
     if (querySnapshot.empty) {
-      console.log("Nenhum documento encontrado.");
       return null;
     }
     let suportArray:ISupportResponse[] = [] 

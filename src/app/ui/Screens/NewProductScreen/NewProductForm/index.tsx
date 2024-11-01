@@ -121,14 +121,12 @@ export function NewProductForm(){
           }
           return  result
         })
-        console.log('amenidades',formatedData)
         data.amenities = formatedData
         await  onSubmit(data)
       }
       const onSubmit = async (data: IValidationSchema) => {
         
         if (files.length <= 0) {
-          console.log('sem capa')
           toast({
             title:"Nenhuma imagem adicionada",
             description:"você precisa adicionar pelo menos uma imagem"
@@ -163,7 +161,6 @@ export function NewProductForm(){
             description: "Friday, February 10, 2023 at 5:57 PM",
           })
            const response = await axios.post('/api/createproduct', data);
-          console.log(response.data)
            const id = response.data
            formData.append('bucket', `${id}`);
            formCover.append('bucket', `${id}`);

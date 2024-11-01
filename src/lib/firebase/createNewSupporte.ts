@@ -21,7 +21,6 @@ export const createNewSupport = async (data:INewSuport) => {
       });
       revalidatePath('/suporte');
       return{message:"oii"}
-      console.log("Documento adicionado com ID: ", docRef);
     } catch (e) {
       console.error("Erro ao adicionar documento: ", e);
       return { message: 'Database Error: Failed to Delete Invoice' };

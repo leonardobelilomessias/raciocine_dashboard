@@ -13,8 +13,6 @@ export const updateAccountUser = async (
 ): Promise<void | FirebaseError | any> => {
   try {
     // Obter a referência ao documento
-    console.log('ola')
-    console.log(data)
     const profileRef = doc(db, 'users', id);
     // Atualizar o documento com os novos dados
     await updateDoc(profileRef, {

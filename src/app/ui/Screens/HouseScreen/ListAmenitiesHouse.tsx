@@ -10,7 +10,6 @@ export function ListAmenitiesHouse({amenitiesList}:{amenitiesList:{ [key: string
             <div className="flex flex-row gap-4 w-1000 flex-wrap bg-sky-50 p-4">
 
             <div className="flex flex-row items-center space-x-1 flex-wrap  ">{amenities.pool?<GiConfirmed color="blue" fontSize={16} className=" leading-4" />:<GiCancel color="red" />}<p>Piscina</p></div>
-            
             <div className="flex flex-row items-center space-x-1 ">{amenities.porter?<GiConfirmed color="blue" fontSize={16} className=" leading-4" />:<GiCancel color="red" />}<p>Portaria</p></div>
             <div className="flex flex-row items-center space-x-1 ">{amenities.gym?<GiConfirmed color="blue" fontSize={16} className=" leading-4" />:<GiCancel color="red" />}<p>Academia</p></div>
             <div className="flex flex-row items-center space-x-1 ">{amenities.private_area?<GiConfirmed color="blue" fontSize={16} className=" leading-4" />:<GiCancel color="red" />}<p>Area Privativa</p></div>
@@ -25,10 +24,6 @@ export function ListAmenitiesHouse({amenitiesList}:{amenitiesList:{ [key: string
             <div className="flex flex-row items-center space-x-1 ">{amenities.lift?<GiConfirmed color="blue" fontSize={16} className=" leading-4" />:<GiCancel color="red" />}<p>Elevador</p></div>
             <div className="flex flex-row items-center space-x-1 ">{amenities.washing?<GiConfirmed color="blue" fontSize={16} className=" leading-4" />:<GiCancel color="red" />}<p>Area de LAvar</p></div>
             <div className="flex flex-row items-center space-x-1 ">{amenities.backyard?<GiConfirmed color="blue" fontSize={16} className=" leading-4" />:<GiCancel color="red" />}<p>Quintal</p></div>
-
-
-            
-
             </div>
         </div>
     )

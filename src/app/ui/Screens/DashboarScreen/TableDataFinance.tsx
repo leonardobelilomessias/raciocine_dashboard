@@ -14,6 +14,7 @@ import { PricePowerBuy } from "./PricePowerBuy";
 
 export default async  function TableDataFinance(){
     const dataFinanceProfile = await getUserById() as IFormInputFinance
+    console.log(dataFinanceProfile)
     const nascimento = Number(String(dataFinanceProfile?.dataNascimento).split('/')[2])
     const handspay = dataFinanceProfile?.entrada?dataFinanceProfile.entrada:0
     const fgts = dataFinanceProfile?.saldoFgts?dataFinanceProfile.saldoFgts:0
@@ -81,7 +82,7 @@ export default async  function TableDataFinance(){
                 <TypographyField value={String(formatPriceToBRL(dataFinanceProfile?.renda as number))}>Renda:</TypographyField>
                 <TypographyField value={String(formatPriceToBRL( dataFinanceProfile?.entrada as number))}>Entrada:</TypographyField>
                 <TypographyField value={String(formatPriceToBRL( dataFinanceProfile?.saldoFgts as number ))}>Saldo Fgts:</TypographyField>
-                <TypographyField value={dataFinanceProfile?.primeiroImovel}>Tipo de renda:</TypographyField>
+                <TypographyField value={dataFinanceProfile?.tipoRenda}>Tipo de renda:</TypographyField>
                 <TypographyField value={dataFinanceProfile?.filhosDependentes}>Filhos ou dependentes:</TypographyField>
 
   </CardContent>

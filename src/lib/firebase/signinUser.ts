@@ -16,7 +16,6 @@ interface ILoginInputs {
     const user = userCredential.user;
 
     return user
-    console.log("Usuário logado com sucesso:", user);
     // Aqui você pode redirecionar o usuário ou realizar outra ação após o login bem-sucedido
   } catch (error) {
     if (error instanceof FirebaseError) {

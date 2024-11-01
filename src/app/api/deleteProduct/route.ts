@@ -9,7 +9,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function DELETE(request: NextRequest, ) {
       const product  = request.nextUrl.searchParams
       const id = product.get('id')
-      console.log(id)
 
     try {
         if(id){
@@ -60,7 +59,6 @@ const deleteProductDocument = async (id: string): Promise<void> => {
   try {
     const docRef = doc(db, 'products', id);
     await deleteDoc(docRef);
-    console.log(`Documento com ID ${id} deletado do Firestore.`);
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Erro ao deletar documento: ${error.message}`);
@@ -77,7 +75,6 @@ const deleteProductBucket = async (id: string): Promise<void> => {
 
         
         const list = await listAll(bucketRef);
-        console.log(list);
         const deletePromises = list.items.map((itemRef) => deleteObject(itemRef));
         await Promise.all(deletePromises);
         
@@ -104,7 +101,6 @@ const deleteCover = async (id: string): Promise<void> => {
     if(!imageRef?.name){
     await deleteObject(imageRef);
     }
-    console.log(`Capa com ID ${id} deletada do Firebase Storage.`);
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Erro ao deletar capa: ${error.message}`);

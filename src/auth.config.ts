@@ -11,7 +11,6 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
-      console.log('passei aqui')
       const publicRoutes = ["/",'/landing', '/cadastro', '/login',"/cadastro"];
       const privateRoutes = ['/dashboard', '/perfil', '/agendamentos',];
       const isPrivateRoutes = privateRoutes.includes(nextUrl.pathname)

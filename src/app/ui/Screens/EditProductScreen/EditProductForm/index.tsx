@@ -150,7 +150,6 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
           }
           return  result
         })
-        console.log('amenidades',formatedData)
         data.amenities = formatedData
         data.price =data.price.split("$")[1]
         await  onSubmit(data)
@@ -158,7 +157,6 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
       const onSubmit = async (data: IValidationSchema) => {
         
         if (files.length <= 0 && imagesBucket.length<=0) {
-          console.log('sem capa')
           toast({
             title:"Nenhuma imagem adicionada",
             description:"você precisa adicionar pelo menos uma imagem"
@@ -187,7 +185,6 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
           const slug = data.title.split(" ").join('-')+`-${uuidv4}`
           Object.assign(data,{slug:slug})
           const response = await axiosApi.post('/api/updateProduct', {docId:product.id, data, bombom:"lego"});
-          console.log('productId aquiiiii', response.data)
           const {id} = response.data as IProductResponse
           if(imagesDelet.length>0){
             await axiosApi.post('/api/deleteImages',{productId:product.id,imageUrls:imagesDelet});
@@ -468,7 +465,6 @@ export   function EditProductForm({product, images}:{product:IProductResponse, i
                             checked={field.value?.includes(item.name)}
 
                             onCheckedChange={(checked) => {
-                            console.log(field.value)
                               if(!!field.value){
                                 
                                 return checked? field.onChange([...field.value, item.name]): field.onChange (field.value?.filter((value) => value !== item.name))

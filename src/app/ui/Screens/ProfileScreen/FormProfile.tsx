@@ -45,6 +45,7 @@ const formSchema = z.object({
 
 export function FormProfile({dataUser}:{dataUser:IUser}){ 
 // Divide a string em dia, mês e ano
+
 const [day, month, year] = String(dataUser?.dataNascimento).split("/");
 const [realDate,setRealDate] = useState(new Date(`${year}-${month}-${day}`));
   const [edit,setEdit] = useState(false)
@@ -71,10 +72,8 @@ const [realDate,setRealDate] = useState(new Date(`${year}-${month}-${day}`));
         },
       })
       async function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values.dataNascimento)
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
         try{
           const formattedDate = new Intl.DateTimeFormat('pt-BR', {
             day: '2-digit',

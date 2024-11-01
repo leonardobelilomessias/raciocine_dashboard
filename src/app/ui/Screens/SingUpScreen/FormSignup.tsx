@@ -15,11 +15,20 @@ import { Loader2 } from "lucide-react";
 import Link from "next/link";
 
 const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6).max(50),
-})
+  email: z.string().email({ message: "Digite um email válido." }),
+  password: z.string().min(6,{ message: "Digite uma senha com no mínimo 6 digitos." }).max(50),
+  confirmPassword:z.string(),
+}).superRefine(({ confirmPassword, password }, ctx) => {
+  if (confirmPassword !== password) {
+    ctx.addIssue({
+      code: "custom",
+      message: "As senhas não são iguais.",
+      path: ['confirmPassword']
+    });
+  }
+});
 
-export function FormSingIn(){
+export function FormSignup(){
   const { toast } = useToast()
   const[load,setLoad]= React.useState(false)
     const router = useRouter()
@@ -33,11 +42,12 @@ export function FormSingIn(){
     async   function onSubmit(values: z.infer<typeof formSchema>) {
       setLoad(true)
         try{
-          const user =   await axios.post("/api/singin",{email:values.email, password:values.password})
+          const user =   await axios.post("/api/singup",{email:values.email, password:values.password})
           if(user.data?.uid){
       
             router.replace('/dashboard')
           }
+            console.log(user.data)
         
           }catch(error){
             if (error instanceof FirebaseError) {
@@ -64,8 +74,6 @@ export function FormSingIn(){
                 })
                 // toast("Usuario ou senhas incorretos. Tente novamente");
               }else{
-
-                
                                 toast({
                                   variant: "destructive",
                                   title: "Houve um erro com o login",
@@ -81,7 +89,6 @@ export function FormSingIn(){
           }finally{
             setLoad(false)
           }
-        console.log(values)
 
         router.push('/dashboard')
       }
@@ -94,7 +101,7 @@ export function FormSingIn(){
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="align-left self-end ">Email</FormLabel>
               <FormControl>
                 <Input placeholder="Email" {...field} />
               </FormControl>
@@ -110,7 +117,20 @@ export function FormSingIn(){
             <FormItem>
               <FormLabel>Senha</FormLabel>
               <FormControl>
-                <Input placeholder="Senha" {...field} />
+                <Input type="password" placeholder="Senha" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+    <FormField
+          control={form.control}
+          name="confirmPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Repita a Senha</FormLabel>
+              <FormControl>
+                <Input placeholder="Senha" type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -118,8 +138,7 @@ export function FormSingIn(){
         />
         {
         !load&&
-        <Button className="w-full mt-3"  type="submit">Entrar</Button>
-        
+        <Button className="w-full mt-3"  type="submit">Cadastrar</Button>
 
         
         }
@@ -131,7 +150,6 @@ load&&
 
       </Button>
     }
-        <Link  className="w-full mt-6  text-center border-[1px] p-2 rounded border-black " href={'/cadastro'}   >Criar conta</Link>
 
         </>
     )

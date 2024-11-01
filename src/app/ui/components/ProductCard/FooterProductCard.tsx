@@ -68,7 +68,6 @@ function DialogFooterCardProduct({product}:{product:IProductResponse}){
     //   console.log(product.amenities)
     const filteredamenities = product.amenities.filter((item)=> {return Object.values(item)[0]===true})
      .map((item)=>  (Object.keys(item)[0]))
-    console.log("filtered",filteredamenities)
     return(
     <>
     <Dialog>

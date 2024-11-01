@@ -53,7 +53,6 @@ export async function POST(request: Request) {
 const addProduct = async (product: Product): Promise<string> => {
   try {
     const docRef = await addDoc(collection(db, 'products'), product);
-    console.log('Documento criado com ID:', docRef.id);
     return docRef.id;
   } catch (error) {
     console.error('Erro ao adicionar documento:', error);

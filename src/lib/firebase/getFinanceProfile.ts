@@ -30,7 +30,6 @@ export const getFinanceProfile = async (userId: string): Promise<IFormInputFinan
       return docSnapshot.data() as IFormInputFinance;
     } else {
       // Documento não encontrado
-      console.log('Perfil financeiro não encontrado');
       return null;
     }
   } catch (error) {

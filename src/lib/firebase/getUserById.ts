@@ -9,16 +9,15 @@ import { cookies } from 'next/headers';
 export const getUserById = async () => {
   try {
     // Obter a referência ao documento
+
     const session = cookies().get("user_id")
     const user_id = session?.value as string
     const profileRef = doc(db, 'users', user_id);
-
+    
     // Buscar o documento
     const docSnapshot = await getDoc(profileRef);
-
     
-      return docSnapshot.data() as IUser;
-
+    return docSnapshot.data() as IUser;
     
   } catch (error) {
     if (error instanceof FirebaseError) {
