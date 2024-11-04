@@ -10,7 +10,9 @@ import { date } from "zod";
 import { Label } from "@/components/ui/label";
 import { CalendarDays } from "lucide-react";
 registerLocale('pt-BR', ptBR);
-export function SchedulleCalendar() {
+
+
+export function SchedulleCalendar({setDate}:{setDate:(date:Date|null)=>void}) {
   
   const initialDate = new Date();
   initialDate.setHours(10, 30, 0, 0); 
@@ -36,6 +38,7 @@ export function SchedulleCalendar() {
     return isFuture && isWithinHours;
   };
   const handleDateChange = (date: Date | null) => {
+    setDate(date)
     setStartDate(date);
     if (date) {
       console.log("Data e Hora Selecionada:", date);

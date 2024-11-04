@@ -20,9 +20,17 @@ import { SchedulleCalendar } from "./ScedullerCalendar"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useState } from "react"
 import clsx from "clsx"
+import { axiosApi } from "@/lib/axios/axios"
 
-
+interface IAppointment {
+  user_id:string,
+  date:Date |undefined |null
+  type:string
+  status:"confirmed"| "awaiting" |"canceled"
+}
 export function SchedulleDialog() {
+  const [date,setDate] = useState<Date | null>()
+  const [appointment,setAppointment] = useState({} as IAppointment) 
   const [channel, setChannel] = useState("whatsapp")
   const [messageChannel,setMessageChannel] = useState('Agende seu horario no melhos dia e forma de sua preferência.')
   function handleChannel(thisChannel:string){
@@ -31,6 +39,15 @@ export function SchedulleDialog() {
     if('call'==thisChannel)  setMessageChannel( "Vamos fazer  uma ligação para entrar em contato com você  no horário marcado")
     if('video'==thisChannel)  setMessageChannel( "Vamos fazer uma reunião de video com você no whatsapp no horário marcado")
     if('visit'==thisChannel)  setMessageChannel( "Vamos te esperar  para o seu atendimento na visita agendada no horário marcado")
+
+  }
+   async function sendAppointment({type, date }:{type:string, date:Date|undefined|null}){
+    try{
+      const appointment = {status:"awaiting", type:channel, date:date}
+      await axiosApi.post('/api/createAppointment',{appointment:appointment})
+    }catch{
+      alert("erro ao enviar agendamento")
+    }
 
   }
   return (
@@ -80,12 +97,12 @@ export function SchedulleDialog() {
             {messageChannel}
           </DialogDescription>
         <div className="flex justify-center py-4">
-            <SchedulleCalendar/>
+            <SchedulleCalendar setDate={setDate}/>
           
         </div>
         <DialogFooter>
-          <DialogClose asChild onClick={()=>{console.log(' dialog close', channel)}}>
-          <Button type="submit" className="bg-primaryPalet">Salvar Agendamento</Button>
+          <DialogClose asChild  >
+          <Button onClick={()=> sendAppointment({type:channel,date:date})} className="bg-primaryPalet">Salvar Agendamento</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
