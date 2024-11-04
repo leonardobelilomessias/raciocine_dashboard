@@ -7,6 +7,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Rocket } from "lucide-react";
 import { IProduct } from "@/app/types/types";
 import { listProducts } from "@/lib/firebase/listProducts";
+import Link from "next/link";
 
 export async function LaunchContainer(){
   const products = await listProducts()
@@ -43,7 +44,7 @@ export async function LaunchContainer(){
 
   <CardFooter className="sm:flex p-4 sm:flex-col  justify-between sm:flex-row justify-items-start grid justify-items-start">
 
-<Button className="bg-primaryPalet">ver todos</Button>
+<Link href={"/apartamentos"} className="bg-primaryPalet text-white  rounded p-2 font-medium">ver todos</Link>
   </CardFooter>
         </Card>
         </>

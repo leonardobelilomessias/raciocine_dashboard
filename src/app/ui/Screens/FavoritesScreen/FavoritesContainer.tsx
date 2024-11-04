@@ -1,12 +1,27 @@
+'use client'
 import { formatPriceToBRL } from "@/app/util/formatPrice";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Heart, Rocket } from "lucide-react";
-import { FAvoriteCard } from "../../components/FavoriteCard";
+import { axiosApi } from "@/lib/axios/axios";
+import { FavoriteCard } from "../../components/FavoriteCard";
+import { IFavorite } from "@/app/types/types";
 
 export function FavoritesContainer(){
+    const [favorites,setFavorites] = useState([]as IFavorite[])
+    async function getFavorites():Promise<IFavorite[]> {
+        const favoriteAxios =  await axiosApi.get("/api/getUserFavorites")
+        const favoritesUser =favoriteAxios.data
+        setFavorites(favoritesUser)
+        console.log(favoritesUser)
+        return favoritesUser as IFavorite[]
+        
+    }    
+        useEffect(()=>{
+            getFavorites()
+        },[])
     return(
         <div className="md:p-10">
         <Card className="mb-10 p-4">
@@ -22,16 +37,31 @@ export function FavoritesContainer(){
   <div className="flex flex-wrap gap-3 m-auto">
 
 {
-    [11,2,3,5,5,5,8,69,89].map((ite,index)=>(
-        
-
-        <FAvoriteCard key={index}/>
+    favorites.map((item,index)=>(
+        <FavoriteCard  
+        setFavorite={setFavorites}
+        getFavorites={getFavorites}
+        address={item.address} 
+        id_favorite={item.id_favorite}
+        area={item.area}
+        bathrooms={item.bedrooms}
+        bedrooms={item.bedrooms}
+        city={item.city}
+        cover={item.cover}
+        description={item.description}
+        garages={item.garages}
+        neighborhood={item.neighborhood}
+        price={item.price} 
+        title={item.title}
+        zip={item.zip}
+        id={item.id}    
+    />
     
     ))
 }
 
 
-
+{!(favorites.length>=1) && <p>Você ainda não tem favoritos.</p>}
   </div>
 
 

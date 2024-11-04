@@ -61,6 +61,7 @@ export function ProductCard({product}:{product:IProductResponse}){
                     {/* end block icons  */}
 
                     {/* block butons actions  */}
+                    
                     <FooterProductCard  address={product.address} 
                     amenities={product.amenities}
                     area={product.area}

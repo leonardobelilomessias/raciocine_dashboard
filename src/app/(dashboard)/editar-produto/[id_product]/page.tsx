@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 
 export default  async function editarproduto({params:{id_product}}:{params:{id_product:string}}){
-    const response = await axiosApi.get(`/api/getProductById?id=${id_product}`)
+    const response = await axiosApi.get(`/api/getProductByIdgetProductById`)
     const imagesResponse = await axiosApi.get(`/api/listImagesByIdProduct?id=${id_product}`);
     const imagens = imagesResponse.data.urls
     const productsResponse = response.data as IProductResponse

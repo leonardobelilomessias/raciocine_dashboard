@@ -16,9 +16,9 @@ export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,cit
     async function handleFavorite(product:IProductResponse){
         if(isFavorite){    
             setIsFavorite(!true)
-            await axiosApi.post('/api/createFavorite',{product:product})
+            await axiosApi.post('/api/createFavorites',{product:product})
         }else{
-            await axiosApi.delete(`/api/deleteFavorite?product_id=${product.id}`)
+            await axiosApi.delete(`/api/deleteFavorites?product_id=${product.id}`)
             setIsFavorite(!false)
 
         }
@@ -36,10 +36,7 @@ export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,cit
                             </p>
                         </div>
                         <div className="flex flex-col     justify-center">
-                                <MessageSquareMore  width={30} height={30} className="m-auto text-primaryPalet " />
-                            <p className="text-primaryPalet m-auto text-center">
-                                Contato
-                            </p>
+                                <DialogContactFooterCard cover={cover} city={city} id={id} neighborhood={neighborhood} title={title} />
                         </div>
                 <DialogFooterCardProduct product={{address,amenities,area,bathrooms,bedrooms,city,cover,description,garages,neighborhood,price,title,zip,id}}/>
                     </div>
@@ -47,6 +44,58 @@ export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,cit
     )
 }
 
+
+function DialogContactFooterCard({cover,title,neighborhood,city,id}:{cover:string,title:string, neighborhood:string, city:string,id:string|undefined}){
+
+    return(
+    <>
+    <Dialog>
+  <DialogTrigger>
+  <div className="flex flex-col     justify-center">
+    <MessageSquareMore  width={32} height={30} className="m-auto text-primaryPalet" />
+    <p className="text-primaryPalet m-auto text-center">
+            Contato
+    </p>
+</div>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle className="text-2xl">Solicitar atendimento </DialogTitle>
+      <DialogDescription>
+
+        Clique em enviar e nossa equipe irá entrar em contato para realizar o seu atendimento
+      </DialogDescription>
+    <div className="flex justify-center gap-2">
+
+    <Image src={cover} width={150} height={50} alt="image"/>
+    <div>
+    <p className="text-primaryPalet font-bold">{title}</p>
+    <p className="text-xs">
+    {city} - 
+    {neighborhood}
+    </p>
+    </div>
+    </div>
+    </DialogHeader>
+    <div className="flex gap-3 flex-wrap mt-5 mb-5">
+        Olá, tenho interesse no imóvel {title}! 
+    </div>
+
+    <DialogFooter className="flex flex-row  gap-2">
+          <DialogClose asChild>
+                <Button type="button" className="w-[150px]" variant="secondary">
+                Cancelar
+                </Button>
+          </DialogClose>
+        <Link href={``}>
+            <Button className="bg-primaryPalet w-[150px]">Solicitar Atendimento</Button>
+        </Link>
+        </DialogFooter>
+  </DialogContent>
+</Dialog>
+    </>
+    )
+}
 function DialogFooterCardProduct({product}:{product:IProductResponse}){
     const amenitiesFields = [
         {label:'pool',name:'Piscina'},

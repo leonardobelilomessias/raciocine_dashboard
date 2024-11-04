@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { buttonVariants } from "./ui/button";
 import { HeroCards } from "./HeroCards";
+import Link from "next/link";
 // import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export const Hero = () => {
@@ -27,20 +28,13 @@ export const Hero = () => {
         Saiba como tornar a jornada do seu apartamento mais prazerosa e sem complicaçoes.
         </p>
 
-        <div className="space-y-4 md:space-y-0 md:space-x-4">
-          <Button className="w-full md:w-1/3">Entrar</Button>
+        <div className=" flex gap-4 flex-col md:flex-row ">
+        <Link  className="w-full   text-center border-[1px] p-2 rounded border-black text-center text-white bg-black " href={'/entrar'}   >Entrar</Link>
 
-          <a
-            rel="noreferrer noopener"
-            href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-            target="_blank"
-            className={`w-full md:w-1/3 ${buttonVariants({
-              variant: "outline",
-            })}`}
-          >
+        <Link  className="w-full   text-center border-[1px] p-2 rounded border-black text-center  " href={'/cadastrar'}   >
             Cadastrar
             {/* <GitHubLogoIcon className="ml-2 w-5 h-5" /> */}
-          </a>
+          </Link>
         </div>
       </div>
 

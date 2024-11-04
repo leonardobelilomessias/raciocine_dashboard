@@ -29,6 +29,7 @@ export default  function RootLayout({
 
   return (
     <html lang="pt-br"  style={{paddingTop:0,marginTop:0, boxSizing: 'border-box'}}>
+
       <body className={`${inter.className} antialiased`}>
       <main>
           <div>

@@ -8,16 +8,16 @@ import { Separator } from "@radix-ui/react-dropdown-menu"
 import { Play, TvMinimalPlayIcon, Video, Youtube } from "lucide-react"
 import Link from "next/link"
   
-  export function VideoAccordion({id}:{id:string}) {
+  export function VideoAccordion() {
     const elemts = [{
-        title:"Como financiar seu primeiro imovel",link:` /video/${id}`,category:"fin"},
-        {title:"Documentos para o financiamento",link:` /video/${id}`, category:"fin"},
-        {title:"partamento tipo vs Area Privativa",link:` /video/${id}`, category:"con"},
-        {title:"Qual melhor posição do apartamento",link:` /video/${id}`, category:"con"},
-        {title:"São gabriel coração de BH",link:` /video/${id}`, category:"rai"},
-        {title:"Nova pampulha - perto de tudo ",link:` /video/${id}`, category:"rai"},
-        {title:"Como fazer uma grana extra para o ape",link:` /video/${id}`, category:"dic"},
-        {title:"Melhores planos de pagamento",link:"", category:"dic"},
+        title:"Como financiar seu primeiro imovel",link:"/video/c445451215",category:"fin"},
+        {title:"Documentos para o financiamento",link:"/video/0556498", category:"fin"},
+        {title:"partamento tipo vs Area Privativa",link:"/video/3254987636", category:"con"},
+        {title:"Qual melhor posição do apartamento",link:"/video/54163264", category:"con"},
+        {title:"São gabriel coração de BH",link:"/video/964842", category:"rai"},
+        {title:"Nova pampulha - perto de tudo ",link:"/video/56565971", category:"rai"},
+        {title:"Como fazer uma grana extra para o ape",link:"/video/444445", category:"dic"},
+        {title:"Melhores planos de pagamento",link:"589963", category:"dic"},
   
   
       ]

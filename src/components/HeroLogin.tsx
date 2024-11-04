@@ -6,14 +6,14 @@ import { Navbar } from "./Navbar";
 
 export const HeroLogin = () => {
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className=" min-h-screen">
         <Navbar/>
     <section className="container p-4 flex flex-col   gap-10">
       {/* Título - Comunidade Apartamento na Planta Belo Horizonte */}
-      <div className="bg-white p-8 rounded-xl  pb-60 pt-10">
+      <div className=" p-4 rounded-xl  pb-60 pt-4 gap-6 ">
 
-      <div className="text-center lg:text-start bg-white space-y-6 lg:w-full">
-        <main className="text-center text-5xl md:text-6xl font-bold">
+      <div className="text-center lg:text-start  mb-6 space-y-6 lg:w-full ">
+        <main className="text-center text-xl sm:text-5xl  md:text-6xl font-bold">
          <div>
 
           <h1 className="inline text-center">
@@ -32,7 +32,7 @@ export const HeroLogin = () => {
          </div>
         </main>
       </div>
-<div className=" flex flex-row  flex-col justify-center lg:flex-row ">
+<div className=" flex flex-row sm:gap-10  flex-col justify-center lg:flex-row ">
     <div className="flex  min-h-60  flex-1 ">
     <iframe
     className="min-h-60 md:min-h-[420px] xl:min-h-[420px]"
@@ -46,10 +46,10 @@ src="https://www.youtube.com/embed/OhagXaxl72k?si=uoYsOfHG1GuVS2NL&amp;controls=
 
 
         {/* Descrição e Botões */}
-        <div className=" px-5 flex flex-col flex-1  max-w-lg m-auto ">
+        <div className=" px-2 flex flex-col flex-1  max-w-lg m-auto ">
 
-          <p className="flex">
-            Saiba como tornar a jornada do seu apartamento mais prazerosa e sem complicações.
+          <p className="flex text-center">
+            A jornada do seu apartamento mais prazerosa e sem complicações.
           </p>
           <FormSingIn/>
           <div className="flex flex-col md:flex-row lg:flex-col gap-4 lg:gap-6 mt-6 lg:mt-10 ">
