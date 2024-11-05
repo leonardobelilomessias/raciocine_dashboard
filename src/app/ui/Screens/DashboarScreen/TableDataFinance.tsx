@@ -76,24 +76,23 @@ export default async  function TableDataFinance(){
         e as informaçoes de mercado 
     </CardDescription>
   </CardHeader>
-  <div className="flex flex-col  lg:flex-row">
+  {/* <div className="flex flex-col  lg:flex-row">
+        <CardContent >
+                        <TypographyField value={String(formatPriceToBRL(dataFinanceProfile?.renda as number))}>Renda:</TypographyField>
+                        <TypographyField value={String(formatPriceToBRL( dataFinanceProfile?.entrada as number))}>Entrada:</TypographyField>
+                        <TypographyField value={String(formatPriceToBRL( dataFinanceProfile?.saldoFgts as number ))}>Saldo Fgts:</TypographyField>
+                        <TypographyField value={dataFinanceProfile?.tipoRenda}>Tipo de renda:</TypographyField>
+                        <TypographyField value={dataFinanceProfile?.filhosDependentes}>Filhos ou dependentes:</TypographyField>
 
-  <CardContent >
-                <TypographyField value={String(formatPriceToBRL(dataFinanceProfile?.renda as number))}>Renda:</TypographyField>
-                <TypographyField value={String(formatPriceToBRL( dataFinanceProfile?.entrada as number))}>Entrada:</TypographyField>
-                <TypographyField value={String(formatPriceToBRL( dataFinanceProfile?.saldoFgts as number ))}>Saldo Fgts:</TypographyField>
-                <TypographyField value={dataFinanceProfile?.tipoRenda}>Tipo de renda:</TypographyField>
-                <TypographyField value={dataFinanceProfile?.filhosDependentes}>Filhos ou dependentes:</TypographyField>
-
-  </CardContent>
-  <CardContent>
-  <TypographyField value={dataFinanceProfile?.estadoCivil}>Estado Civil:</TypographyField>
-                <TypographyField value={String(dataFinanceProfile?.dataNascimento)}>Data de nascimento:</TypographyField>
-                <TypographyField value={dataFinanceProfile?.trabalho3Anos}>Trabalhou 3 anos CLT:</TypographyField>
-                <TypographyField value={dataFinanceProfile?.financiamento}>Possui financiamento:</TypographyField>
-                <TypographyField value={dataFinanceProfile?.primeiroImovel}>Primeiro Imóvel:</TypographyField>
-  </CardContent>
-  </div>
+        </CardContent>
+        <CardContent>
+        <TypographyField value={dataFinanceProfile?.estadoCivil}>Estado Civil:</TypographyField>
+                        <TypographyField value={String(dataFinanceProfile?.dataNascimento)}>Data de nascimento:</TypographyField>
+                        <TypographyField value={dataFinanceProfile?.trabalho3Anos}>Trabalhou 3 anos CLT:</TypographyField>
+                        <TypographyField value={dataFinanceProfile?.financiamento}>Possui financiamento:</TypographyField>
+                        <TypographyField value={dataFinanceProfile?.primeiroImovel}>Primeiro Imóvel:</TypographyField>
+        </CardContent>
+  </div> */}
   <CardFooter className="flex p-6  bg-blue-100 items-center justify-center sm:justify-start">
     <div className="flex  flex-col sm:flex-row wrap  gap-3 items-center sm:justify-center">
         <h3 className=" flex   text-2xl font-semibold tracking-tight min-w-[180px] md:min-w-[300px] ">Potencial de Compra:</h3>

@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
 import {
     Table,
     TableBody,
     TableCaption,
-    TableCell,
     TableFooter,
-    TableHead,
-    TableHeader,
-    TableRow,
+
   } from "@/components/ui/table"
 import clsx from "clsx"
+import { FilePlus2, FileText, Trash, Trash2 } from "lucide-react"
    
   const invoices = [
     {
@@ -66,40 +66,65 @@ import clsx from "clsx"
       return""
     }
     return (
-      <Table>
-        <TableCaption>A lista dos documentos enviados.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Tipo</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Ação</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
+      <div>
+        <SelectDocument/>
+        <p className="text-sm pb-1">A lista dos documentos enviados.</p>
+        <Separator className="mb-2"/>
+
+        <div className="flex gap-2 flex-wrap ">
           {invoices.map((invoice) => (
-            <TableRow key={invoice.type}>
-              <TableCell className="font-medium">{invoice.type}</TableCell>
-              <TableCell className={`${ColorStatus(invoice.status)}`}>{invoice.status}</TableCell>
-              <TableCell>
+            <div key={invoice.type} className="flex flex-col  min-w-[220px] rounded p-3 gap-2 border ">
+              <FileText size={16} />
+              <div className={`${ColorStatus(invoice.status)} text-xs  text-end justify-self-end font-bold`}>
+
+                {invoice.status}
+                </div>
+              <div className="font-bold ">{invoice.type}</div>
+              <div>
                   <div className="grid w-full max-w-sm items-center gap-1.5">
-                <Label   htmlFor="picture">
-
-                  Enviar
-
-                </Label>
+                <Button  className="flex  gap-2 bg-white text-black border border"  >
+                  <Trash2 size={14}/>
+                  Remover
+                </Button>
                 <Input  className="hidden" id="picture" type="file" />
                 </div>
-            </TableCell>
+            </div>
               
-            </TableRow>
+            </div>
           ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={3}>Mantenha seus documentos atualizados</TableCell>
+        </div>
+        <div>
+          <div>
             
-          </TableRow>
-        </TableFooter>
-      </Table>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  function SelectDocument(){
+    return(
+      <div className="flex flex-col gap-3 flex-wrap my-10">
+              <Label>Selecione um novo documento para enviar</Label>
+        <div className=" flex flex-row gap-3 flex-wrap">
+              <div className="">
+                  <Select >
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Theme" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">cpf</SelectItem>
+                    <SelectItem value="dark">Rg</SelectItem>
+                    <SelectItem value="system">Comprovante de Renda</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+            <Button className=" flex items-center gap-2">
+            <FilePlus2 size={16} />
+              enviar documento
+            </Button>
+          </div>
+      </div>
     )
   }

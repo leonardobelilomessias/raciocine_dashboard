@@ -77,6 +77,7 @@ const amenitiesFields = [
 
 
 const validationSchema = z.object({
+  construction_company:z.string(),
   title: z.string(),
   description: z.string(),
   price: z.string(),
@@ -378,7 +379,7 @@ export function NewProductForm(){
         />
       <Label className="font-bold">Area</Label>
 
-                <FormField
+          <FormField
           control={form.control}
           name="area"
           render={({ field }) => (
@@ -391,7 +392,21 @@ export function NewProductForm(){
             </FormItem>
           )}
         />
+<Label className="font-bold">Construtora</Label>
 <FormField
+control={form.control}
+name="construction_company"
+render={({ field }) => (
+  <FormItem>
+    
+    <FormControl>
+      <Input placeholder="Construtora" {...field} />
+    </FormControl>
+    <FormMessage />
+  </FormItem>
+)}
+/>
+        <FormField
           control={form.control}
           name="amenities"
           render={() => (

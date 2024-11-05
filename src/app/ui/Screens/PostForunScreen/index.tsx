@@ -21,7 +21,7 @@ async function getforumPosts(){
 }
     useEffect(()=>{
         getforumPosts()
-    },[])
+    })
 
     return(
         <div className="sm:container pt-10 mx-2">

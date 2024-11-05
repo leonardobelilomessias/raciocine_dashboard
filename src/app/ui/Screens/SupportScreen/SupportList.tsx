@@ -13,7 +13,7 @@ export async function SupportList() {
                 Lista de Suportes
             </h6>
             
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 flex-1">
 
             {
                 supports&&

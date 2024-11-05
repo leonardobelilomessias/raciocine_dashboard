@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ReactNode } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Download, Heart, Pencil, Rocket, Trash2 } from "lucide-react";
-import { FAvoriteCard } from "../../components/FavoriteCard";
 import Image from "next/image";
 import axios from "axios";
 import { IProduct, IProductResponse } from "@/app/types/types";

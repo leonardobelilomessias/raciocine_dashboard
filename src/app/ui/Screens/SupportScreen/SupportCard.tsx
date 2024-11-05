@@ -12,7 +12,7 @@ export function SupportCard({title, message, time, status}:{title:string, messag
         'ansered':'Respondido'
     }
     return(
-        <div className=" w-full">
+        <div className=" max-w-[380px] min-w-[300px]">
             <Card className="relative ">
                 <CardHeader>
                 <Badge 

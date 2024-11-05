@@ -67,7 +67,8 @@ const formInputFinance: IFormInputFinance = {
   // Exemplo de dados para IVideoParams
   const videoParams: IVideoParams = {
     width: 1920,
-    height: 1080
+    height: 1080,
+    id:"12"
   };
   
 export {formInputFinance}

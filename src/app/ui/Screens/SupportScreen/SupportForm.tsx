@@ -36,9 +36,9 @@ export function SupportForm(){
 
       }
     return(
-        <>
-        <Form {...form} >
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-[400px]">
+        <div className="flex  w-200 flex-1">
+        <Form {...form}  >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-[400px] sm:w-[600px] lg:w-[800px]">
         <FormField
           control={form.control}
           name="title"
@@ -71,6 +71,6 @@ export function SupportForm(){
         <Button className="flex  bg-primaryPalet"  type="submit"> <Send className="mr-2"/> Enviar</Button>
       </form>
     </Form>
-        </>
+        </div>
     )
 }

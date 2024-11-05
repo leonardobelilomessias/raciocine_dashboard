@@ -1,4 +1,4 @@
-
+'use client'
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookText, CalendarDays, Download, TvMinimalPlay } from "lucide-react";
@@ -6,6 +6,12 @@ import Image from "next/image";
 
 
 export function EbookScreen(){
+    const downloadPDF = () => {
+        const link = document.createElement("a");
+        link.href = "https://www.caixa.gov.br/Downloads/caixa-cartilhas/cartilha-como-comprar-imoveis-caixa.pdf";
+        link.download = "caixa.pdf";
+        link.click();
+      };
     const elemtsBooks = [{
         title:"Como financiar seu primeiro imovel",link:"/video/aoksd",category:"fin"},
         {title:"Documentos para o financiamento",link:"/video/aoksd", category:"fin"},
@@ -39,7 +45,7 @@ export function EbookScreen(){
                                     </div>
             
                                     <CardTitle className=" h-[56px]  text-wrap truncate">{element.title}  </CardTitle>
-                                        <Button className="w-full gap-1 bg-primaryPalet" > <Download/> Baixar</Button>
+                                        <Button onClick={()=>downloadPDF()} className="w-full gap-1 bg-primaryPalet" > <Download/> Baixar</Button>
                                         
                                 </div>
                                 ))

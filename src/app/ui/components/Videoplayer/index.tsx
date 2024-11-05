@@ -6,7 +6,7 @@ import { ReactPlayerLib } from './ReactPlayerLib';
 
 export function VideoPlayer ({width,height, id}:IVideoParams) {
   return (
-    <div>
+    <div >
     {/* <ReactPlayerLib  /> */}
     {/* <VideoIframe/> */}
     <ReactPlayerLib id={id} />

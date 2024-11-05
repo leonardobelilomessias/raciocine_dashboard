@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 
 // Definindo a interface para o produto
 interface Product {
+  construction_company:string
   title: string;
   description: string;
   price: number;

@@ -18,7 +18,7 @@ export async function DELETE(request: NextRequest, ) {
 
         if(product_id){
 
-          await deleteFavoritesFirebase(user_id,product_id)
+          await deleteFavoritesFirebase(String(user_id),String(product_id))
           const response = new Response(JSON.stringify({ message: "Favorito excluido com sucesso" }), {
             status: 200, // Define o status da resposta
             headers: {
@@ -54,7 +54,7 @@ export async function DELETE(request: NextRequest, ) {
   
   }
 
-export async function deleteFavoritesFirebase(user_id: string, product_id: string) {
+ async function deleteFavoritesFirebase(user_id: string, product_id: string) {
     // Cria a referência para o documento aninhado a ser deletado
     const docRef = await doc(db, "user_favorites", `${user_id}&${product_id}`);
     await deleteDoc(docRef);

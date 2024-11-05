@@ -39,6 +39,7 @@ export function FavoritesContainer(){
 {
     favorites.map((item,index)=>(
         <FavoriteCard  
+        key={item.id_favorite}
         setFavorite={setFavorites}
         getFavorites={getFavorites}
         address={item.address} 

@@ -182,7 +182,13 @@ export interface IAmenities {
   service_area?: boolean;
 }
 
-
+export interface IAppointment {
+  id?:string
+  user_id:string,
+  date:Date |undefined |null
+  type:"call"| "visit" |"whatsapp"|"video"
+  status:"confirmed"| "awaiting" |"cancelled"|"done"
+}
 export interface IVideoParams{
   width?:number | undefined, 
   height?:number |undefined

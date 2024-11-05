@@ -1,10 +1,33 @@
+'use client'
+import { formatFirebaseDate } from "@/app/util/date";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { axiosApi } from "@/lib/axios/axios";
+import { Timestamp } from "firebase/firestore";
 import { Bell, CalendarDays, Folder } from "lucide-react";
+import { useEffect, useState } from "react";
 
+interface INotifications{
+    id:string
+    id_user:string
+    created_at:Date
+    title:string
+    message:String
+}
 
 
 export function NotificationsScreeen(){
+    const [notifications,setNotifications] = useState([] as INotifications[])
+    async function getNotifications(){
+        const response = await axiosApi.get(`/api/getNotificationsUser`)
+        setNotifications(response.data)
+        console.log(response.data)
+        // const {date} = formatFirebaseDateToDate(response.data[0].created_at)
+        // console.log(date)
+    }
+    useEffect(()=>{
+        getNotifications()
+    },[])
     const notificatiosn:any[] =[1,2]
     return(
         <div className="container pt-10">
@@ -23,34 +46,29 @@ export function NotificationsScreeen(){
                     {
                         notificatiosn&&
                     <div className="flex flex-col   pt-1 min-h-[400px] gap-2 ">
-                        <Card className=" flex flex-col gap-3 ">
+                            {notifications.map((item)=>(
+                                    <Card key={item.id} className=" flex flex-col gap-3 ">
+                                        <CardHeader>
+                                                <p className="font-bold text-lg">
+                                                    {item.title}
+                                                </p>
+                                                <p>
+                                                    {item.message}
+                                                </p>
+                                                <p className="text-sm">
+                                                    {formatFirebaseDate(item.created_at).date} as {formatFirebaseDate(item.created_at).time}
+                                                </p>
+                                        </CardHeader>
+                                    </Card>
+                            ))}
+                        {!!(notifications.length<=0)&&<Card className=" flex flex-col gap-3 ">
                             <CardHeader>
                                 <p>
                                     você ainda não tem nunhuma notificação.
                                 </p>
                             </CardHeader>
-                        </Card>
-                        <Card className=" flex flex-col gap-3 ">
-                            <CardHeader>
-                                <p>
-                                    você ainda não tem nunhuma notificação.
-                                </p>
-                            </CardHeader>
-                        </Card>
-                        <Card className=" flex flex-col gap-3 ">
-                            <CardHeader>
-                                <p>
-                                    você ainda não tem nunhuma notificação.
-                                </p>
-                            </CardHeader>
-                        </Card>
-                        <Card className=" flex flex-col gap-3 ">
-                            <CardHeader>
-                                <p>
-                                    você ainda não tem nunhuma notificação.
-                                </p>
-                            </CardHeader>
-                        </Card>
+                        </Card>}
+
                                                 
                         <Pagination>
                         <PaginationContent>

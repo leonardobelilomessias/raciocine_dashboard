@@ -18,7 +18,7 @@ export function SupportContainer(){
                     Crie um chamado e em breve nos entraremos em contato.
                     </CardDescription>
                 </CardHeader>
-                <div className="flex flex-row flex-wrap gap-5 sm:gap-10 ">
+                <div className="flex flex-row flex-wrap gap-5 sm:gap-5 ">
                     <SupportForm/>
                     <SupportList/>
                 </div>

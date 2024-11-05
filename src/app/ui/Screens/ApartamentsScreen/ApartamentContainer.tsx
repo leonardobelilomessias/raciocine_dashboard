@@ -5,7 +5,6 @@ import { ReactNode } from "react";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Heart, Hotel, Rocket } from "lucide-react";
-import { FAvoriteCard } from "../../components/FavoriteCard";
 import { ProductCard } from "../../components/ProductCard";
 import { IProduct, IProductResponse } from "@/app/types/types";
 
