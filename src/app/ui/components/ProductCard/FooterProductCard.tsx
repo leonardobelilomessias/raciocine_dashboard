@@ -9,7 +9,7 @@ import { axiosApi } from "@/lib/axios/axios";
 import { Eye, Heart, MessageSquareMore } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,city,cover,description,garages,neighborhood,price,title,zip,id}:IProductResponse){
     const [isFavorite,setIsFavorite]=useState(false)
@@ -46,7 +46,25 @@ export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,cit
 
 
 function DialogContactFooterCard({cover,title,neighborhood,city,id}:{cover:string,title:string, neighborhood:string, city:string,id:string|undefined}){
+  const [load, setLoad] = useState(false)
+  const [created, setCreated] = useState(false)
 
+  useEffect(()=>{
+    setCreated(false)
+  },[false])   
+  async function createUserRequest(){
+      setLoad(true)
+      const product={cover,title,neighborhood,city,id}
+      try{
+
+        await axiosApi.post(`/api/createUserRequest`,{product:product})
+        setCreated(true)
+      }catch{
+        alert("erro ao enviar solicitação")
+      }finally{
+        setLoad(false)
+      }
+     }
     return(
     <>
     <Dialog>
@@ -60,36 +78,50 @@ function DialogContactFooterCard({cover,title,neighborhood,city,id}:{cover:strin
   </DialogTrigger>
   <DialogContent>
     <DialogHeader>
-      <DialogTitle className="text-2xl">Solicitar atendimento </DialogTitle>
-      <DialogDescription>
-
-        Clique em enviar e nossa equipe irá entrar em contato para realizar o seu atendimento
-      </DialogDescription>
-    <div className="flex justify-center gap-2">
-
-    <Image src={cover} width={150} height={50} alt="image"/>
-    <div>
-    <p className="text-primaryPalet font-bold">{title}</p>
-    <p className="text-xs">
-    {city} - 
-    {neighborhood}
-    </p>
-    </div>
-    </div>
+          <DialogTitle className="text-2xl">Solicitar atendimento </DialogTitle>
     </DialogHeader>
-    <div className="flex gap-3 flex-wrap mt-5 mb-5">
-        Olá, tenho interesse no imóvel {title}! 
-    </div>
+          <DialogDescription>
 
+              Clique em enviar e nossa equipe irá entrar em contato para realizar o seu atendimento
+          </DialogDescription>
+    {(load &&!created )&& <div><p>criando atendimento...</p></div>}
+    {(!load &&created )&& <div><p>Atendimento criado</p></div>}
+
+    { (!load&&!created) && <div>
+              <div className="flex justify-center gap-2">
+                  <Image src={cover} width={150} height={50} alt="image"/>
+              <div>
+              <p className="text-primaryPalet font-bold">{title}</p>
+              <p className="text-xs">
+              {city} - 
+              {neighborhood}
+              </p>
+              </div>
+              </div>
+            <div className="flex gap-3 flex-wrap mt-5 mb-5">
+                Olá, tenho interesse no imóvel {title}! 
+            </div>
+      </div>  
+}
     <DialogFooter className="flex flex-row  gap-2">
           <DialogClose asChild>
-                <Button type="button" className="w-[150px]" variant="secondary">
+            <div>
+
+            { (!created &&!load)&&
+            <Button type="button" className="w-[150px]" variant="secondary">
                 Cancelar
-                </Button>
+            </Button>
+            }
+            {created &&
+            <Button  className="bg-primaryPalet w-[150px]">Ok</Button>
+            
+          }
+          </div>
+    
           </DialogClose>
-        <Link href={``}>
-            <Button className="bg-primaryPalet w-[150px]">Solicitar Atendimento</Button>
-        </Link>
+            { !created &&<Button onClick={()=>{createUserRequest()}} className="bg-primaryPalet w-[150px]">Solicitar Atendimento</Button>}
+
+
         </DialogFooter>
   </DialogContent>
 </Dialog>
