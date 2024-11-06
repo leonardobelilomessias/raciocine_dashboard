@@ -1,9 +1,11 @@
 'use client'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { axiosApi } from "@/lib/axios/axios";
-import { BookText, CalendarDays, Download, MessageCircleQuestion, TvMinimalPlay } from "lucide-react";
+import { ArrowLeft, BookText, CalendarDays, Download, MessageCircleQuestion, TvMinimalPlay } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type PostsForumType={
@@ -21,10 +23,11 @@ async function getforumPosts(){
 }
     useEffect(()=>{
         getforumPosts()
-    })
+    },[false])
 
     return(
         <div className="sm:container pt-10 mx-2">
+            <Link href={"/forum"} className="text-primaryPalet flex"><ArrowLeft /> Voltar</Link>
             <Card className="mt-4">
                 <CardHeader>
                 <CardTitle className="flex gap-5">
@@ -39,13 +42,20 @@ async function getforumPosts(){
                                 
                                 <Card  key={postForum?.id}  className="w-full ">
                                     <CardHeader>
-                                    <CardTitle>{postForum?.title}</CardTitle>
                                         <CardDescription className="flex gap-10">
                                             {/* span is used because hydrataton error  if use <p> tag */}
-                                            <span>@usuario</span>
-                                            <span>{postForum?.created_at}</span>
-                                            <span>test</span>
+                                            <div className=" md:flex gap-2 mb-10 bg-blue-100">
+                                                <Avatar className="w-10 h-10 m-auto ">
+                                                    <AvatarImage src="https://github.com/shadcn.png" />
+                                                    <AvatarFallback>CN</AvatarFallback>
+                                                </Avatar>
+                                            </div>
+                                            <div className="flex flex-col">
+                                                <span className="bold">@usuario</span>
+                                                <span>{postForum?.created_at}</span>
+                                            </div>
                                         </CardDescription>
+                                    <CardTitle>{postForum?.title}</CardTitle>
                                             <span>{postForum?.message}</span>
                                     </CardHeader>
 

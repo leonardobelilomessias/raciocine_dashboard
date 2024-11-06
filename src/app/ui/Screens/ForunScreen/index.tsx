@@ -1,8 +1,9 @@
 'use client'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { axiosApi } from "@/lib/axios/axios";
-import { BookText, CalendarDays, Download, MessageCircleQuestion, TvMinimalPlay } from "lucide-react";
+import { BookText, CalendarDays, Download, MessageCircleQuestion, SquarePlus, TvMinimalPlay } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -36,16 +37,25 @@ async function getforumPosts(){
   
       ]
     return(
-        <div className="sm:container pt-10 mx-2">
+        <div className="sm:container  pt-10 mx-2 min-h-[70vh]">
             <Card className="mt-4">
-                <CardHeader>
-                <CardTitle className="flex gap-5">
-                    <MessageCircleQuestion/>
-                    Forum
-                </CardTitle>
-                <CardDescription>
-                    Duvidas e resposta.
-                </CardDescription>
+                <CardHeader className="flex flex-row justify-between">
+                    <div>
+                        <CardTitle className="flex gap-5">
+                            <MessageCircleQuestion/>
+                            Forum
+                        </CardTitle>
+                        <CardDescription>
+                            Duvidas e resposta.
+                        </CardDescription>
+                    </div>
+                    <Button className="gap-2">
+                        <SquarePlus size={16}/>
+                        Adicionar Novo     
+                    </Button>
+                </CardHeader>
+
+                <CardContent>
                 <div className="flex sm:flex  w-full flex-wrap gap-2 justify-center m-auto">
                 {
                                 postsForum.map((element)=>(
@@ -53,13 +63,21 @@ async function getforumPosts(){
                                 <Card  key={element.id}  className="w-full ">
                                     <Link href={`/forum/${element.id}`}>
                                     <CardHeader>
-                                    <CardTitle>{element.title}</CardTitle>
                                         <CardDescription className="flex gap-10">
-                                            <span>@usuario</span>
-                                            <span>{element.created_at}</span>
-                                            <span>test</span>
-
+                                            {/* span is used because hydrataton error  if use <p> tag */}
+                                            <div className=" md:flex gap-2 mb-4 bg-blue-100">
+                                                <Avatar className="w-10 h-10 m-auto ">
+                                                    <AvatarImage src="https://github.com/shadcn.png" />
+                                                    <AvatarFallback>CN</AvatarFallback>
+                                                </Avatar>
+                                            </div>
+                                            <div className="flex flex-col">
+                                                <span className="bold text-sm">@usuario</span>
+                                                <span className="text-xs">{element?.created_at}</span>
+                                            </div>
                                         </CardDescription>
+                                    <CardTitle>{element.title}</CardTitle>
+                                        <span>{element.message}</span>
                                     </CardHeader>
                                     </Link>
                                     <div key={element.id} className="w-full bg-red-200">
@@ -76,10 +94,8 @@ async function getforumPosts(){
 
                     
                 </div>
-                <CardContent>
                     
                 </CardContent>
-                </CardHeader>
                 <CardFooter>
                 </CardFooter>
                 

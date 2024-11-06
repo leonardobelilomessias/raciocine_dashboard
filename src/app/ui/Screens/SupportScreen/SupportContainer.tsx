@@ -8,8 +8,8 @@ import { SupportList } from "./SupportList";
 
 export function SupportContainer(){
     return(
-        <div className="md:p-10">
-            <Card className="mb-10 p-4">
+        <div className="md:p-10 min-h-[100vh] ">
+            <Card className="mb-10 p-4 min-h-[80vh]">
                 <CardHeader>
                     <CardTitle className="flex" > 
                     {/* <Rocket className="mr-1"/> */}
@@ -18,7 +18,7 @@ export function SupportContainer(){
                     Crie um chamado e em breve nos entraremos em contato.
                     </CardDescription>
                 </CardHeader>
-                <div className="flex flex-row flex-wrap gap-5 sm:gap-5 ">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-2 ">
                     <SupportForm/>
                     <SupportList/>
                 </div>

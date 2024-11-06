@@ -38,7 +38,7 @@ export function SupportForm(){
     return(
         <div className="flex  w-200 flex-1">
         <Form {...form}  >
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-[400px] sm:w-[600px] lg:w-[800px]">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 w-[300px] sm:w-[400px] lg:w-[600px]">
         <FormField
           control={form.control}
           name="title"

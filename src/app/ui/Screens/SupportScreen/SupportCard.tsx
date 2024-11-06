@@ -12,8 +12,8 @@ export function SupportCard({title, message, time, status}:{title:string, messag
         'ansered':'Respondido'
     }
     return(
-        <div className=" max-w-[380px] min-w-[300px]">
-            <Card className="relative ">
+        <div className=" max-w-[300px] min-w-[300px] ">
+            <Card className="relative  min-h-[200px] ">
                 <CardHeader>
                 <Badge 
                 

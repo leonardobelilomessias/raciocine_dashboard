@@ -20,7 +20,7 @@ export  async function GET(request: NextRequest) {
     const product  = request.nextUrl.searchParams
     const id = product.get('id') as string
     try {
-        const docRef = await doc(db, 'user_appointments', id.trim());
+        const docRef = await doc(db, 'forum_post', id.trim());
       const productSnapshot = await getDoc(docRef);
       
       // Mapeia os documentos e inclui o ID junto com os dados

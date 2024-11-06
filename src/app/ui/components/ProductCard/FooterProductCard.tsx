@@ -38,7 +38,7 @@ export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,cit
                         <div className="flex flex-col     justify-center">
                                 <DialogContactFooterCard cover={cover} city={city} id={id} neighborhood={neighborhood} title={title} />
                         </div>
-                <DialogFooterCardProduct product={{address,amenities,area,bathrooms,bedrooms,city,cover,description,garages,neighborhood,price,title,zip,id}}/>
+                  <DialogFooterCardProduct product={{address,amenities,area,bathrooms,bedrooms,city,cover,description,garages,neighborhood,price,title,zip,id}}/>
                     </div>
         </>
     )
