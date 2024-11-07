@@ -18,7 +18,7 @@ interface ApiResponse {
 export  async function GET() {
 
     try {
-      const productsCol = collection(db, 'forum_post');
+      const productsCol = collection(db, 'post_forum');
       const productSnapshot: QuerySnapshot = await getDocs(productsCol);
       
       // Mapeia os documentos e inclui o ID junto com os dados

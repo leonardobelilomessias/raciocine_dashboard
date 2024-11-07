@@ -1,41 +1,48 @@
 'use client'
+import { z } from "zod"
+import {  useForm } from "react-hook-form";
+import { FormField, FormItem, FormControl, FormMessage, Form } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod"
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { axiosApi } from "@/lib/axios/axios";
-import { BookText, CalendarDays, Download, MessageCircleQuestion, SquarePlus, TvMinimalPlay } from "lucide-react";
-import Image from "next/image";
+import {  MessageCircleQuestion, SquarePlus, } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea";
+import { formatFirebaseDate } from "@/app/util/date";
 type PostsForumType={
     title:string
     id:string
     message:string
     created_at:string
+    user_name:string
 }
 export function ForumScreen(){
     const [postsForum,setPostsForum] = useState<PostsForumType []>([])
 async function getforumPosts(){
-    const posts = await axiosApi.get("/api/getProductForumPosts")
+    const posts = await axiosApi.get("/api/getPostsForum")
     setPostsForum(posts.data)
     console.log(posts.data)
 }
     useEffect(()=>{
         getforumPosts()
     },[])
-    const elemtsBooks = [{
-        title:"Como financiar seu primeiro imovel",link:"/video/aoksd",category:"fin"},
-        {title:"Documentos para o financiamento",link:"/video/aoksd", category:"fin"},
-        {title:"partamento tipo vs Area Privativa",link:"/video/aoksd", category:"con"},
-        {title:"Qual melhor posição do apartamento",link:"/video/aoksd", category:"con"},
-        {title:"São gabriel coração de BH",link:"/video/aoksd", category:"rai"},
-        {title:"Nova pampulha - perto de tudo ",link:"", category:"rai"},
-        {title:"Como fazer uma grana extra para o ape",link:"", category:"dic"},
-        {title:"Melhores planos de pagamento",link:"", category:"dic"},
-  
-  
-      ]
+    
     return(
         <div className="sm:container  pt-10 mx-2 min-h-[70vh]">
             <Card className="mt-4">
@@ -49,10 +56,7 @@ async function getforumPosts(){
                             Duvidas e resposta.
                         </CardDescription>
                     </div>
-                    <Button className="gap-2">
-                        <SquarePlus size={16}/>
-                        Adicionar Novo     
-                    </Button>
+                <CreatePostForumDialog setPostsForum={setPostsForum}/>
                 </CardHeader>
 
                 <CardContent>
@@ -65,34 +69,30 @@ async function getforumPosts(){
                                     <CardHeader>
                                         <CardDescription className="flex gap-10">
                                             {/* span is used because hydrataton error  if use <p> tag */}
-                                            <div className=" md:flex gap-2 mb-4 bg-blue-100">
+                                            <div className=" md:flex gap-2 mb-4 ">
                                                 <Avatar className="w-10 h-10 m-auto ">
                                                     <AvatarImage src="https://github.com/shadcn.png" />
                                                     <AvatarFallback>CN</AvatarFallback>
                                                 </Avatar>
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="bold text-sm">@usuario</span>
-                                                <span className="text-xs">{element?.created_at}</span>
+                                                <span className="bold text-sm font-bold">{element.user_name}</span>
+                                                <div className="flex gap-1">
+                                                <span className="text-xs">criado em { formatFirebaseDate(element?.created_at).date}</span>
+
+                                                    <span className="text-xs"> as {formatFirebaseDate(element?.created_at).time}</span>
+                                                </div>
                                             </div>
                                         </CardDescription>
                                     <CardTitle>{element.title}</CardTitle>
                                         <span>{element.message}</span>
                                     </CardHeader>
                                     </Link>
-                                    <div key={element.id} className="w-full bg-red-200">
-                                
-                                    
-                                        
+                                    <div key={element.id} className="w-full bg-red-200">                                                
                                 </div>
                                 </Card>
                                 ))
-                            }
-
-
-    
-
-                    
+                            }                
                 </div>
                     
                 </CardContent>
@@ -104,3 +104,112 @@ async function getforumPosts(){
         </div>
     )
 }
+
+const formSchema = z.object({
+    title:z.string().min(1,{message:"O Titulo não pode estar vazio"}),
+    message: z.string().min(1,{message:"O Campo de mensagem não pode estar vazio"})
+    
+  
+  })
+ 
+export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}) {
+    const[load,setLoad] = useState(false)
+    const [created,setCreated] = useState(false)
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            title: "",
+            message:"",
+
+        },
+      })
+      async   function onSubmit(values: z.infer<typeof formSchema>) {
+
+        try{
+            const postForum ={message:values.message,title:values.title}
+            await axiosApi.post("/api/createPostForum",{postForum:postForum})
+            const response = await axiosApi.get("/api/getPostsForum")
+            setPostsForum(response.data)
+            setCreated(true)
+        }catch{
+            alert("não foi possivel criar a postagem")
+        }
+        // Do something with the form values.
+        // ✅ This will be type-safe and validated.
+        console.log(values)
+
+        
+
+      }
+    return (
+      <Dialog>
+        <DialogTrigger asChild>
+        <Button className="gap-2">
+                        <SquarePlus size={16}/>
+                        Adicionar Novo     
+                    </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Criar Postagem</DialogTitle>
+            <DialogDescription>
+              Envie sua mensagem para que ela seja adicionada no forum.
+            </DialogDescription>
+            {created&& <p>post criado com sucesso</p>}
+          </DialogHeader>
+        <Form {...form}  >
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+
+        
+                    <Label htmlFor="title" className="">
+                    Titulo
+                    </Label>
+                    <FormField
+                        control={form.control}
+                        name="title"
+                        render={({ field }) => (
+                            <FormItem>
+                    
+                        <FormControl>
+                            <Input placeholder="Escreva seu titulo" {...field} />
+                        </FormControl>
+
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+            
+                        <Label htmlFor="message" className="">
+                            Mensagem
+                        </Label>
+                        <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                                <FormItem>
+                                <FormControl>
+                                <Textarea placeholder="Escreva sua mensagem" rows={12} {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                            )}
+                            />
+                <div className="my-3">
+                    <Button type="submit">Enviar</Button>
+                    <DialogClose>
+                        <Button variant={"ghost"} >Cancelar</Button>
+                    </DialogClose>
+                </div>
+        </form>
+        </Form>
+          <DialogFooter>
+
+
+            
+
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    )
+  }
+  
