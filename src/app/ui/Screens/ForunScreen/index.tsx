@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { axiosApi } from "@/lib/axios/axios";
-import {  MessageCircleQuestion, SquarePlus, } from "lucide-react";
+import {  CircleCheck, Loader2, MessageCircleQuestion, SquarePlus, } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea";
 import { formatFirebaseDate } from "@/app/util/date";
+import { GiConfirmed } from "react-icons/gi";
 type PostsForumType={
     title:string
     id:string
@@ -33,6 +34,7 @@ type PostsForumType={
     user_name:string
 }
 export function ForumScreen(){
+
     const [postsForum,setPostsForum] = useState<PostsForumType []>([])
 async function getforumPosts(){
     const posts = await axiosApi.get("/api/getPostsForum")
@@ -113,6 +115,7 @@ const formSchema = z.object({
   })
  
 export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}) {
+    const [idPost,setIdPost] = useState("")
     const[load,setLoad] = useState(false)
     const [created,setCreated] = useState(false)
     const form = useForm<z.infer<typeof formSchema>>({
@@ -126,23 +129,28 @@ export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}
       async   function onSubmit(values: z.infer<typeof formSchema>) {
 
         try{
+            setLoad(true)
             const postForum ={message:values.message,title:values.title}
-            await axiosApi.post("/api/createPostForum",{postForum:postForum})
+            const responsePost = await axiosApi.post("/api/createPostForum",{postForum:postForum})
+            const {idPostCreated} = responsePost.data
             const response = await axiosApi.get("/api/getPostsForum")
+            setIdPost(idPostCreated)
             setPostsForum(response.data)
             setCreated(true)
         }catch{
             alert("não foi possivel criar a postagem")
         }
+        finally{
+            setLoad(false)
+        }
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
 
-        
-
       }
-    return (
-      <Dialog>
+      return (
+          
+          <Dialog>
         <DialogTrigger asChild>
         <Button className="gap-2">
                         <SquarePlus size={16}/>
@@ -150,14 +158,16 @@ export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}
                     </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
+{            
+          !created &&        
+         <div>
           <DialogHeader>
             <DialogTitle>Criar Postagem</DialogTitle>
             <DialogDescription>
               Envie sua mensagem para que ela seja adicionada no forum.
             </DialogDescription>
-            {created&& <p>post criado com sucesso</p>}
           </DialogHeader>
-        <Form {...form}  >
+    <Form {...form}  >
         <form onSubmit={form.handleSubmit(onSubmit)}>
 
         
@@ -195,7 +205,13 @@ export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}
                             )}
                             />
                 <div className="my-3">
-                    <Button type="submit">Enviar</Button>
+                    <Button type="submit" disabled={!!load}>
+                    {!!load &&<Loader2 className="animate-spin" />}
+
+                        {!load && "Enviar"}
+                        {!!load && "Enviando"}
+
+                    </Button>
                     <DialogClose>
                         <Button variant={"ghost"} >Cancelar</Button>
                     </DialogClose>
@@ -203,13 +219,35 @@ export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}
         </form>
         </Form>
           <DialogFooter>
-
-
-            
-
           </DialogFooter>
+        </div>
+        }
+        {created&& <CreatedPost id={idPost}/>}
         </DialogContent>
       </Dialog>
+
     )
   }
   
+function  CreatedPost({id}:{id:string}){
+    return(
+        <div className="flex flex-col items-center gap-3">
+        <DialogHeader>
+            <DialogTitle>Post criado com Sucesso</DialogTitle>
+            <DialogDescription>
+              Envie sua mensagem para que ela seja adicionada no forum.
+            </DialogDescription>
+          </DialogHeader>
+             <CircleCheck size={48}  className="text-primaryPalet" />
+             <Link className="text-primaryPalet font-bold" href={`/forum/${id}`}>Ver postagem</Link>
+        </div>
+    )
+}
+
+function FormCreatePost(){
+    return(
+        <div>
+
+        </div>
+    )
+}

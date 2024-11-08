@@ -24,8 +24,8 @@ export async function POST(request: Request) {
       const user_id = session?.value as string
       postForum.user_id = user_id
     
-      await  createapostForumFireBase(postForum)
-      const response = new Response(JSON.stringify({teste:"teste"}), {
+      const idPostCreated = await  createapostForumFireBase(postForum)
+      const response = new Response(JSON.stringify({idPostCreated:idPostCreated}), {
         status: 200, // Define o status da resposta
         headers: {
           'Content-Type': 'application/json'

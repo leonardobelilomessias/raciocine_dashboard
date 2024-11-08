@@ -10,7 +10,7 @@ interface FormattedDate {
 
 // Função para formatar o campo de data e horário do Firebase
 export const formatFirebaseDate = (dateInput: any): FormattedDate => {
-  // console.log("vindo para função firebaseDAte",dateInput)
+  console.log("vindo para função firebaseDAte",dateInput)
   let dateObject: Date;
 
   // Verifica se o dateInput é do tipo Timestamp do Firebase

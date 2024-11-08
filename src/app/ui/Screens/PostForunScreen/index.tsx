@@ -1,4 +1,5 @@
 'use client'
+import { formatFirebaseDate } from "@/app/util/date";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -52,7 +53,12 @@ async function getforumPosts(){
                                             </div>
                                             <div className="flex flex-col">
                                                 <span className="bold">@usuario</span>
-                                                <span>{postForum?.created_at}</span>
+                                                <div>
+                                                    <span>Postado em { !!postForum && formatFirebaseDate(postForum?.created_at).date }</span>
+                                                    <span> às { !!postForum && formatFirebaseDate(postForum?.created_at).time }</span>
+                                                </div>
+
+
                                             </div>
                                         </CardDescription>
                                     <CardTitle>{postForum?.title}</CardTitle>
