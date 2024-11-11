@@ -3,12 +3,22 @@ import { z } from "zod"
 import {  useForm } from "react-hook-form";
 import { FormField, FormItem, FormControl, FormMessage, Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod"
-
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { axiosApi } from "@/lib/axios/axios";
-import {  CircleCheck, Loader2, MessageCircleQuestion, SquarePlus, } from "lucide-react";
+import {  CircleCheck, Loader2, MessageCircleQuestion, SquarePlus, Trash2, } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
@@ -32,19 +42,25 @@ type PostsForumType={
     message:string
     created_at:string
     user_name:string
+    owner:boolean
 }
 export function ForumScreen(){
 
     const [postsForum,setPostsForum] = useState<PostsForumType []>([])
-async function getforumPosts(){
-    const posts = await axiosApi.get("/api/getPostsForum")
-    setPostsForum(posts.data)
-    console.log(posts.data)
-}
+    async function getforumPosts(){
+        const posts = await axiosApi.get("/api/getPostsForum")
+        setPostsForum(posts.data)
+        console.log(posts.data)
+    }
     useEffect(()=>{
         getforumPosts()
     },[])
-    
+    async function deletePostForum(id_post:string, owner:boolean){
+        await axiosApi.delete(`/api/deletePostForum?post_id=${id_post}&owner=${owner}`)
+        const posts = await axiosApi.get("/api/getPostsForum")
+        setPostsForum(posts.data)
+
+    }
     return(
         <div className="sm:container  pt-10 mx-2 min-h-[70vh]">
             <Card className="mt-4">
@@ -67,10 +83,10 @@ async function getforumPosts(){
                                 postsForum.map((element)=>(
                                 
                                 <Card  key={element.id}  className="w-full ">
-                                    <Link href={`/forum/${element.id}`}>
                                     <CardHeader>
-                                        <CardDescription className="flex gap-10">
+                                        <CardDescription className="flex gap-10 ">
                                             {/* span is used because hydrataton error  if use <p> tag */}
+                                    <Link href={`/forum/${element.id}`} className="flex gap-3">
                                             <div className=" md:flex gap-2 mb-4 ">
                                                 <Avatar className="w-10 h-10 m-auto ">
                                                     <AvatarImage src="https://github.com/shadcn.png" />
@@ -85,11 +101,19 @@ async function getforumPosts(){
                                                     <span className="text-xs"> as {formatFirebaseDate(element?.created_at).time}</span>
                                                 </div>
                                             </div>
+                                    </Link>
+                                    {
+                                        element.owner&&
+                                        <div  className=" flex flex-1 justify-end">
+
+                                                <DeletePostDialog deletePostForum={deletePostForum} id={element.id} owner={element.owner} />
+                                        </div>
+                                            
+                                    }
                                         </CardDescription>
                                     <CardTitle>{element.title}</CardTitle>
                                         <span>{element.message}</span>
                                     </CardHeader>
-                                    </Link>
                                     <div key={element.id} className="w-full bg-red-200">                                                
                                 </div>
                                 </Card>
@@ -244,10 +268,28 @@ function  CreatedPost({id}:{id:string}){
     )
 }
 
-function FormCreatePost(){
-    return(
-        <div>
 
-        </div>
+export function DeletePostDialog({deletePostForum, id,owner}:{deletePostForum:(id:string,owner:boolean)=>void,id:string,owner:boolean}) {
+    return (
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Trash2/>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Tem certeza que deseja deletar seu post?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Essa ação não podera ser revertida. Essa postagem será escluida definitivamente.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={()=>deletePostForum(id,owner)}> Deletar</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     )
-}
+  }
+  
+  
+  
