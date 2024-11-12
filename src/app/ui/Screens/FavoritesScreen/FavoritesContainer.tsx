@@ -6,17 +6,17 @@ import { ReactNode, useEffect, useState } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Heart, Rocket } from "lucide-react";
 import { axiosApi } from "@/lib/axios/axios";
+import { IFavorite, IProductResponse } from "@/app/types/types";
 import { FavoriteCard } from "../../components/FavoriteCard";
-import { IFavorite } from "@/app/types/types";
 
 export function FavoritesContainer(){
-    const [favorites,setFavorites] = useState([]as IFavorite[])
-    async function getFavorites():Promise<IFavorite[]> {
+    const [favorites,setFavorites] = useState([]as IProductResponse[])
+    async function getFavorites():Promise<IProductResponse[]> {
         const favoriteAxios =  await axiosApi.get("/api/getUserFavorites")
         const favoritesUser =favoriteAxios.data
         setFavorites(favoritesUser)
         console.log(favoritesUser)
-        return favoritesUser as IFavorite[]
+        return favoritesUser as IProductResponse[]
         
     }    
         useEffect(()=>{
@@ -39,23 +39,9 @@ export function FavoritesContainer(){
 {
     favorites.map((item,index)=>(
         <FavoriteCard  
-        key={item.id_favorite}
-        setFavorite={setFavorites}
+        key={item.id}
         getFavorites={getFavorites}
-        address={item.address} 
-        id_favorite={item.id_favorite}
-        area={item.area}
-        bathrooms={item.bedrooms}
-        bedrooms={item.bedrooms}
-        city={item.city}
-        cover={item.cover}
-        description={item.description}
-        garages={item.garages}
-        neighborhood={item.neighborhood}
-        price={item.price} 
-        title={item.title}
-        zip={item.zip}
-        id={item.id}    
+        product={item} 
     />
     
     ))

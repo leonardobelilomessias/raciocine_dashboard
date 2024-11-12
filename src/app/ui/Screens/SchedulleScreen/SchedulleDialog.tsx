@@ -28,7 +28,7 @@ interface IAppointment {
   type:string
   status:"confirmed"| "awaiting" |"canceled"
 }
-export function SchedulleDialog() {
+export function SchedulleDialog({getAppointments}:{getAppointments:()=>void}) {
   const [date,setDate] = useState<Date | null>()
   const [appointment,setAppointment] = useState({} as IAppointment) 
   const [channel, setChannel] = useState("whatsapp")
@@ -45,6 +45,7 @@ export function SchedulleDialog() {
     try{
       const appointment = {status:"awaiting", type:channel, date:date}
       await axiosApi.post('/api/createAppointment',{appointment:appointment})
+      getAppointments()
     }catch{
       alert("erro ao enviar agendamento")
     }

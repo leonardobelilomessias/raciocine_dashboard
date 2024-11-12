@@ -23,7 +23,7 @@ export  async function GET() {
 
     try {
       const collectionRef = collection(db, 'user_appointments');
-      const q = query(collectionRef, where("id_user", "==", user_id));
+      const q = query(collectionRef, where("user_id", "==", user_id));
       const querySnapshot = await getDocs(q);
       const results = [] as any
         querySnapshot.forEach((doc) => {

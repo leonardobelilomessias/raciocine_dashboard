@@ -14,13 +14,13 @@ import { FaBuildingCircleCheck } from "react-icons/fa6";
 
 export function SchedulleScreeen(){
     const [appointments,setAppointments] = useState<IAppointment[]>([]) 
-    async function getApointments(){
+    async function getAppointments(){
         const response  = await axiosApi.get(`/api/getAppointmentsByUserId`)
         setAppointments(response.data)
         console.log(response.data)
     }
     useEffect(()=>{
-        getApointments()
+        getAppointments()
     },[])
     return(
         <div className="container pt-10">
@@ -34,14 +34,14 @@ export function SchedulleScreeen(){
                     Aqui esta a lista do seu agendamentos
                 </CardDescription>
                 <div>
-                    <SchedulleDialog />
+                    <SchedulleDialog getAppointments={getAppointments}/>
                 </div>
                 <CardContent className=" flex bg-gray-50">
                     { !!(appointments.length<=0)&&<EmptyAppointments/>}
                     <div className=" flex flex-row flex-wrap   my-5 gap-3">
                         {
                             appointments.map((item)=>(
-                                <div key={item.type} className="flex flex-col bg-white min-w-[180px] rounded p-3 gap-2 border ">
+                                <div key={item.id} className="flex flex-col bg-white min-w-[180px] rounded p-3 gap-2 border ">
                                     {transformIconAppointment(item.type)}
                                     <div className={`${ColorStatus(item.status)} text-xs  text-end justify-self-end font-bold`}>
                                              {transformTextStatus(item.status)}
