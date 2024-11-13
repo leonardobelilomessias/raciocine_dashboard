@@ -1,7 +1,7 @@
 'use client'
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookText, CalendarDays, Download, TvMinimalPlay } from "lucide-react";
+import { BookOpenText, BookText, CalendarDays, Download, TvMinimalPlay } from "lucide-react";
 import Image from "next/image";
 
 
@@ -44,8 +44,12 @@ export function EbookScreen(){
                                         <Image style={{borderRadius:4}} src="https://github.com/shadcn.png" alt="img" fill />
                                     </div>
             
-                                    <CardTitle className=" h-[56px]  text-wrap truncate">{element.title}  </CardTitle>
-                                        <Button onClick={()=>downloadPDF()} className="w-full gap-1 bg-primaryPalet" > <Download/> Baixar</Button>
+                                    <p className=" h-[56px] text-md px-2  text-center font-bold text-wrap truncate">{element.title}  </p>
+                                    <div className="flex gap-2">
+                                        <Button variant={'outline'} onClick={()=>console.log("resumo do ebook")} className="w-full gap-1 " > <BookOpenText size={18}/> Ver Resumo</Button>
+                                        <Button onClick={()=>downloadPDF()} className="w-full gap-1 bg-primaryPalet" > <Download size={18}/> Baixar</Button>
+                                    </div>
+
                                         
                                 </div>
                                 ))

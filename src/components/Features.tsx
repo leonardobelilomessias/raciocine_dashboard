@@ -19,35 +19,34 @@ interface FeatureProps {
 
 const features: FeatureProps[] = [
   {
-    title: "Responsive Design",
+    title: "Popular",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Imóveis financiados pela caixa econõmica federal com direito a subsidio do governo e financiamento facilitado.",
     image: image4,
   },
   {
-    title: "Intuitive user interface",
+    title: "Médio e Alto Padrão",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Imóveis com alto valor agregado, comodidades premium e localizações privilegiadas.",
     image: image3,
   },
   {
-    title: "AI-Powered insights",
+    title: "Luxo",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Imóveis explendorosos com o mais alto nível de sofisticação. ",
     image: image,
   },
 ];
 
 const featureList: string[] = [
-  "Dark/Light theme",
-  "Reviews",
-  "Features",
-  "Pricing",
-  "Contact form",
-  "Our team",
-  "Responsive design",
-  "Newsletter",
-  "Minimalist",
+  "Financiamento",
+  "Entrada Facilitada",
+  "Melhores Localizações",
+  "Comodidades",
+  "Projetos Modernos",
+  "Alta valorização",
+  "Lazer completo",
+  "Conforto",
 ];
 
 export const Features = () => {
@@ -57,9 +56,9 @@ export const Features = () => {
       className="container py-24 sm:py-32 space-y-8"
     >
       <h2 className="text-3xl lg:text-4xl font-bold md:text-center">
-        Many{" "}
+        Lançamentos{" "}
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Great Features
+          em Todos Seguimentos do Mercado
         </span>
       </h2>
 

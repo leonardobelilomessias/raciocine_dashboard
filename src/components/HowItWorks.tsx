@@ -10,27 +10,27 @@ interface FeatureProps {
 const features: FeatureProps[] = [
   {
     icon: <MedalIcon />,
-    title: "Plataforma",
+    title: "Produtos Selecionados",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Favorite e receba as informações de produtos mais alinhados com seu perfil de compra.",
   },
   {
     icon: <MapIcon />,
-    title: "Comunidade",
+    title: "Estratégias de Localização",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Tenha as melhores informações privilegiadas sobre os bairros e cidades. ",
   },
   {
     icon: <PlaneIcon />,
-    title: "Acertividade",
+    title: "Lançamentos Exclusivos",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Infomações sobre lançamentos em primeira mão para garantir melhores oportunidades na sua compra",
   },
   {
     icon: <GiftIcon />,
-    title: "Conteúdo",
+    title: "Bônus e Promoções",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Notificações de preços promocionais e bônus na compra de imóvies",
   },
 ];
 
@@ -41,11 +41,11 @@ export const HowItWorks = () => {
       className="container text-center py-24 sm:py-32"
     >
       <h2 className="text-3xl md:text-4xl font-bold ">
-      Tudo que você precisa{" "}
+      Facilitamos{" "}
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-        você precisa{" "}
+        sua{" "}
         </span>
-        passo a passo
+      jornada da pesquisa até à compra
       </h2>
       <p className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
       Tenha em mãos os melhores Recursos para você estar por dentro das novidades do mercados imobiliario. 

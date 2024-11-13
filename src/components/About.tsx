@@ -22,11 +22,10 @@ export const About = () => {
                 <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
                 Tudo que {" "}
                 </span>
-                você precisa
+                você precisa para a melhor decisão da sua vida
               </h2>
               <p className="text-xl text-muted-foreground mt-4">
-              Tenha em mãos os melhores Recursos para você 
-              estar por dentro das novidades do mercados imobiliario. Com especialistas e um ambiente virtual para você interagir em tempo real com uma comunidade ativa.
+              Os melhores Recursos e ferramentas do mercados imobiliário. Com especialistas e um ambiente virtual para você interagir em tempo real com uma comunidade ativa.
               </p>
             </div>
 
