@@ -20,8 +20,8 @@ export function HomeScreen(){
       <Hero />
       <Sponsors />
       <About />
-      <HowItWorks />
       <Features />
+      <HowItWorks />
       <Services />
       <Cta />
       <Testimonials />

@@ -6,9 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import image from "@/app/assets/growth.png";
-import image3 from "@/app/assets/reflecting.png";
-import image4 from "@/app/assets/looking-ahead.png";
+import mcmv from "@/app/assets/houses/mcmv.webp";
+import medio from "@/app/assets/houses/medio.webp";
+import luxo from "@/app/assets/houses/luxo.webp";
 import Image, { StaticImageData } from "next/image";
 
 interface FeatureProps {
@@ -22,19 +22,19 @@ const features: FeatureProps[] = [
     title: "Popular",
     description:
       "Imóveis financiados pela caixa econõmica federal com direito a subsidio do governo e financiamento facilitado.",
-    image: image4,
+    image: mcmv,
   },
   {
     title: "Médio e Alto Padrão",
     description:
-      "Imóveis com alto valor agregado, comodidades premium e localizações privilegiadas.",
-    image: image3,
+      "Imóveis com alto valor agregado, comodidades premium , localizações privilegiadas e  oportunidades de valorização.",
+    image: medio,
   },
   {
     title: "Luxo",
     description:
-      "Imóveis explendorosos com o mais alto nível de sofisticação. ",
-    image: image,
+      "Imóveis esplendorosos com o mais alto nível de sofisticação. Arquiteturas deslumbrantes e imponetes com o apíce da elegância ",
+    image: luxo,
   },
 ];
 
@@ -77,22 +77,29 @@ export const Features = () => {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {features.map(({ title, description, image }: FeatureProps) => (
-          <Card key={title}>
+        <div className="border rounded" key={title}>
+
             <CardHeader>
               <CardTitle>{title}</CardTitle>
             </CardHeader>
 
-            <CardContent>{description}</CardContent>
+            <CardContent className="min-h-[93px]">{description}</CardContent>
 
-            <CardFooter>
+    
+            <div className="relative w-full h-[300px]">
+
               <Image
-      
-                src={image}
-                alt="About feature"
-                className="w-[200px] lg:w-[300px] mx-auto"
+              sizes="(max-width: 768px) 100vw, 33vw"
+
+              fill
+              objectFit="cover"
+              src={image}
+              alt="About feature"
+              className="w-full h-[100px] lg:w-[300px] mx-auto"
               />
-            </CardFooter>
-          </Card>
+              </div>
+  
+        </div>
         ))}
       </div>
     </section>

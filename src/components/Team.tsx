@@ -25,8 +25,8 @@ interface SociaNetworkslProps {
 const teamList: TeamProps[] = [
   {
     imageUrl: "https://i.pravatar.cc/150?img=35",
-    name: "Emma Smith",
-    position: "Product Manager",
+    name: "Gisele de Paula",
+    position: "Gerente de Equipe e Produto",
     socialNetworks: [
       {
         name: "Linkedin",
@@ -44,8 +44,8 @@ const teamList: TeamProps[] = [
   },
   {
     imageUrl: "https://i.pravatar.cc/150?img=60",
-    name: "John Doe",
-    position: "Tech Lead",
+    name: "Leonardo Belilo",
+    position: "Gerente de Tecnologia e Marketing",
     socialNetworks: [
       {
         name: "Linkedin",
@@ -63,8 +63,8 @@ const teamList: TeamProps[] = [
   },
   {
     imageUrl: "https://i.pravatar.cc/150?img=36",
-    name: "Ashley Ross",
-    position: "Frontend Developer",
+    name: "Eliane Ramos",
+    position: "Consultora Especialista",
     socialNetworks: [
       {
         name: "Linkedin",
@@ -79,8 +79,8 @@ const teamList: TeamProps[] = [
   },
   {
     imageUrl: "https://i.pravatar.cc/150?img=17",
-    name: "Bruce Rogers",
-    position: "Backend Developer",
+    name: "Alan Nunes",
+    position: "Expecialista em Vendas",
     socialNetworks: [
       {
         name: "Linkedin",
@@ -115,14 +115,13 @@ export const Team = () => {
     >
       <h2 className="text-3xl md:text-4xl font-bold">
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Our Dedicated{" "}
+          Nossa Equipe{" "}
         </span>
-        Crew
+        de Valor
       </h2>
 
       <p className="mt-4 mb-10 text-xl text-muted-foreground">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-        dolor pariatur sit!
+        Nosso time foi selecionado e qualificado para garantir o sucesso do seu sonho.
       </p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 gap-y-10">
@@ -147,7 +146,7 @@ export const Team = () => {
               </CardHeader>
 
               <CardContent className="text-center pb-2">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> */}
               </CardContent>
 
               <CardFooter>

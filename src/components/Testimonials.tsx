@@ -19,14 +19,14 @@ const testimonials: TestimonialProps[] = [
     image: "https://github.com/shadcn.png",
     name: "John Doe React",
     userName: "@john_Doe",
-    comment: "This landing page is awesome!",
+    comment: "Nunca vi algo parecido, fui tão bem atendido que já quero comprar outro imóvel! kkk",
   },
   {
     image: "https://github.com/shadcn.png",
     name: "John Doe React",
     userName: "@john_Doe1",
     comment:
-      "Lorem ipsum dolor sit amet,empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+      "Realmente cumprem o que promete. Atendimento de ponta a ponta com cordialidade e respeito. Sem aquelas pegadinhas do mercado. Parabéns à Equipe!",
   },
 
   {
@@ -34,28 +34,28 @@ const testimonials: TestimonialProps[] = [
     name: "John Doe React",
     userName: "@john_Doe2",
     comment:
-      "Lorem ipsum dolor sit amet,exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+      "As vezes no silêncio da noite... fico imaginando porque não conheci a plataforma antes! Estou Apaixonada!",
   },
   {
     image: "https://github.com/shadcn.png",
     name: "John Doe React",
     userName: "@john_Doe3",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+      "Na comunidade encontrei pessoas com o mesmo sonho e mesmo propósito. Isso me fortaleceu para conquistar meu sonho da casa própria",
   },
   {
     image: "https://github.com/shadcn.png",
     name: "John Doe React",
     userName: "@john_Doe4",
     comment:
-      "Lorem ipsum dolor sit amet, tempor incididunt  aliqua. Ut enim ad minim veniam, quis nostrud.",
+      "A regra é clara... Se não está na comunidade esta perdendo as melhores oportunides.",
   },
   {
     image: "https://github.com/shadcn.png",
     name: "John Doe React",
     userName: "@john_Doe5",
     comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Recomendo a todos iniciantes que estão pedidos no mercado e até quem já participa do mercado imobiliário como investidor. Contúdos exclusivos e personalizados de acordo com o seu momento.",
   },
 ];
 
@@ -66,17 +66,16 @@ export const Testimonials = () => {
       className="container py-24 sm:py-32"
     >
       <h2 className="text-3xl md:text-4xl font-bold">
-        Discover Why
+        Descrubra o que
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
           {" "}
-          People Love{" "}
+          As Pessoas Estão Amando{" "}
         </span>
-        This Landing Page
+        Na Nossa Comunidade
       </h2>
 
       <p className="text-xl text-muted-foreground pt-4 pb-8">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non unde error
-        facere hic reiciendis illo
+      Nossa comunidade é ativa e atualizada. Com informações em tempo real. Tire suas dúvidas, receba dicas e deixe seus depoimentos, para crescimento da comunidade.
       </p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 sm:block columns-2  lg:columns-3 lg:gap-6 mx-auto space-y-4 lg:space-y-6">

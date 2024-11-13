@@ -1,6 +1,8 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { MagnifierIcon, WalletIcon, ChartIcon } from "./Icons";
-import cubeLeg from "@/app/assets/cube-leg.png";
+import cubeLeg from "@/app/assets/people/womanHouse.png";
+import woman2 from "@/app/assets/people/woman2.jpg";
+
 import Image from "next/image";
 
 interface ServiceProps {
@@ -11,21 +13,21 @@ interface ServiceProps {
 
 const serviceList: ServiceProps[] = [
   {
-    title: "Code Collaboration",
+    title: "Estatisticas Diárias",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Quadro demonstrativo de estatísticas diários sobre o mercado.",
     icon: <ChartIcon />,
   },
   {
-    title: "Project Management",
+    title: "Perfil de Poder de compra",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Calculo por inteligencia artificial para saber o seu poder de compra.",
     icon: <WalletIcon />,
   },
   {
-    title: "Task Automation",
+    title: "Comunidade Ativa",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Acesso a maior comunidade de imóveis na planta do brasil.",
     icon: <MagnifierIcon />,
   },
 ];
@@ -37,14 +39,13 @@ export const Services = () => {
         <div>
           <h2 className="text-3xl md:text-4xl font-bold">
             <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-              Client-Centric{" "}
+              Plataforma Exclusiva{" "}
             </span>
-            Services
+            Para Membros
           </h2>
 
           <p className="text-muted-foreground text-xl mt-4 mb-8 ">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-            dolor.
+            Tenha acesso a unica plantaforma personalizada com foco ao cliente do mercado imóbiliario.
           </p>
 
           <div className="flex flex-col gap-8">
@@ -65,13 +66,16 @@ export const Services = () => {
             ))}
           </div>
         </div>
+        <div className="relative hidden md:flex h-[600px] w-[700px] ">
 
         <Image
-      
-          src={cubeLeg}
-          className="w-[300px] md:w-[500px] lg:w-[600px] object-contain"
+          fill
+          src={woman2}
+          objectFit="cover"
+          className="w-[300px] md:w-[600px] h-[6000px] lg:w-[600px] object-contain"
           alt="About services"
-        />
+          />
+          </div>
       </div>
     </section>
   );

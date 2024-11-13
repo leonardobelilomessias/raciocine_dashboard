@@ -26,48 +26,48 @@ interface PricingProps {
 
 const pricingList: PricingProps[] = [
   {
-    title: "Free",
+    title: "Grátis",
     popular: 0,
     price: 0,
     description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Get Started",
+      "Comece sua jornada da pesquisa até a compra agora mesmo sem qualquer custo.",
+    buttonText: "Começar Agora",
     benefitList: [
-      "1 Team member",
-      "2 GB Storage",
-      "Upto 4 pages",
-      "Community support",
-      "lorem ipsum dolor",
+      "Análise de Poder de Compra",
+      "Últimos Lançamentos",
+      "Fichas técnicas completas",
+      "Acesso a Aulas Exclusivas",
+      "Acesso a Comunidade",
     ],
   },
   {
     title: "Premium",
     popular: 1,
-    price: 5,
+    price: 50,
     description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Start Free Trial",
+      "Evolua e Acesse as melhores ferramentas e profissionais do mercado.",
+    buttonText: "Fazer Inscrição",
     benefitList: [
-      "4 Team member",
-      "4 GB Storage",
-      "Upto 6 pages",
-      "Priority support",
-      "lorem ipsum dolor",
+      "Acesso a pré Lançamentos",
+      "Estatégia de mercado",
+      "2 Créditos em consultória",
+      "Prioridade no Suporte",
+      "Conteúdo Premium",
     ],
   },
   {
-    title: "Enterprise",
+    title: "Consultoria",
     popular: 0,
-    price: 40,
+    price: 200,
     description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Contact US",
+      "Avance e estaja na frente com os melhores profissionais do mercado com atendimento exclusivo e personalizado",
+    buttonText: "Contatar Consultoria",
     benefitList: [
-      "10 Team member",
-      "8 GB Storage",
-      "Upto 10 pages",
-      "Priority support",
-      "lorem ipsum dolor",
+      "Acesso a hall de investidores",
+      "Personal Consult",
+      "Ferramentas em inteligência artifícial",
+      "Suporte exclusivo",
+      "5 creditos em consultória",
     ],
   },
 ];
@@ -79,16 +79,15 @@ export const Pricing = () => {
       className="container py-24 sm:py-32"
     >
       <h2 className="text-3xl md:text-4xl font-bold text-center">
-        Get
+        Garanta
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
           {" "}
-          Unlimited{" "}
+          Já  Seu {" "}
         </span>
-        Access
+        Accesso
       </h2>
       <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-        reiciendis.
+        Escolha o melhor modalidade que te atende na sua jornada de mercado.
       </h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {pricingList.map((pricing: PricingProps) => (
@@ -113,8 +112,8 @@ export const Pricing = () => {
                 ) : null}
               </CardTitle>
               <div>
-                <span className="text-3xl font-bold">${pricing.price}</span>
-                <span className="text-muted-foreground"> /month</span>
+                <span className="text-3xl font-bold">R${pricing.price}</span>
+                <span className="text-muted-foreground"> /mês</span>
               </div>
 
               <CardDescription>{pricing.description}</CardDescription>
