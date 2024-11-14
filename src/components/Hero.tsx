@@ -34,7 +34,7 @@ export const Hero = () => {
         <div className=" flex gap-4 flex-col md:flex-row ">
         <Link  className="w-full   text-center border-[1px] p-2 rounded border-black text-center text-white bg-black " href={'/entrar'}   >Entrar</Link>
 
-        <Link  className="w-full   text-center border-[1px] p-2 rounded border-black text-center  " href={'/cadastrar'}   >
+        <Link  className="w-full   text-center border-[1px] p-2 rounded border-black text-center  " href={'/cadastro'}   >
             Cadastrar
             {/* <GitHubLogoIcon className="ml-2 w-5 h-5" /> */}
           </Link>

@@ -147,13 +147,13 @@ export function NavMenuMobile(){
                   {/* desktop */}
         <div className="flex hidden md:flex gap-2">
 
-                  <nav >
+                  <nav className="flex items-center">
                     {routeList.map((route: RouteProps, i) => (
                         <a
                         rel="noreferrer noopener"
                         href={route.href}
                         key={i}
-                        className={`text-[17px] ${buttonVariants({
+                        className={`flex text-[17px]  ${buttonVariants({
                             variant: "ghost",
                         })}`}
                         >
@@ -165,8 +165,8 @@ export function NavMenuMobile(){
                     ))}
                   </nav>
 
-                  <div className="hidden md:flex gap-2">
-                  <Avatar>
+                  <div className="hidden md:flex gap-2 items-center">
+                  <Avatar className="w-[30px] h-[30px]">
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>CN</AvatarFallback>
                 </Avatar>

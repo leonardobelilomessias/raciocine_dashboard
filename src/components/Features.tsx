@@ -92,7 +92,7 @@ export const Features = () => {
               sizes="(max-width: 768px) 100vw, 33vw"
 
               fill
-              objectFit="cover"
+              style={{objectFit: "cover"}}
               src={image}
               alt="About feature"
               className="w-full h-[100px] lg:w-[300px] mx-auto"

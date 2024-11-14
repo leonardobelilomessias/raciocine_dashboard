@@ -71,7 +71,7 @@ export const Services = () => {
         <Image
           fill
           src={woman2}
-          objectFit="cover"
+          style={{objectFit: "cover"}}
           className="w-[300px] md:w-[600px] h-[6000px] lg:w-[600px] object-contain"
           alt="About services"
           />
