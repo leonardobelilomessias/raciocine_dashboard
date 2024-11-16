@@ -36,6 +36,8 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea";
 import { formatFirebaseDate } from "@/app/util/date";
 import { GiConfirmed } from "react-icons/gi";
+import { deletePostForum } from "./functionsForum";
+import { DeletePostDialog } from "../../components/Forum/DeletePostDialog";
 type PostsForumType={
     title:string
     id:string
@@ -55,12 +57,7 @@ export function ForumScreen(){
     useEffect(()=>{
         getforumPosts()
     },[])
-    async function deletePostForum(id_post:string, owner:boolean){
-        await axiosApi.delete(`/api/deletePostForum?post_id=${id_post}&owner=${owner}`)
-        const posts = await axiosApi.get("/api/getPostsForum")
-        setPostsForum(posts.data)
 
-    }
     return(
         <div className="sm:container  pt-10 mx-2 min-h-[70vh]">
             <Card className="mt-4">
@@ -106,7 +103,7 @@ export function ForumScreen(){
                                         element.owner&&
                                         <div  className=" flex flex-1 justify-end">
 
-                                                <DeletePostDialog deletePostForum={deletePostForum} id={element.id} owner={element.owner} />
+                                                <DeletePostDialog getforumPosts={getforumPosts} deletePostForum={deletePostForum} id={element.id} owner={element.owner} />
                                         </div>
                                             
                                     }
@@ -135,7 +132,6 @@ const formSchema = z.object({
     title:z.string().min(1,{message:"O Titulo não pode estar vazio"}),
     message: z.string().min(1,{message:"O Campo de mensagem não pode estar vazio"})
     
-  
   })
  
 export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}) {
@@ -269,27 +265,6 @@ function  CreatedPost({id}:{id:string}){
 }
 
 
-export function DeletePostDialog({deletePostForum, id,owner}:{deletePostForum:(id:string,owner:boolean)=>void,id:string,owner:boolean}) {
-    return (
-      <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Trash2/>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Tem certeza que deseja deletar seu post?</AlertDialogTitle>
-            <AlertDialogDescription>
-              Essa ação não podera ser revertida. Essa postagem será escluida definitivamente.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancelar</AlertDialogCancel>
-            <AlertDialogAction onClick={()=>deletePostForum(id,owner)}> Deletar</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    )
-  }
-  
+
   
   

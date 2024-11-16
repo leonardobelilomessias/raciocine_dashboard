@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { collection, doc, getDoc, getDocs, QuerySnapshot } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, QuerySnapshot, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase/firebase';
 import { NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
@@ -24,38 +24,33 @@ type PostsForumType={
 }
 // Manipulador de requisições da API
 export  async function GET(request: NextRequest) {
-    const product  = request.nextUrl.searchParams
+    const comment  = request.nextUrl.searchParams
     const session = cookies().get("user_id")
     const user_id = session?.value as string
-    const id = product.get('id') as string
+    const id = comment.get('id') as string
     try {
-        const docRef = await doc(db, 'post_forum', id.trim());
-      const productSnapshot = await getDoc(docRef);
-      
-      // Mapeia os documentos e inclui o ID junto com os dados
+      const postsRef = collection(db, "comments_post_forum");
 
-      if (productSnapshot.exists()) {
-        const productData = {
-          ...productSnapshot.data(),
-          owner:productSnapshot.data().user_id===user_id,
-          id:productSnapshot.id
-        }
-        const response = new Response(JSON.stringify(productData), {
+      // Criação da query com filtro pelo campo `id_post`
+      const q = query(postsRef, where("id_post_comment", "==", id));
+    
+      // Executa a consulta
+      const querySnapshot = await getDocs(q);
+    
+      // Retorna os documentos encontrados
+      const resultados = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+        const response = new Response(JSON.stringify(resultados), {
             status: 200, // Define o status da resposta
             headers: {
               'Content-Type': 'application/json'
             }
           });
           return response
-      } else {
-        const response = new Response(JSON.stringify({message:"Product not found"}), {
-            status: 404, // Define o status da resposta
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-          return response
-      }
+      
+      
 
 
     } catch (error) {

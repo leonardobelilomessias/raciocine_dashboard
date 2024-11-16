@@ -56,7 +56,7 @@ export const Sponsors = () => {
         {sponsors.map(({ icon, name }: SponsorProps) => (
           <div
             key={name}
-            className="flex min-h-[50px] bg-yellow-200 min-w-[200px] items-center gap-1 text-muted-foreground/60"
+            className="flex min-h-[50px]  min-w-[200px] items-center gap-1 text-muted-foreground/60"
           >
             <span>{icon}</span>
 
@@ -65,7 +65,7 @@ export const Sponsors = () => {
             {sponsors.map(({ icon, name }: SponsorProps) => (
           <div
             key={name}
-            className="flex min-h-[50px] bg-yellow-200 min-w-[200px] items-center gap-1 text-muted-foreground/60"
+            className="flex min-h-[50px]  min-w-[200px] items-center gap-1 text-muted-foreground/60"
           >
             <span>{icon}</span>
 
