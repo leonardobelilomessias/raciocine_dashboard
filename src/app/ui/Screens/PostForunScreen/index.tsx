@@ -102,7 +102,7 @@ async function getforumPosts(){
                                 
                 }
                 </div>
-                <FormCommentPostForum getCommentsPost={getCommentsPost}  id_post_comment="DhDLQTiZJuBa2Q84GJVq"  user_avatar="https://github.com/shadcn.png"  user_id="kZrx4yJpIWZly1SLwZvlpHZNIcs1" user_name="usuario_teste"/>
+                <FormCommentPostForum getCommentsPost={getCommentsPost}  id_post_comment={id}  user_avatar="https://github.com/shadcn.png"  user_id="kZrx4yJpIWZly1SLwZvlpHZNIcs1" user_name="usuario_teste"/>
                 <CommentsPost  comments={comments} />
                 </CardHeader>
             </Card>

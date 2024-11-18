@@ -19,7 +19,7 @@ export default function CommentsPost({comments}:{ comments:ICommetsPostForum[]})
     return(
         <div>
 
-        <p>Comentários</p>
+        <p className="text-sm my-2">Comentários {comments.length}</p>
     
         {
             (comments.length>0)&&
