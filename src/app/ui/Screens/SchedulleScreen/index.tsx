@@ -19,6 +19,10 @@ export function SchedulleScreeen(){
         setAppointments(response.data)
         console.log(response.data)
     }
+    async function cancelAppointment(appointment:IAppointment){
+        await axiosApi.post("/api/updateAppointment",{appointment:appointment})
+        await getAppointments()
+    }
     useEffect(()=>{
         getAppointments()
     },[])
@@ -59,10 +63,13 @@ export function SchedulleScreeen(){
                                     </div>
                                     <div>
                                         <div className="grid w-full max-w-sm items-center gap-1.5">
-                                        <Button  className="flex  gap-2 bg-white text-black border border"  >
+                                        {
+                                        item.status!="cancelled"&& 
+                                        <Button onClick={()=>{cancelAppointment(item)}} className="flex  gap-2 bg-white text-black border border"  >
                                             <X size={14}/>
                                             Cancelar
                                         </Button>
+                                        }  
                                         
                                         </div>
                                     </div>
@@ -96,7 +103,7 @@ function EmptyAppointments(){
  function ColorStatus(status:"awaiting"|"confirmed"|"cancelled"|"done"){
     if(status.toUpperCase()==='awaiting'.toUpperCase()) return  "text-yellow-500"
     if(status.toUpperCase()==='confirmed'.toUpperCase()) return "text-green-500"
-    if(status.toUpperCase()==='cancelled'.toUpperCase()) return "text-red-200"
+    if(status.toUpperCase()==='cancelled'.toUpperCase()) return "text-red-500"
     if(status.toUpperCase()==='done'.toUpperCase()) return ""
 
 

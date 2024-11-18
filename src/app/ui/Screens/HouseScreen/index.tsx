@@ -12,8 +12,8 @@ import { IProduct } from "@/app/types/types";
 import { ListAmenitiesHouse } from "./ListAmenitiesHouse";
 
 export async  function HouseScreen({id}:{id:String}){
-    const data = await axiosApi.get(`/api/listImagesByIdProduct?id=${id}`)
     const responseProduct = await axiosApi.get(`/api/getProductById?id=${id}`)
+    const data = await axiosApi.get(`/api/listImagesByIdProduct?id=${id}`)
     const product = responseProduct.data as IProduct
 
     const {urls} = data.data

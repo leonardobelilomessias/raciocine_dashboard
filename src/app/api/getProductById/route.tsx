@@ -17,9 +17,10 @@ interface ApiResponse {
 
 // Manipulador de requisições da API
 export  async function GET(request: NextRequest) {
-    const product  = request.nextUrl.searchParams
-    const id = product.get('id') as string
-    try {
+  const product  = request.nextUrl.searchParams
+  const id = product.get('id') as string
+  console.log("na rota product by id ")
+  try {
         const docRef = await doc(db, 'products', id.trim());
       const productSnapshot = await getDoc(docRef);
       

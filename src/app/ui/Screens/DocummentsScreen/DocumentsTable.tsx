@@ -71,6 +71,7 @@ import { FilePlus2, FileText, Trash, Trash2 } from "lucide-react"
         <p className="text-sm pb-1">A lista dos documentos enviados.</p>
         <Separator className="mb-2"/>
 
+
         <div className="flex gap-2 flex-wrap ">
           {invoices.map((invoice) => (
             <div key={invoice.type} className="flex flex-col  min-w-[220px] rounded p-3 gap-2 border ">
@@ -104,7 +105,7 @@ import { FilePlus2, FileText, Trash, Trash2 } from "lucide-react"
 
   function SelectDocument(){
     return(
-      <div className="flex flex-col gap-3 flex-wrap my-10">
+      <div className="flex flex-col gap-3 flex-wrap mt-10 mb-2">
               <Label>Selecione um novo documento para enviar</Label>
         <div className=" flex flex-row gap-3 flex-wrap">
               <div className="">

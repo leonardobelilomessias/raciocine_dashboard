@@ -20,6 +20,7 @@ type ListResponse = {
 };
 // Manipulador de requisições da API
 export  async function GET(request: NextRequest) {
+  console.log("em imagens do produto")
     const product  = request.nextUrl.searchParams
     const id = product.get('id') as string
     if (!id || typeof id !== "string") {
