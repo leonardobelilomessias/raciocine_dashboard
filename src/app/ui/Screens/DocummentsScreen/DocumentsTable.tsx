@@ -11,7 +11,8 @@ import {
 
   } from "@/components/ui/table"
 import clsx from "clsx"
-import { FilePlus2, FileText, Trash, Trash2 } from "lucide-react"
+import { ArrowUpFromLine, FilePlus2, FileText, Trash, Trash2 } from "lucide-react"
+import { ChangeEvent, useRef, useState } from "react"
    
   const invoices = [
     {
@@ -104,27 +105,87 @@ import { FilePlus2, FileText, Trash, Trash2 } from "lucide-react"
   }
 
   function SelectDocument(){
+    const[valueFile,setValueFile] = useState("")
+    function handleValueFile(e:any){
+      console.log(e)
+      setValueFile(e)
+    }
+    const formData = new FormData();
+    const [fillDocument,setFillDocument]= useState(false)
+    const [fileDocument,setDocument] = useState<File | null>(null);
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
+    const handleFileDocumentChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+      setFillDocument(true)
+      const file = e.target.files ? e.target.files[0] : null;
+      setDocument(file);
+      if (file) {
+        //setPreviewCover(URL.createObjectURL(file));
+      }
+    };
+    const handleRemoveFileDocument = () => {
+      setDocument(null)
+      //setPreviewCover('');
+      //fileInputRef.current.value = '';
+    };
     return(
       <div className="flex flex-col gap-3 flex-wrap mt-10 mb-2">
               <Label>Selecione um novo documento para enviar</Label>
         <div className=" flex flex-row gap-3 flex-wrap">
               <div className="">
-                  <Select >
+                  <Select onValueChange={(e)=>handleValueFile(e)} >
                   <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Theme" />
+                    <SelectValue placeholder="Escolha um documento" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="light">cpf</SelectItem>
-                    <SelectItem value="dark">Rg</SelectItem>
-                    <SelectItem value="system">Comprovante de Renda</SelectItem>
+                  <SelectContent  >
+                    <SelectItem value="cpf">Cpf</SelectItem>
+                    <SelectItem value="rg">Rg</SelectItem>
+                    <SelectItem value="proof_address">Comprovante de endereço</SelectItem>
+                    <SelectItem value="bank_statement">Extrato bancário</SelectItem>
+                    <SelectItem value="income_tax">Declaração imposto de renda</SelectItem>
+                    <SelectItem value="civil_status">Certidão estado civil</SelectItem>
+                    <SelectItem value="fgts_statement">Extrato Fgts</SelectItem>
+                    <SelectItem value="work_card">Carteira de trabalho</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-            <Button className=" flex items-center gap-2">
-            <FilePlus2 size={16} />
-              enviar documento
-            </Button>
+            {!fillDocument&& <span className=" flex items-center gap-2">
+              <label              className={
+                valueFile==="" ?'flex items-center gap-2 bg-blue-300 text-white p-2 rounded text-sm font-bold cursor-pointer':
+                ' flex items-center gap-2 bg-primaryPalet text-white p-2 rounded text-sm font-bold cursor-pointer'
+  
+              }>
+  
+                {valueFile&&<input
+                  type="file"
+                  accept="image/*"
+                    ref={fileInputRef}
+                  onChange={handleFileDocumentChange}
+                  style={{ display: 'none' }}
+                  />}
+               <FilePlus2 size={16} />
+              Carregar Documento
+              </label>
+            </span>
+            
+            }
+               {fillDocument&& <span className=" flex items-center gap-2">
+              <label className="flex items-center gap-2 bg-primaryPalet text-white p-2 rounded text-sm font-bold cursor-pointer">
+                
+                <input
+                  type="file"
+                  accept="image/*"
+                    ref={fileInputRef}
+                  onChange={handleFileDocumentChange}
+                  style={{ display: 'none' }}
+                  />
+               <ArrowUpFromLine size={16} />
+              Enviar Documento
+              </label>
+            </span>
+            
+            }
           </div>
       </div>
     )
