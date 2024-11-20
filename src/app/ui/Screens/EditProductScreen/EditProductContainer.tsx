@@ -1,11 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
-import { EditProductForm } from "./EditProductForm";
-import { IProductResponse } from "@/app/types/types";
 import { ReactNode } from "react";
-
-;
 
 export function EditProductContainer({children}:{children:ReactNode}){
     return(
