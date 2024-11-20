@@ -3,17 +3,6 @@ import { z } from "zod"
 import {  useForm } from "react-hook-form";
 import { FormField, FormItem, FormControl, FormMessage, Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod"
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-  } from "@/components/ui/alert-dialog"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -38,6 +27,7 @@ import { formatFirebaseDate } from "@/app/util/date";
 import { GiConfirmed } from "react-icons/gi";
 import { deletePostForum } from "./functionsForum";
 import { DeletePostDialog } from "../../components/Forum/DeletePostDialog";
+import { SkeletonForum } from "./SkeletonForum";
 type PostsForumType={
     title:string
     id:string
@@ -47,12 +37,19 @@ type PostsForumType={
     owner:boolean
 }
 export function ForumScreen(){
-
+    const[load,setLoad]= useState(false)
     const [postsForum,setPostsForum] = useState<PostsForumType []>([])
     async function getforumPosts(){
-        const posts = await axiosApi.get("/api/getPostsForum")
-        setPostsForum(posts.data)
-        console.log(posts.data)
+        setLoad(true)
+        try{
+            const posts = await axiosApi.get("/api/getPostsForum")
+            setPostsForum(posts.data)
+            console.log(posts.data)
+        }catch(e){
+            throw(e)
+        }finally{
+            setLoad(false)
+        }
     }
     useEffect(()=>{
         getforumPosts()
@@ -76,7 +73,8 @@ export function ForumScreen(){
 
                 <CardContent>
                 <div className="flex sm:flex  w-full flex-wrap gap-2 justify-center m-auto">
-                {
+                   {!!load&& <SkeletonForum/>}
+                { !load&&
                                 postsForum.map((element)=>(
                                 
                                 <Card  key={element.id}  className="w-full ">
