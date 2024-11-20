@@ -21,7 +21,6 @@ export  async function GET(request: NextRequest) {
   const session = cookies().get("user_id")
   const user_id = session?.value as string
 
-  console.log("na rota product by id ")
   try {
         const docRef = await doc(db, 'documents_users', user_id.trim());
       const documentSnapshot = await getDoc(docRef);

@@ -1,20 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { axiosApi } from "@/lib/axios/axios";
 import { FileText, Trash2 } from "lucide-react";
 type Document = { status: string; url: string, type:string };
 
-export function CardDocument({status,type,url}:Document){
-
+export function CardDocument({status,type,url,getDocuments}:{status:string,url:string, type:string, getDocuments:()=> Promise<void>}){
+    async function deleteDocument(){
+        await axiosApi.delete(`/api/deleteDocumentUser?type=${type}`)
+        await getDocuments()
+        
+    }
     return(
         <div  className="flex flex-col  min-w-[220px] rounded p-3 gap-2 border ">
             <FileText size={16} />
-            <div className={`${ColorStatus('pending')} text-xs  text-end justify-self-end font-bold`}>
+            <div className={`${ColorStatus(status)} text-xs  text-end justify-self-end font-bold`}>
             {translateStatus(status)}
             </div>
         <div className="font-bold ">{translateType(type)}</div>
         <div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Button  className="flex  gap-2 bg-white text-black border border"  >
+          <Button onClick={deleteDocument}  className="flex  gap-2 bg-white text-black border border"  >
             <Trash2 size={14}/>
             Remover
           </Button>
@@ -26,8 +31,8 @@ export function CardDocument({status,type,url}:Document){
     )
 }
 function ColorStatus(status:string){
-    if(status.toUpperCase()==='denied'.toUpperCase()) return "text-red-500"
-    if(status.toUpperCase()==='accept'.toUpperCase()) return "text-green-500"
+    if(status.toUpperCase()==='rejected'.toUpperCase()) return "text-red-500"
+    if(status.toUpperCase()==='accepted'.toUpperCase()) return "text-green-500"
  if(status.toUpperCase()==='pending'.toUpperCase()) return "text-yellow-500"
     return""
   }

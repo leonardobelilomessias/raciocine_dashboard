@@ -45,7 +45,7 @@ import { transformObjectToArray } from "./transformObjectToArray"
           {documents.map((document) => (
             
               
-            <CardDocument key={document.type} status={document.status} type={document.type} url={document.url}/>
+            <CardDocument getDocuments={getDocuments} key={document.type} status={document.status} type={document.type} url={document.url}/>
           ))}
         </div>
         <div>
@@ -92,7 +92,7 @@ function SelectDocument({getDocuments}:{getDocuments:()=>Promise<void>}){
           formData.append('files', fileDocument);
           formData.append('field', valueFile);
           console.log(` em sendDocument => ${formData}`)
-          const responseUploadImages = await axiosApi.post('/api/uploadDocument', formData, {
+          const responseUploadImages = await axiosApi.post('/api/uploadDocumentUser', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
