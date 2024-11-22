@@ -38,12 +38,12 @@ type PostsForumType={
     owner:boolean
 }
 
-const fetchPosts = async (pageSize: number, cursor: string | null | undefined, isPrevious:boolean, isFirst?:boolean, stepPage?:number) => {
-    const res = await fetch(`/api/getPostsForumTest?pageSize=${pageSize}&isPrevious=${isPrevious}&lastCursor=${cursor || ""}&isFirst=${isFirst||""}&stepPage${stepPage}`);
-    const data = await res.json();
-    return data;
-  };
 export function ForumScreenTeste(){
+    const fetchPosts = async (pageSize: number, cursor: string | null | undefined, isPrevious:boolean, isFirst?:boolean,) => {
+        const res = await fetch(`/api/getPostsForumTest?pageSize=${pageSize}&isPrevious=${isPrevious}&lastCursor=${cursor || ""}&isFirst=${isFirst||""}&stepPage=${step}`);
+        const data = await res.json();
+        return data;
+      };
     const [lastCursors, setLastCursor] = useState<string>(); // Cursors para cada página
     const [totalPages, setTotalPages] = useState(0);
     const [step,setStep] = useState(0)
@@ -56,7 +56,7 @@ export function ForumScreenTeste(){
         setLoad(true)
         try{
             if(isFirst){
-                const posts = await fetchPosts(pageSize, null, isPrevious, isFirst)
+                const posts = await fetchPosts(pageSize, null, isPrevious, isFirst=true)
                 setPostsForum(posts.data)
                 console.log("passando=>",posts)
                 setTotalPages(posts.totalPages);
@@ -112,12 +112,14 @@ export function ForumScreenTeste(){
                 </CardHeader>
 
                 <CardContent>
+                <div>
+                {(postsForum!= undefined)&&
                 <div className="flex sm:flex  w-full flex-wrap gap-2 justify-center m-auto">
                    {!!load&& <SkeletonForum/>}
                 { !load&&
                                 postsForum.map((element)=>(
-                                
-                                <Card  key={element.id}  className="w-full ">
+                                    
+                                    <Card  key={element.id}  className="w-full ">
                                     <CardHeader>
                                         <CardDescription className="flex gap-10 ">
                                             {/* span is used because hydrataton error  if use <p> tag */}
@@ -129,7 +131,7 @@ export function ForumScreenTeste(){
                                                 </Avatar>
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="bold text-sm font-bold">{element.user_name}</span>
+                                                <span className="bold text-sm font-bold">{element.user_name} - {element.id}</span>
                                                 <div className="flex gap-1">
                                                 <span className="text-xs">criado em { formatFirebaseDate(element?.created_at).date}</span>
 
@@ -140,11 +142,11 @@ export function ForumScreenTeste(){
                                     {
                                         element.owner&&
                                         <div  className=" flex flex-1 justify-end">
-
+                                        
                                                 <DeletePostDialog getforumPosts={getforumPosts} deletePostForum={deletePostForum} id={element.id} owner={element.owner} />
                                         </div>
                                             
-                                    }
+                                        }
                                         </CardDescription>
                                     <CardTitle>{element.title}</CardTitle>
                                         <span>{element.message}</span>
@@ -154,8 +156,9 @@ export function ForumScreenTeste(){
                                 </Card>
                                 ))
                             }                
-                </div>
+                </div>}
                     
+                </div>
                 </CardContent>
                 <CardFooter>
                     
@@ -226,6 +229,17 @@ export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}
         console.log(values)
 
       }
+      useEffect(()=>{
+        console.log('componet montado', created)
+        return()=>{
+            if(created){
+
+                setCreated(false)
+            }
+        console.log('componet desmontado',created)
+
+        }
+    },[false])
       return (
           
           <Dialog>
@@ -300,14 +314,25 @@ export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}
           </DialogFooter>
         </div>
         }
-        {created&& <CreatedPost id={idPost}/>}
+        {created&& <CreatedPost created={created} setCreated={setCreated} id={idPost}/>}
         </DialogContent>
       </Dialog>
 
     )
   }
   
-function  CreatedPost({id}:{id:string}){
+function  CreatedPost({id,setCreated,created}:{ created:boolean,id:string,setCreated:(item:boolean)=>void}){
+    useEffect(()=>{
+        console.log('componet montado', created)
+        return()=>{
+            if(created){
+
+                 setCreated(false)
+            }
+        console.log('componet desmontado',created)
+
+        }
+    },[false])
     return(
         <div className="flex flex-col items-center gap-3">
         <DialogHeader>
