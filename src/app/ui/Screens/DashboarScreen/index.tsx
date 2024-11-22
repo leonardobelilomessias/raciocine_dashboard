@@ -14,8 +14,8 @@ export async function DashboardScreen(){
     return(
         
         <div className="sm:container p-2 pt-5">
+            {/* <SearchBar/> */}
             <HomeCarousel/>
-            <SearchBar/>
             {/* <HeroDashboard/>1 */}
             <Suspense fallback={<TableDataFinanceSkeleton/>}>
                 <TableDataFinance  />

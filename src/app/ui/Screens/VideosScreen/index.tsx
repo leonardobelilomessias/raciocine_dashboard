@@ -17,9 +17,11 @@ export function VideosScreen(){
                 <CardDescription>
                     Melhores videos para você está por dentro do tudo!
                 </CardDescription>
-                <div>
-                    
-                </div>
+                {/* <div className="bg-grat-50 gap-4 flex p-4 ">
+                    <VideoCard/>
+                    <VideoCard/>
+
+                </div> */}
                 <CardContent>
                 <VideoAccordion/>
                     
@@ -30,6 +32,15 @@ export function VideosScreen(){
                 
             </Card>
 
+        </div>
+    )
+}
+
+function VideoCard(){
+    return(
+        <div>
+            <div className="bg-gray-200 h-[170px] w-[300px] rounded"></div>
+            <p className="px-1">como financiar o primeiro imovel</p>
         </div>
     )
 }

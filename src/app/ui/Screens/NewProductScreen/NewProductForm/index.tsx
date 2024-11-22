@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import {  useForm } from "react-hook-form";
 // Interfaces
 import {v4} from 'uuid'
+import NoImage from '@/app/assets/images/common/no-image.jpg'
 
 
 interface amenitiesZod{
@@ -45,7 +46,7 @@ interface IValidationSchema {
 }
 import { z } from "zod"
 import { useRouter } from "next/navigation";
-import { DeleteIcon, Save } from "lucide-react";
+import { DeleteIcon, Save, X } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChangeEvent, useRef, useState } from "react";
 import { AlertNewProduct } from "../AlertNewProduct";
@@ -54,6 +55,7 @@ import { toast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { Toaster } from "@/components/ui/toaster";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 const amenitiesFields = [
   {label:'pool',name:'Piscina'},
   {label:'porter',name:'Portaria 24hrs'},
@@ -228,8 +230,8 @@ export function NewProductForm(){
     return(
         <>
         <Toaster/>
-        <Form {...form}>
-      <form onSubmit={form.handleSubmit(setSubmit)} className="space-y-1">
+        <Form {...form} >
+      <form onSubmit={form.handleSubmit(setSubmit)} className="space-y-1 max-w-[1200px] px-8">
       <Label className="font-bold">Titulo</Label>
         <FormField
           control={form.control}
@@ -253,27 +255,13 @@ export function NewProductForm(){
             <FormItem>
               
               <FormControl>
-                <Input placeholder="Descrição" {...field} />
+                <Textarea className="min-h-[200px]" placeholder="Descrição" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-      <Label className="font-bold">Preço</Label>
 
-        <FormField
-          control={form.control}
-          name="price"
-          render={({ field }) => (
-            <FormItem>
-              
-              <FormControl>
-                <Input placeholder="Preço" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
       <Label className="font-bold">Endereço</Label>
                 <FormField
           control={form.control}
@@ -317,6 +305,16 @@ export function NewProductForm(){
             </FormItem>
           )}
         />
+<Label className="font-bold">Construtora</Label>
+<FormField control={form.control} name="construction_company"
+  render={({ field }) => (
+  <FormItem>  
+    <FormControl>
+      <Input placeholder="Construtora" {...field} />
+    </FormControl>
+    <FormMessage />
+  </FormItem>
+)}/>
       <Label className="font-bold">Cep</Label>
 
                 <FormField
@@ -392,20 +390,15 @@ export function NewProductForm(){
             </FormItem>
           )}
         />
-<Label className="font-bold">Construtora</Label>
-<FormField
-control={form.control}
-name="construction_company"
-render={({ field }) => (
-  <FormItem>
-    
-    <FormControl>
-      <Input placeholder="Construtora" {...field} />
-    </FormControl>
-    <FormMessage />
-  </FormItem>
-)}
-/>
+              <Label className="font-bold">Preço</Label>
+              <FormField control={form.control} name="price" render={({ field }) => (
+            <FormItem>
+                <FormControl>
+                  <Input placeholder="Preço" {...field} />
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+          )}/>
         <FormField
           control={form.control}
           name="amenities"
@@ -452,53 +445,44 @@ render={({ field }) => (
             </FormItem>
           )}
         />
-<p >Imagens</p>
+<p className="text-2xl  font-bold">Imagens</p>
                             <div>
                               <div className="flex flex-col">
-                            <div >Adiconar imagens  De Capa</div>
-
-                            <span className="w-40 mb-2 p-2 bg-primaryPalet text-white "> 
-                                  <label>Imagem de Capa
-
-                                  <input
-                                    type="file"
-                                    accept="image/*"
-                                    ref={fileInputRef}
-                                    onChange={handleCoverChange}
-                                    style={{ display: 'none' }}
-                                    />
-                                    </label>
-                                </span>
-                                    
-                                  {previewCover && (
-                                    <div className="image-preview">
-                                      <Image src={previewCover} alt="Capa" width={100} height={100} />
-                                      <button type="button" onClick={handleRemoveCover}>
-                                        <DeleteIcon />
+                            <div >
+                              <p className="text-lg font-bold">
+                                Adiconar imagens  De Capa
+                              </p>  
+                            </div>
+                            <CoverPreviewImage handleRemoveCover={handleRemoveCover} previewCover={previewCover}/>
+                            {/* {previewCover && (
+                                    <div className=" border bg-sky-100 flex relative w-[300px] h-[300px]">
+                                      <Image src={previewCover} alt="Capa" fill style={{objectFit:"contain"}} />
+                                      <button type="button" className="absolute bottom-0 bg-gray-100 flex gap-2 p-1" onClick={handleRemoveCover}>
+                                        <X className="text-red-500"/>
+                                        Remover
                                       </button>
                                     </div>
-                                  )}
+                                  )} */}
+
+                            
+                            <span className="w-40 mb-2 p-2 bg-primaryPalet text-white rounded"> 
+                                  <label className="text-center flex justify-center rounded font-bold">
+                                    <p>{!previewCover?"Selecione Capa":"Trocar Capa"}</p>
+                                    <input type="file" accept="image/*" ref={fileInputRef} onChange={handleCoverChange} style={{ display: 'none' }}/>
+                                  </label>
+                            </span>
                                 </div>
-                              </div>
-                              <div className="col-md-12">
+                            </div>
+                            <div className="col-md-12">
                         <div className="flex flex-col gap-2">
-                            <p >Adiconar imagens a galeria</p>
-                            <span className="w-40 mb-2 p-2 bg-primaryPalet text-white "> 
-
-                                  <label>Adicionar imagens
-
-                                  <input
-                                    type="file"
-                                    accept="image/*"
-                                    multiple
-                                    ref={fileInputRef}
-                                    onChange={handleFileChange}
-                                    style={{ display: 'none' }}
-                                    />
-                                    </label>
-                                </span >
-
-                                  <div className="flex gap-2 wrap">
+                            <p className="text-lg font-bold">Adiconar imagens a galeria</p>
+                            <span className="w-40 mb-2 p-2 bg-primaryPalet text-white rounded"> 
+                                  <label className="text-center flex justify-center rounded font-bold">Selecione Imagens
+                                    <input type="file" accept="image/*" multiple ref={fileInputRef} onChange={handleFileChange} style={{ display: 'none' }} />
+                                  </label>
+                              </span >
+                              <PreviewImageGallery handleRemoveImage={handleRemoveImage} urls={previewUrls} />
+                                  {/* <div className="flex gap-2 wrap">
                                     {previewUrls.map((url, index) => (
                                       <div className="image-preview" key={index}>
                                         <Image src={url} alt={`Imagem ${index + 1}`} width={100} height={100} />
@@ -507,7 +491,7 @@ render={({ field }) => (
                                         </button>
                                       </div>
                                     ))}
-                                  </div>
+                                  </div> */}
                               </div>
                             </div>
 {/*  fim do upload de imagens */}
@@ -517,4 +501,50 @@ render={({ field }) => (
     </Form>
         </>
     )
+}
+
+
+function CoverPreviewImage({previewCover, handleRemoveCover}:{previewCover:string | undefined,handleRemoveCover:()=>void}){
+  return(
+    <div className="my-4">
+        {previewCover && (
+        <div className=" border bg-sky-100 flex relative w-[300px] h-[300px]">
+          <Image src={previewCover} alt="Capa" fill style={{objectFit:"cover"}} />
+          <button type="button" className="absolute bottom-0 bg-gray-100 flex gap-2 p-1" onClick={handleRemoveCover}>
+            <X className="text-red-500"/>
+            Remover
+          </button>
+        </div>
+                                  )}
+{ !previewCover  &&   <div className=" border bg-sky-100 flex relative w-[300px] h-[300px]">
+        <Image src={NoImage} alt="Capa" fill style={{objectFit:"contain"}} />
+      </div>}
+    </div>
+    
+  )
+}
+
+
+function PreviewImageGallery({urls, handleRemoveImage}:{urls:string[] ,handleRemoveImage:(index:number)=>void }){
+  return(
+    <div className="my-4 flex gap-2 flex-wrap">
+        {urls?.length>0 && 
+        urls.map((url,index)=>(
+
+          <div className=" border bg-sky-100 flex relative w-[300px] h-[300px]">
+          <Image src={url} alt="Capa" fill style={{objectFit:"cover"}} />
+          <button type="button" className="absolute bottom-0 bg-gray-100 flex gap-2 p-1" onClick={()=>handleRemoveImage(index)}>
+            <X className="text-red-500"/>
+            Remover
+          </button>
+        </div>
+        ))
+                                  }
+{ urls.length==0  &&  
+ <div className=" border bg-sky-100 flex relative w-[300px] h-[300px]">
+        <Image src={NoImage} alt="Capa" fill style={{objectFit:"contain"}} />
+      </div>}
+    </div>
+    
+  )
 }

@@ -1,10 +1,10 @@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { Trash2 } from "lucide-react"
 
-export function DeletePostDialog({deletePostForum, id,owner,getforumPosts}:{deletePostForum:(id:string,owner:boolean)=>Promise<void>,id:string,owner:boolean,getforumPosts:()=>Promise<void>}) {
+export function DeletePostDialog({deletePostForum, id,owner,getforumPosts}:{deletePostForum:(id:string,owner:boolean)=>Promise<void>,id:string,owner:boolean,getforumPosts:(isPrevious:boolean,isFirst:boolean)=>Promise<void>}) {
     async function execDeletePostForum(id:string,owner:boolean){
         await deletePostForum(id,owner)
-        await getforumPosts()
+        await getforumPosts(false,true)
     }
     return (
       <AlertDialog>
