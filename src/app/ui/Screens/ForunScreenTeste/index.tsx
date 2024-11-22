@@ -45,7 +45,6 @@ const fetchPosts = async (pageSize: number, cursor: string | null | undefined, i
   };
 export function ForumScreenTeste(){
     const [lastCursors, setLastCursor] = useState<string>(); // Cursors para cada página
-    const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [step,setStep] = useState(0)
     const pageSize = 5;
@@ -53,7 +52,6 @@ export function ForumScreenTeste(){
     const [firstCursor,setFirstCusor] = useState<string |null | undefined>()
     const [postsForum,setPostsForum] = useState<PostsForumType []>([])
     async function getforumPosts(isPrevious:boolean,isFirst:boolean){
-        console.log("posts index=>",isPrevious)
 
         setLoad(true)
         try{

@@ -6,6 +6,7 @@ import { axiosApi } from "@/lib/axios/axios";
 import { Timestamp } from "firebase/firestore";
 import { Bell, CalendarDays, Folder } from "lucide-react";
 import { useEffect, useState } from "react";
+import { PaginationButtons } from "../../components/PaginationButtons";
 
 interface INotifications{
     id:string
@@ -15,18 +16,61 @@ interface INotifications{
     message:String
 }
 
-
-export function NotificationsScreeen(){
+const fetchNotification = async (pageSize: number, cursor: string | null | undefined, isPrevious:boolean, isFirst?:boolean, stepPage?:number) => {
+    const res = await fetch(`/api/getNotificationsUser?pageSize=${pageSize}&isPrevious=${isPrevious}&lastCursor=${cursor || ""}&isFirst=${isFirst||""}&stepPage${stepPage}`);
+    const data = await res.json();
+    return data;
+  };
+export function NotificationsScreen(){
+    const [lastCursors, setLastCursor] = useState<string>(); // Cursors para cada página
+    const [totalPages, setTotalPages] = useState(0);
+    const [step,setStep] = useState(0)
+    const pageSize = 3;
+    const[load,setLoad]= useState(false)
+    const [firstCursor,setFirstCusor] = useState<string |null | undefined>()
     const [notifications,setNotifications] = useState([] as INotifications[])
-    async function getNotifications(){
-        const response = await axiosApi.get(`/api/getNotificationsUser`)
-        setNotifications(response.data)
-        console.log(response.data)
-        // const {date} = formatFirebaseDateToDate(response.data[0].created_at)
-        // console.log(date)
+    async function getNotifications(isPrevious:boolean,isFirst:boolean){
+
+        setLoad(true)
+        try{
+            if(isFirst){
+                const notificationsData = await fetchNotification(pageSize, null, isPrevious, isFirst)
+                setNotifications( notificationsData.data)
+                console.log("passando=>",notificationsData)
+                setTotalPages( notificationsData.totalPages);
+                setLastCursor( notificationsData.lastCursor)
+                setFirstCusor( notificationsData.firstCursor)
+                
+            }
+            if(!isPrevious && !isFirst){
+                
+                const notificationsData = await fetchNotification(pageSize, lastCursors, isPrevious, isFirst)
+                setNotifications( notificationsData.data)
+                console.log("passando=>",notificationsData)
+                setTotalPages( notificationsData.totalPages);
+                setLastCursor( notificationsData.lastCursor)
+                setFirstCusor( notificationsData.firstCursor)
+                setStep( notificationsData.stepPage)
+            }
+            if(isPrevious){
+                const cursor = notifications[0].id
+                const notificationsData = await fetchNotification(pageSize, firstCursor, isPrevious, isFirst)
+                setNotifications( notificationsData.data)
+                console.log("passando=>",notificationsData)
+                setTotalPages( notificationsData.totalPages);
+                setLastCursor( notificationsData.lastCursor)
+                setFirstCusor( notificationsData.firstCursor)
+                setStep( notificationsData.stepPage)
+            }
+
+        }catch(e){
+            throw(e)
+        }finally{
+            setLoad(false)
+        }
     }
     useEffect(()=>{
-        getNotifications()
+        getNotifications(false,true)
     },[])
     const notificatiosn:any[] =[1,2]
     return(
@@ -69,32 +113,7 @@ export function NotificationsScreeen(){
                             </CardHeader>
                         </Card>}
 
-                                                
-                        <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                            <PaginationPrevious href="#" />
-                            </PaginationItem>
-                            <PaginationItem>
-                            <PaginationLink href="#">1</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                            <PaginationLink href="#" isActive>
-                                2
-                            </PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                            <PaginationLink href="#">3</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                            <PaginationEllipsis />
-                            </PaginationItem>
-                            <PaginationItem>
-                            <PaginationNext href="#" />
-                            </PaginationItem>
-                        </PaginationContent>
-                        </Pagination>
-
+                        <PaginationButtons execFunction={getNotifications} step={step} totalPages={totalPages}/>
                     </div>
                     
                     }

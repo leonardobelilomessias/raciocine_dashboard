@@ -80,7 +80,8 @@ export async function GET(request: NextRequest, res: NextApiResponse) {
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
 
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Erro ao buscar produtos paginados:", error);
     return new Response(
       JSON.stringify({ error: "Erro ao buscar produtos" }))
