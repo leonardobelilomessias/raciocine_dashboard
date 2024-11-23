@@ -188,9 +188,18 @@ export interface IAppointment {
   date:Date |undefined |null
   type:"call"| "visit" |"whatsapp"|"video"
   status:"confirmed"| "awaiting" |"cancelled"|"done"
+  created_at:Date
 }
 export interface IVideoParams{
   width?:number | undefined, 
   height?:number |undefined
   }
+export interface INotifications{
+  id:string
+  id_user:string
+  created_at:Date
+  title:string
+  message:String
+}
+
 export interface INavigationElemets{ title: string, link: string, icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> }

@@ -8,10 +8,14 @@ import { IProduct } from "@/app/types/types";
 import { listProducts } from "@/lib/firebase/listProducts";
 import { ProductCard } from "../../components/ProductCard";
 import Link from "next/link";
+import { axiosApi } from "@/lib/axios/axios";
+import { listUserFavorites } from "@/lib/firebase/listProductsUserFavorites";
 
 export async function SelectedContainer(){
   const products = await listProducts()
-
+  const favoritesUser =  await listUserFavorites()
+  const favoritesList = favoritesUser
+  console.log("favoritos", favoritesList)
     return(
         <>
         <Card className="mb-10">
@@ -31,7 +35,7 @@ export async function SelectedContainer(){
   products &&  products.map((item,index)=>(
         
 
-      <ProductCard product={item} key={index}/>
+      <ProductCard favorites={favoritesList} product={item} key={index}/>
   
   ))
 }

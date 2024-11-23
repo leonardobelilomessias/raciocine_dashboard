@@ -47,7 +47,7 @@ export function ForumScreenTeste(){
     const [lastCursors, setLastCursor] = useState<string>(); // Cursors para cada página
     const [totalPages, setTotalPages] = useState(0);
     const [step,setStep] = useState(0)
-    const pageSize = 5;
+    const pageSize = 3;
     const[load,setLoad]= useState(false)
     const [firstCursor,setFirstCusor] = useState<string |null | undefined>()
     const [postsForum,setPostsForum] = useState<PostsForumType []>([])

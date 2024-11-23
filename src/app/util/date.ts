@@ -10,11 +10,10 @@ interface FormattedDate {
 
 // Função para formatar o campo de data e horário do Firebase
 export const formatFirebaseDate = (dateInput: any): FormattedDate => {
-  // console.log("vindo para função firebaseDAte",dateInput)
   let dateObject: Date;
 
   // Verifica se o dateInput é do tipo Timestamp do Firebase
-  if (dateInput?.seconds && dateInput?.nanoseconds) {
+  if (dateInput?.seconds !== undefined && dateInput?.nanoseconds !== undefined) {
     dateObject = new Date(dateInput.seconds * 1000 + dateInput.nanoseconds / 1000000);
   } else if (dateInput instanceof Date) {
     // Se já for um objeto Date

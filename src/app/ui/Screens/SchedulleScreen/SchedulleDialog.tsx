@@ -29,7 +29,7 @@ interface IAppointment {
   status:"confirmed"| "awaiting" |"canceled"
 }
 export function SchedulleDialog({getAppointments}:{getAppointments:()=>void}) {
-  const [date,setDate] = useState<Date | null>()
+  const [date,setDate] = useState<Date | null>(new Date())
   const [appointment,setAppointment] = useState({} as IAppointment) 
   const [channel, setChannel] = useState("whatsapp")
   const [messageChannel,setMessageChannel] = useState('Agende seu horario no melhos dia e forma de sua preferência.')

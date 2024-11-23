@@ -160,7 +160,7 @@ async function previousPage({productsCol,pageSize,lastCursor,stepPage,totalPages
   const data = {
     data: reverseArray,
     totalPages, // Total de páginas
-    lastCursor: products.pop()?.id,
+    lastCursor: products[products.length-1].id,
     firstCursor:products[0].id,
     stepPage:stepPage-1
   }

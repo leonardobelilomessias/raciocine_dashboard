@@ -1,6 +1,6 @@
 // Ajuste o caminho conforme necessário
 import { db, storage } from '@/lib/firebase/firebase';
-import { doc, deleteDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { doc, deleteDoc, collection, query, where, getDocs, getDoc } from 'firebase/firestore';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
@@ -54,18 +54,28 @@ export async function DELETE(request: NextRequest, ) {
   
   }
 
- async function deletePostForumFirebase(id: string) {
-    // Cria a referência para o documento aninhado a ser deletado
-    try {
-      const docRef = doc(db, 'post_forum', `${id}`);
-      console.log("dentro delete post firebase",id)
-      await deleteDoc(docRef);
-      console.log(`Documento com ID ${JSON.stringify(docRef) } foi deletado com sucesso.`);
-
-
-    } catch (error) {
-      console.error('Erro ao deletar documento aninhado: ', error);
-    }
+ async function deletePostForumFirebase(postId: string) {
+      try {
+        // Referência para a coleção de comentários
+        const commentsCollection = collection(db, "comments_post_forum");
+        // Consultar todos os comentários relacionados ao post
+        const q = query(commentsCollection, where("id_post_comment", "==", postId));
+        const querySnapshot = await getDocs(q);
+    
+        // Apagar cada comentário encontrado
+        const deleteCommentsPromises = querySnapshot.docs.map((commentDoc) =>
+          deleteDoc(doc(db, "comments_post_forum", commentDoc.id))
+        );
+        await Promise.all(deleteCommentsPromises);
+    
+        // Apagar o post na tabela `post_forum`
+        await deleteDoc(doc(db, "post_forum", postId));
+    
+        console.log(`Post e seus comentários relacionados foram apagados com sucesso!`);
+      } catch (error) {
+        console.error("Erro ao apagar o post e seus comentários:", error);
+      }
   }
+
 
   

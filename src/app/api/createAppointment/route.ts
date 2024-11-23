@@ -51,7 +51,8 @@ const createaAppointmentFireBase = async (appointment: IAppointment): Promise<st
       type: appointment.type,
       date: appointment.date,// Converte Date para Timestamp
       user_id:appointment.user_id,
-      status:"awaiting"
+      status:"awaiting",
+      created_at:Timestamp.fromDate(new Date())
     });
     // const docRef = await addDoc(collection(db, 'user_favorites'), product);
 

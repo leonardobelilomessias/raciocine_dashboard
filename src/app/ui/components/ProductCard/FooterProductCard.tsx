@@ -11,20 +11,29 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,city,cover,description,garages,neighborhood,price,title,zip,id}:IProductResponse){
-    const [isFavorite,setIsFavorite]=useState(false)
+type IFavorites={
+  favorites:string[]|undefined
+}
+type NewListItem = IProductResponse &IFavorites
+export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,city,cover,description,garages,neighborhood,price,title,zip,id,favorites}:NewListItem){
+  const [isFavorite,setIsFavorite]=useState(true)
+  if(id){
+    favorites?.includes(id)
+  }
     async function handleFavorite(product:IProductResponse){
-        if(isFavorite){    
-            setIsFavorite(!true)
-            await axiosApi.post('/api/createFavorites',{product:product})
+        if(!isFavorite){    
+          await axiosApi.post('/api/createFavorites',{product:product})
+          setIsFavorite(true)
         }else{
-            await axiosApi.delete(`/api/deleteFavorites?product_id=${product.id}`)
-            setIsFavorite(!false)
-
+          await axiosApi.delete(`/api/deleteFavorites?product_id=${product.id}`)
+          setIsFavorite(false)
         }
-        
-        
-    }
+      }
+      useEffect(()=>{
+        if(id){
+          setIsFavorite(!!favorites?.includes(id))
+        }
+      },[false])
     return(
         <>
                             {/* block butons actions  */}

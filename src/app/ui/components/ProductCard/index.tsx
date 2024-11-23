@@ -11,7 +11,8 @@ import { BedDouble, Car, Eye, Heart, MapPin, MessageSquareMore, Ruler, ShowerHea
 import { IProduct, IProductResponse } from "@/app/types/types";
 import { FooterProductCard } from "./FooterProductCard";
 import Link from "next/link";
-export function ProductCard({product}:{product:IProductResponse}){
+import { capitalizeFirstLetters } from "@/app/util/capitalizeFirstLetters";
+export function ProductCard({product, favorites}:{product:IProductResponse, favorites:string[]|undefined}){
 
     return(
         <div className="w-[280px]  ">
@@ -24,7 +25,7 @@ export function ProductCard({product}:{product:IProductResponse}){
         <div className="flex flex-col w-[280px]  lg:flex-row">
         <div className="p-3"    >
         <Link href={`/imovel/${product.id}`}>
-        <CardTitle className="h-[50px]  w-[280px] text-wrap  ">{truncateText(product.title,38)} </CardTitle>
+        <CardTitle className="h-[50px]  w-[280px] text-wrap  ">{capitalizeFirstLetters(truncateText(product.title,38))} </CardTitle>
         </Link>
             <div className="flex flex-col w-[280px]  " >
                     <div className="flex">
@@ -32,7 +33,7 @@ export function ProductCard({product}:{product:IProductResponse}){
                         <MapPin width={16} height={16}  className="text-blue-500 text-[0.1rem]"/>    
                         </div>
                         <p className="text-sm m-o pt-1 w-[280px]">
-                        {truncateText(`${product.neighborhood} - ${product.city}`,56)}
+                        {truncateText(`${capitalizeFirstLetters(product.neighborhood)} - ${capitalizeFirstLetters(product.city)}`,56)}
                         </p>
                     </div>
                     {/* block icons */}
@@ -62,7 +63,9 @@ export function ProductCard({product}:{product:IProductResponse}){
 
                     {/* block butons actions  */}
                     
-                    <FooterProductCard  address={product.address} 
+                    <FooterProductCard
+                    favorites={favorites}  
+                    address={product.address} 
                     amenities={product.amenities}
                     area={product.area}
                     bathrooms={product.bedrooms}

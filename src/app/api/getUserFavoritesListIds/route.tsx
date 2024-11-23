@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { collection, getDocs, orderBy, query, QuerySnapshot, where } from 'firebase/firestore';
+import { collection, getDocs, query, QuerySnapshot, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase/firebase';
 import { cookies } from 'next/headers';
 import { IFavorite } from '@/app/types/types';
@@ -20,14 +20,11 @@ interface ApiResponse {
 export  async function GET() {
   const session = cookies().get("user_id")
   const user_id = session?.value as string
+  console.log("id usre in favorite list i d", user_id)
 
     try {
-      const collectionRef = collection(db, 'user_appointments');
-      const q = query(
-        collectionRef,
-        where("user_id", "==", user_id),
-        orderBy("created_at", "desc"),
-      );
+      const collectionRef = collection(db, 'user_favorites');
+      const q = query(collectionRef, where("id_user", "==", user_id));
       const querySnapshot = await getDocs(q);
       const results = [] as any
         querySnapshot.forEach((doc) => {

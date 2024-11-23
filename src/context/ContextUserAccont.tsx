@@ -1,21 +1,23 @@
 import { axiosApi } from "@/lib/axios/axios";
-import { createContext, ReactNode, useContext, useEffect } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
-const ContextUserAccont = createContext({} as {});
+const ContextUserAccont = createContext({} as IDataAccont);
 interface IDataAccont{
-    favorites:[]
+    favoritesList:string[]
 }
 function AccountCountext({children}:{children:ReactNode}){
+    const [userFavoritesList,setUserFavoristeList] = useState([])
 async function getFavorites() {
-    const favoritesUser =  await axiosApi.get("/api/getUserFavorites")
-    console.log(favoritesUser.data)
+    const favoritesUser =  await axiosApi.get("/api/getUserFavoritesListIds")
+    setUserFavoristeList(favoritesUser.data)
+    console.log("favoristos usuario", favoritesUser) 
     
 }    
     useEffect(()=>{
         getFavorites()
     },[])
     return(
-        <ContextUserAccont.Provider value={{}}>
+        <ContextUserAccont.Provider value={{favoritesList:userFavoritesList}}>
             {children}
         </ContextUserAccont.Provider>
     )

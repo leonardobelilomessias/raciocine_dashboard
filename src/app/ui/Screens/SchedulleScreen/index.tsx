@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaPhone, FaVideo } from "react-icons/fa";
 import { FaBuildingCircleCheck } from "react-icons/fa6";
+import { formatFirebaseDate } from "@/app/util/date";
 
 
 export function SchedulleScreeen(){
@@ -44,6 +45,7 @@ export function SchedulleScreeen(){
                     { !!(appointments.length<=0)&&<EmptyAppointments/>}
                     <div className=" flex flex-row flex-wrap   my-5 gap-3">
                         {
+                            !!appointments&&
                             appointments.map((item)=>(
                                 <div key={item.id} className="flex flex-col bg-white min-w-[180px] rounded p-3 gap-2 border ">
                                     {transformIconAppointment(item.type)}
@@ -54,7 +56,9 @@ export function SchedulleScreeen(){
                                         <p className="font-bold ">
                                         {transformTextType(item.type)}
                                         </p>
-                                        <p className="text-xs">Data: vila das flores</p>
+                                        <p className="text-xs">Data: {formatFirebaseDate(item.date).date}</p>
+                                        <p className="text-xs">Horario: {formatFirebaseDate(item.date).time}</p>
+
                                         <p className="text-xs">Horario: vila das flores</p>
 
                                         <p className="text-xs">Empreendimento: vila das flores</p>

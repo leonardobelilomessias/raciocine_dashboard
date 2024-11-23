@@ -18,7 +18,7 @@ return(
             <AsideCommunityButtons/>
 
                                 {/* navigation community */}
-            <p className='flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium   md:flex-none md:justify-start md:p-2 md:px-3'>Comunidade</p>
+            <p className='flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium   md:flex-none md:justify-start md:p-2 md:px-3'>Conta</p>
             <Separator />
 
                 <AsideAccountButtons/>
