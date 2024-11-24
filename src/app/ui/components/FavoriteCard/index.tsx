@@ -11,7 +11,7 @@ import { IFavorite, IProductResponse } from "@/app/types/types";
 import { axiosApi } from "@/lib/axios/axios";
 import { FooterFavoriteCard } from "./FooterFavoriteCard";
 import Link from "next/link";
-export function FavoriteCard({ getFavorites,product}:{getFavorites:()=>Promise<IProductResponse[]>,product:IProductResponse}){
+export function FavoriteCard({ getFavorites,product}:{getFavorites:()=>Promise<void>,product:IProductResponse}){
     async function deleteFavorite(id_product:string) {
         try{
             await axiosApi.delete(`/api/deleteFavorites?product_id=${id_product}`)
