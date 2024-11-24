@@ -15,7 +15,7 @@ export async function DELETE(request: NextRequest, ) {
       const session = cookies().get("user_id")
       const user_id = session?.value as string
     try {
-
+      
         if(product_id){
 
           await deleteFavoritesFirebase(String(user_id),String(product_id))

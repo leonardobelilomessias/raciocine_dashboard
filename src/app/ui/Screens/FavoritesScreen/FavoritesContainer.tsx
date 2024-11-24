@@ -10,28 +10,22 @@ import { IFavorite, IProductResponse } from "@/app/types/types";
 import { FavoriteCard } from "../../components/FavoriteCard";
 import { SkeletonCardHouse } from "../../components/Skeletons/SkeletonCardHouse";
 import { AxiosError } from "axios";
+import useSWR from 'swr'
 
-export function FavoritesContainer(){
-    const [favorites,setFavorites] = useState([]as IProductResponse[])
-    const [load,setLoad] = useState(true)
-    async function getFavorites() {
-      try{
-
-
-        setLoad(true)
-        const favoriteAxios =  await axiosApi.get("/api/getUserFavorites")
-        const favoritesUser =favoriteAxios.data
-        setFavorites(favoritesUser)
-        console.log(favoritesUser)
-      }catch(e){
-        console.log(e)
-      }finally{
-        setLoad(false)
+type FetcherArgs = [input: RequestInfo | URL, init?: RequestInit];
+async function fetcher<T>(input: RequestInfo | URL, init?: RequestInit): Promise<T> {
+  return fetch(input, init)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    }    
-        useEffect(()=>{
-            getFavorites()
-        },[])
+      return response.json();
+    })
+    .then((data) => data as T);
+}
+export function FavoritesContainer(){
+  const { data, error, isLoading } = useSWR('/api/getUserFavorites', fetcher) 
+  const dataFavorites = data as IProductResponse[]
     return(
         <div className="md:p-10">
         <Card className="mb-10 p-4">
@@ -40,20 +34,19 @@ export function FavoritesContainer(){
         <CardDescription>Aqui estão a lista dos seus item adicionados como favoritos</CardDescription>
         </CardHeader>
         <CardContent>
-        { !!load && <SkeletonCardHouse/>}
+        { !!isLoading && <SkeletonCardHouse/>}
 
           <div className="flex flex-wrap gap-3 m-auto bg-gray-50 p-4 items-center justify-center md:justify-start">
         {
-            !!(favorites.length>0)&&
-            favorites.map((item,index)=>(
+          !!dataFavorites &&  !!(dataFavorites.length>0)&&
+          dataFavorites.map((item,index)=>(
                 <FavoriteCard  
                 key={item.id}
-                getFavorites={getFavorites}
                 product={item} 
                 />
             ))
         }
-        {!(favorites.length>=1) && load && <p>Você ainda não tem favoritos.</p>}
+        {!!dataFavorites && !(dataFavorites.length>=1) && !isLoading && <p>Você ainda não tem favoritos.</p>}
           </div>
         </CardContent>
         <CardFooter className="sm:flex p-4 sm:flex-col  justify-center sm:flex-row justify-items-center grid justify-items-center">

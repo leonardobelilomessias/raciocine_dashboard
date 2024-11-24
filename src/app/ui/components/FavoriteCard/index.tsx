@@ -11,16 +11,29 @@ import { IFavorite, IProductResponse } from "@/app/types/types";
 import { axiosApi } from "@/lib/axios/axios";
 import { FooterFavoriteCard } from "./FooterFavoriteCard";
 import Link from "next/link";
-export function FavoriteCard({ getFavorites,product}:{getFavorites:()=>Promise<void>,product:IProductResponse}){
+import useSWR, { mutate } from 'swr';
+export function FavoriteCard({product}:{product:IProductResponse}){
     async function deleteFavorite(id_product:string) {
-        try{
-            await axiosApi.delete(`/api/deleteFavorites?product_id=${id_product}`)
-            await getFavorites()
-        }
-        catch{
-            alert("houve um erro")
-        }
+        try {
+            // Faz a requisição para excluir o favorito no backend
+            const response = await axiosApi(`/api/deleteFavorites?product_id=${id_product}`, {
+              method: 'DELETE',
+            });
+            if (response.status!==200) {
+                console.log("esse foi o errro ", response.status)
+             throw new Error('Failed to delete favorite');
+            }
+        
+            // Atualiza o cache do SWR
+            mutate('/api/getUserFavorites', (currentData: any) =>
+              currentData.filter((item: any) => item.id !== id_product), 
+              false // False evita que o SWR refaça a requisição automaticamente
+            );
+          } catch (error) {
+            console.error('Error deleting favorite:', error);
+          }
     }
+    
     return(
         <div className="w-[280px]  ">
         <Card className="mb-10 w-[280px]  ">
