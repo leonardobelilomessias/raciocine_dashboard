@@ -6,7 +6,7 @@ import { axiosApi } from "@/lib/axios/axios";
 import { ArrowLeft, BookText, CalendarDays, Download, MessageCircleQuestion, TvMinimalPlay } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { deletePostForum } from "../ForunScreen/functionsForum";
+import { deletePostForum } from "../ForumScreen/functionsForum";
 import { DeletePostDialog } from "../../components/Forum/DeletePostDialog";
 import { EditPostForumDialog } from "../../components/Forum/EditPostDialog";
 import { Button } from "@/components/ui/button";

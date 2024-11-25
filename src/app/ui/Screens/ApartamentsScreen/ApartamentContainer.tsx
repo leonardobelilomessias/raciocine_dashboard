@@ -7,8 +7,10 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Heart, Hotel, Rocket } from "lucide-react";
 import { ProductCard } from "../../components/ProductCard";
 import { IProduct, IProductResponse } from "@/app/types/types";
+import { listUserFavorites } from "@/lib/firebase/listProductsUserFavorites";
 
-export function ApartamentContainer({products}:{products:IProductResponse[]| undefined}){
+export async function ApartamentContainer({products}:{products:IProductResponse[]| undefined}){
+    const favoritesUser =  await listUserFavorites()
     return(
         <div className="md:p-10">
         <Card className="mb-10 p-4">
@@ -28,7 +30,7 @@ export function ApartamentContainer({products}:{products:IProductResponse[]| und
     products.map((item,index)=>(
         
 
-        <ProductCard product={item} key={index}/>
+        <ProductCard favorites={favoritesUser} product={item} key={index}/>
     
     ))
 }

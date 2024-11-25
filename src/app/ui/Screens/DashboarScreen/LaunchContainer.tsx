@@ -8,9 +8,12 @@ import { Rocket } from "lucide-react";
 import { IProduct } from "@/app/types/types";
 import { listProducts } from "@/lib/firebase/listProducts";
 import Link from "next/link";
+import { listUserFavorites } from "@/lib/firebase/listProductsUserFavorites";
 
 export async function LaunchContainer(){
   const products = await listProducts()
+  const favoritesUser =  await listUserFavorites()
+
 
     return(
         <>
@@ -31,7 +34,7 @@ export async function LaunchContainer(){
  products &&   products.map((item,index)=>(
         
 
-        <ProductCard product={item} key={index}/>
+        <ProductCard favorites={favoritesUser} product={item} key={index}/>
     
     ))
 }

@@ -5,7 +5,7 @@ export default  async function apartamento(){
     const products = await listProducts()
     return(
         <>
-            <ApartamentScreen  products={products} />
+            <ApartamentScreen   products={products} />
         </>
     )
 }

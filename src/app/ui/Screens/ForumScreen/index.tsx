@@ -29,6 +29,7 @@ import { deletePostForum } from "./functionsForum";
 import { DeletePostDialog } from "../../components/Forum/DeletePostDialog";
 import { SkeletonForum } from "./SkeletonForum";
 import post from "@/app/(dashboard)/posts/post/[id]";
+import useSWR from 'swr'
 type PostsForumType={
     title:string
     id:string
@@ -37,13 +38,32 @@ type PostsForumType={
     user_name:string
     owner:boolean
 }
+type DataForum={
+    data:PostsForumType[]
+    totalPages:string
+    lastCursor:string
+    firstCursor:string
+    stepPage:number
 
-export function ForumScreenTeste(){
+}
+async function fetcher<DataForum>(input: RequestInfo | URL, init?: RequestInit): Promise<DataForum> {
+    return fetch(input, init)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => data as DataForum);
+  }
+
+export function ForumScreen(){
+
     const fetchPosts = async (pageSize: number, cursor: string | null | undefined, isPrevious:boolean, isFirst?:boolean,) => {
         const res = await fetch(`/api/getPostsForumTest?pageSize=${pageSize}&isPrevious=${isPrevious}&lastCursor=${cursor || ""}&isFirst=${isFirst||""}&stepPage=${step}`);
         const data = await res.json();
         return data;
-      };
+    };
     const [lastCursors, setLastCursor] = useState<string>(); // Cursors para cada página
     const [totalPages, setTotalPages] = useState(0);
     const [step,setStep] = useState(0)
@@ -51,8 +71,20 @@ export function ForumScreenTeste(){
     const[load,setLoad]= useState(false)
     const [firstCursor,setFirstCusor] = useState<string |null | undefined>()
     const [postsForum,setPostsForum] = useState<PostsForumType []>([])
+    const [isPrevious,setIsPrevious] = useState(false)
+    const [isFirst,setIsFirst] = useState(true)
+    const [cursor,setCursor]=useState<undefined|string>()
+    const { data, error, isLoading } = useSWR(`/api/getPostsForumTest?pageSize=${pageSize}&isPrevious=${isPrevious}&lastCursor=${cursor || ""}&isFirst=${isFirst||""}&stepPage=${step}`, fetcher) 
+    const dataPosts = data as DataForum;
+    const [stepPagination, setStapPagination] = useState()
+    function newPagination({isPrevious,isFirst,step,cursor}:{isPrevious:boolean, isFirst:boolean,step:number,cursor:string }){
+        console.log({isPrevious,isFirst,step,cursor, totalPages})
+        setCursor(cursor)
+        setIsPrevious(isPrevious)
+        setIsFirst(isFirst)
+        setStep(step)
+    }
     async function getforumPosts(isPrevious:boolean,isFirst:boolean){
-
         setLoad(true)
         try{
             if(isFirst){
@@ -93,7 +125,7 @@ export function ForumScreenTeste(){
     }
     useEffect(()=>{
         getforumPosts(false, true)
-    })
+    },[])
 
     return(
         <div className="sm:container  pt-10 mx-2 min-h-[70vh]">
@@ -112,12 +144,13 @@ export function ForumScreenTeste(){
                 </CardHeader>
 
                 <CardContent>
+                    {isLoading&& <SkeletonForum/>}
                 <div>
-                {(postsForum!= undefined)&&
+                {(dataPosts!= undefined)&&
                 <div className="flex sm:flex  w-full flex-wrap gap-2 justify-center m-auto">
-                   {!!load&& <SkeletonForum/>}
-                { !load&&
-                                postsForum.map((element)=>(
+                   
+                { !isLoading&&
+                                dataPosts.data.map((element)=>(
                                     
                                     <Card  key={element.id}  className="w-full ">
                                     <CardHeader>
@@ -165,26 +198,24 @@ export function ForumScreenTeste(){
                 </CardFooter>
                 
             </Card>
+        {(dataPosts!==undefined)&& 
             <div className="flex gap-3 border rounded p-2">
-        
-          <Button
-          className="flex gap-3 rounded p-2"
-            disabled={step<=0}
-            onClick={() => getforumPosts(true,false)}
-            
-          >
-            Anterior
-          </Button>
-          <Button
-          className="flex gap-3 rounded p-2"
-            disabled={totalPages==step+1}
-            onClick={() => getforumPosts(false,false)}
-            
-          >
-            Proxima
-          </Button>
-    
-      </div>
+              <Button
+                className="flex gap-3 rounded p-2"
+                disabled={dataPosts.stepPage<=0}
+                onClick={() => {;newPagination({isFirst:false,isPrevious:true,step:dataPosts.stepPage,cursor:dataPosts.firstCursor})}}
+                >
+                    Anterior
+              </Button>
+                <Button
+                    className="flex gap-3 rounded p-2"
+                    disabled={totalPages==dataPosts.stepPage+1}
+                    onClick={() => {;newPagination({isFirst:false,isPrevious:false,step:dataPosts.stepPage,cursor:dataPosts.lastCursor})}}
+                    >
+                    Proxima
+                 </Button>
+            </div>
+        }
         </div>
     )
 }
