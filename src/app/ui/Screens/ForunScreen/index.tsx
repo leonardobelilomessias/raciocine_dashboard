@@ -53,7 +53,7 @@ export function ForumScreen(){
     }
     useEffect(()=>{
         getforumPosts()
-    },[])
+    })
 
     return(
         <div className="sm:container  pt-10 mx-2 min-h-[70vh]">

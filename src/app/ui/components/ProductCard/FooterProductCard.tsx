@@ -33,7 +33,7 @@ export function FooterProductCard({address,amenities,area,bathrooms,bedrooms,cit
         if(id){
           setIsFavorite(!!favorites?.includes(id))
         }
-      },[false])
+      },[id,favorites])
     return(
         <>
                             {/* block butons actions  */}
@@ -60,7 +60,7 @@ function DialogContactFooterCard({cover,title,neighborhood,city,id}:{cover:strin
 
   useEffect(()=>{
     setCreated(false)
-  },[false])   
+  },[])   
   async function createUserRequest(){
       setLoad(true)
       const product={cover,title,neighborhood,city,id}

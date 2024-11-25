@@ -33,7 +33,7 @@ import { transformObjectToArray } from "./transformObjectToArray"
   
     useEffect(()=>{
       getDocuments()
-    },[false])
+    })
     return (
       <div>
         <SelectDocument getDocuments={getDocuments}/>

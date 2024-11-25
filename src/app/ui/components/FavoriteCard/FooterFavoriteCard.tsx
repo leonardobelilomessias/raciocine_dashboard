@@ -39,7 +39,7 @@ function DialogContactFooterCard({cover,title,neighborhood,city,id}:{cover:strin
 
   useEffect(()=>{
     setCreated(false)
-  },[false])   
+  },[])   
   async function createUserRequest(){
       setLoad(true)
       const product={cover,title,neighborhood,city,id}

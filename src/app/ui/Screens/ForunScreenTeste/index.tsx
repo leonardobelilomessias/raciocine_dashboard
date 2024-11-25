@@ -93,7 +93,7 @@ export function ForumScreenTeste(){
     }
     useEffect(()=>{
         getforumPosts(false, true)
-    },[])
+    })
 
     return(
         <div className="sm:container  pt-10 mx-2 min-h-[70vh]">
@@ -239,7 +239,7 @@ export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}
         console.log('componet desmontado',created)
 
         }
-    },[false])
+    })
       return (
           
           <Dialog>
@@ -332,7 +332,7 @@ function  CreatedPost({id,setCreated,created}:{ created:boolean,id:string,setCre
         console.log('componet desmontado',created)
 
         }
-    },[false])
+    })
     return(
         <div className="flex flex-col items-center gap-3">
         <DialogHeader>

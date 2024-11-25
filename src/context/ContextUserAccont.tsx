@@ -15,7 +15,7 @@ async function getFavorites() {
 }    
     useEffect(()=>{
         getFavorites()
-    },[])
+    })
     return(
         <ContextUserAccont.Provider value={{favoritesList:userFavoritesList}}>
             {children}

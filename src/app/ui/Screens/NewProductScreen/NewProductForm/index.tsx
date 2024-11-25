@@ -531,7 +531,7 @@ function PreviewImageGallery({urls, handleRemoveImage}:{urls:string[] ,handleRem
         {urls?.length>0 && 
         urls.map((url,index)=>(
 
-          <div className=" border bg-sky-100 flex relative w-[300px] h-[300px]">
+          <div className=" border bg-sky-100 flex relative w-[300px] h-[300px]" key={url}>
           <Image src={url} alt="Capa" fill style={{objectFit:"cover"}} />
           <button type="button" className="absolute bottom-0 bg-gray-100 flex gap-2 p-1" onClick={()=>handleRemoveImage(index)}>
             <X className="text-red-500"/>
