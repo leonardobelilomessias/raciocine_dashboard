@@ -19,8 +19,8 @@ export const NavbarDashboard = () => {
 
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
-      <NavigationMenu className="mx-auto">
-        <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
+      <NavigationMenu className="flex   ">
+        <NavigationMenuList className=" h-14 px-4 min-w-[100vw] md:min-w-[95vw] flex justify-between ">
           <NavigationMenuItem className="font-bold flex">
             <a
               rel="noreferrer noopener"
