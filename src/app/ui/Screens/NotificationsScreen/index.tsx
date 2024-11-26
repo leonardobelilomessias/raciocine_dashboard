@@ -64,7 +64,7 @@ export function NotificationsScreen(){
     }
     useEffect(()=>{
         getNotifications(false,true)
-    })
+    },[])
     return(
         <div className="container pt-10">
             <Card className="mt-4">

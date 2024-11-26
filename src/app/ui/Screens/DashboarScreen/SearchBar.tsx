@@ -27,7 +27,7 @@ export function SearchBar(){
     }
     useEffect(()=>{
         getData()
-    })
+    },[])
     return(
         <div className="flex gap-2 p-4 w-full items-center bg-gray-50 justify-center">
               <div className="flex flex-col gap-3 flex-wrap mt-10 mb-8 ">

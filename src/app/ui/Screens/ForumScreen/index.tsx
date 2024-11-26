@@ -270,7 +270,7 @@ export function CreatePostForumDialog({setPostsForum}:{setPostsForum:([])=>void}
         console.log('componet desmontado',created)
 
         }
-    })
+    },[])
       return (
           
           <Dialog>
@@ -363,7 +363,7 @@ function  CreatedPost({id,setCreated,created}:{ created:boolean,id:string,setCre
         console.log('componet desmontado',created)
 
         }
-    })
+    },[])
     return(
         <div className="flex flex-col items-center gap-3">
         <DialogHeader>
