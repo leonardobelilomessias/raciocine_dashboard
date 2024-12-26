@@ -10,13 +10,13 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
-      const publicRoutes = ["/",'/landing', '/cadastro', '/login',"/cadastro"];
+      const isOnDashboard = nextUrl.pathname.startsWith('/blog');
+      const publicRoutes = ["/",'/landing', '/cadastro', '/login',];
       const privateRoutes = ['/dashboard', '/perfil', '/agendamentos',];
       const isPrivateRoutes = privateRoutes.includes(nextUrl.pathname)
       const isPublic = publicRoutes.includes(nextUrl.pathname)
-
-      if(isPublic) return true
+      console.log(nextUrl.pathname)
+      if(isPublic || isOnDashboard) return true
       if (isPrivateRoutes) {
         if (!isLoggedIn) return Response.redirect(new URL('/entrar', nextUrl)); // Redirect unauthenticated users to login page
         if(isLoggedIn) return true

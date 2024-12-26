@@ -8,10 +8,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
     template: '%s | Canp',
-    default: 'Canp | Comuniade apartamento na planta',
+    default: 'Raciocine | Desenvolvimento de Software e Marketing Digital em Belo Horizonte',
   },
-  description: "Comunidade apartamento na planta",
+  description: "Empresa especialista em Criação de sites, desenvolvimento de software, anuncios online, seo, social media e marketing digital em Belo Horizonte.",
   metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+  
 };
 
 export default function RootLayout({

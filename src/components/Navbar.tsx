@@ -1,5 +1,6 @@
 'use client'
 import { useState } from "react";
+import BrainLogo from '@/app/assets/logos/brain_logo.png' 
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -19,6 +20,7 @@ import { ModeToggle } from "./mode-toggle";
 import { LogoIcon } from "./Icons";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 interface RouteProps {
   href: string;
@@ -28,19 +30,23 @@ interface RouteProps {
 const routeList: RouteProps[] = [
   {
     href: "#features",
-    label: "Seguimentos",
-  },
-  {
-    href: "#testimonials",
-    label: "Depoimentos",
+    label: "Inicio",
   },
   {
     href: "#pricing",
-    label: "Preços",
+    label: "Serviços",
+  },
+  {
+    href: "#testimonials",
+    label: "Sobre Nós",
   },
   {
     href: "#faq",
-    label: "FAQ",
+    label: "Contato",
+  },
+  {
+    href: "/blog",
+    label: "Blog",
   },
 ];
 
@@ -51,14 +57,14 @@ export const Navbar = () => {
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
           <NavigationMenuItem className="font-bold flex">
-            <a
+            <Link
               rel="noreferrer noopener"
               href="/"
-              className="ml-2 font-bold text-xl flex"
+              className="ml-2 font-bold text-xl flex gap-2"
             >
-              <Hotel />
-              Canp
-            </a>
+              <Image alt="logo-brain" width={27} height={60} src={BrainLogo} />
+            <p className="text-xl">Raciocine</p>  
+            </Link>
           </NavigationMenuItem>
 
           {/* mobile */}
@@ -81,7 +87,7 @@ export const Navbar = () => {
               <SheetContent side={"left"}>
                 <SheetHeader>
                   <SheetTitle className="font-bold text-xl">
-                    Canp
+                    Raciocine
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col justify-center items-center gap-2 mt-4">

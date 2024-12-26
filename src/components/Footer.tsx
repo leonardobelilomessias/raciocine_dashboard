@@ -1,5 +1,7 @@
 import { Hotel } from "lucide-react";
 import { LogoIcon } from "./Icons";
+import BrainLogo from '@/app/assets/logos/brain_logo.png' 
+import Image from "next/image";
 
 export const Footer = () => {
   return (
@@ -11,10 +13,10 @@ export const Footer = () => {
           <a
             rel="noreferrer noopener"
             href="/"
-            className="font-bold text-xl flex"
+            className="font-bold text-xl flex gap-2"
           >
-            <Hotel />
-          Canp
+            <Image alt="raciocine-logo-marketing" width={27} height={60} src={BrainLogo} />
+          Raciocine
           </a>
         </div>
 
@@ -153,14 +155,14 @@ export const Footer = () => {
 
       <section className="container pb-14 text-center">
         <h3>
-          &copy; 2024 Comunidade Apartamento Na Planta - {" "}
+          &copy; 2024 Software e Maketing Digital em Belo Horizonte - {" "}
           <a
             rel="noreferrer noopener"
             target="_blank"
             href="https://www.linkedin.com/in/leopoldo-miranda/"
             className="text-primary transition-all border-primary hover:border-b-2"
           >
-          Canp
+          Raciocine
           </a>
         </h3>
       </section>

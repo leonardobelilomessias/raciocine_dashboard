@@ -16,48 +16,50 @@ interface TestimonialProps {
 
 const testimonials: TestimonialProps[] = [
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe",
-    comment: "Nunca vi algo parecido, fui tão bem atendido que já quero comprar outro imóvel! kkk",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Carla Silva",
+    userName: "@carlassilva_",
+    comment:
+      "Contratei os serviços de software e marketing e fiquei impressionada com a qualidade e o comprometimento. A equipe é incrível!",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe1",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "Rafael Oliveira",
+    userName: "@rafael_0live1rabh",
     comment:
-      "Realmente cumprem o que promete. Atendimento de ponta a ponta com cordialidade e respeito. Sem aquelas pegadinhas do mercado. Parabéns à Equipe!",
-  },
-
-  {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe2",
-    comment:
-      "As vezes no silêncio da noite... fico imaginando porque não conheci a plataforma antes! Estou Apaixonada!",
+      "Eles transformaram completamente a presença online da minha empresa. Resultados que superaram todas as expectativas!",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe3",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    name: "Ana  Deitel",
+    userName: "@anadeitel_",
     comment:
-      "Na comunidade encontrei pessoas com o mesmo sonho e mesmo propósito. Isso me fortaleceu para conquistar meu sonho da casa própria",
+      "Desde o primeiro contato até a entrega do projeto, o atendimento foi impecável. A melhor escolha em Belo Horizonte!",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe4",
+    image: "https://randomuser.me/api/portraits/men/41.jpg",
+    name: "Thiago Pereira",
+    userName: "@othiago_pereiraa",
     comment:
-      "A regra é clara... Se não está na comunidade esta perdendo as melhores oportunides.",
+      "A expertise dessa equipe em software e marketing é impressionante. Me ajudaram a alcançar novos patamares no mercado.",
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe React",
-    userName: "@john_Doe5",
+    image: "https://randomuser.me/api/portraits/women/30.jpg",
+    name: "Luciana Corina",
+    userName: "@luciana.corina",
     comment:
-      "Recomendo a todos iniciantes que estão pedidos no mercado e até quem já participa do mercado imobiliário como investidor. Contúdos exclusivos e personalizados de acordo com o seu momento.",
+      "Além de profissionais, são extremamente criativos e comprometidos. Recomendo a todos que buscam inovação e qualidade!",
+  },
+  {
+    image: "https://randomuser.me/api/portraits/men/10.jpg",
+    name: "Eduardo Toves",
+    userName: "@eduardo_toves",
+    comment:
+      "Não conhecia uma empresa que unisse tão bem tecnologia e marketing. Eles realmente sabem o que estão fazendo!",
   },
 ];
+
+
 
 export const Testimonials = () => {
   return (
@@ -69,13 +71,13 @@ export const Testimonials = () => {
         Descrubra o que
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
           {" "}
-          As Pessoas Estão Amando{" "}
+          Nossos Clientes{" "}
         </span>
-        Na Nossa Comunidade
+        dizem Sobre Nossos Serviços
       </h2>
 
       <p className="text-xl text-muted-foreground pt-4 pb-8">
-      Nossa comunidade é ativa e atualizada. Com informações em tempo real. Tire suas dúvidas, receba dicas e deixe seus depoimentos, para crescimento da comunidade.
+      
       </p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 sm:block columns-2  lg:columns-3 lg:gap-6 mx-auto space-y-4 lg:space-y-6">

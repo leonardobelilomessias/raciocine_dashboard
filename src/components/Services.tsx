@@ -1,7 +1,7 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { MagnifierIcon, WalletIcon, ChartIcon } from "./Icons";
 import cubeLeg from "@/app/assets/people/womanHouse.png";
-import woman2 from "@/app/assets/people/woman2.jpg";
+import woman2 from "@/app/assets/images/Home/bussinesswoman2.webp";
 
 import Image from "next/image";
 
@@ -13,21 +13,21 @@ interface ServiceProps {
 
 const serviceList: ServiceProps[] = [
   {
-    title: "Estatisticas Diárias",
+    title: "Investimento Inteligente",
     description:
-      "Quadro demonstrativo de estatísticas diários sobre o mercado.",
-    icon: <ChartIcon />,
-  },
-  {
-    title: "Perfil de Poder de compra",
-    description:
-      "Calculo por inteligencia artificial para saber o seu poder de compra.",
+    "Centralize seus investimentos reduzindo custos desnecessários.",
     icon: <WalletIcon />,
   },
   {
-    title: "Comunidade Ativa",
+    title: "Crescimento Sustentável",
     description:
-      "Acesso a maior comunidade de imóveis na planta do brasil.",
+      "Evite surpresas e tenha um crescimento continuo do seu negócio.",
+    icon: <ChartIcon />,
+  },
+  {
+    title: "Previsibilidade Resultados",
+    description:
+      "Tenha controle dos resultados com metricas atualizadas em tempo real.",
     icon: <MagnifierIcon />,
   },
 ];
@@ -39,13 +39,13 @@ export const Services = () => {
         <div>
           <h2 className="text-3xl md:text-4xl font-bold">
             <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-              Plataforma Exclusiva{" "}
+              Eficiencia do {" "}
             </span>
-            Para Membros
+            Seu Negócio Esta Aqui
           </h2>
 
           <p className="text-muted-foreground text-xl mt-4 mb-8 ">
-            Tenha acesso a unica plantaforma personalizada com foco ao cliente do mercado imóbiliario.
+            Tenha acesso a única plantaforma personalizada e centralizada.
           </p>
 
           <div className="flex flex-col gap-8">

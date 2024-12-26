@@ -6,9 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import mcmv from "@/app/assets/houses/mcmv.webp";
-import medio from "@/app/assets/houses/medio.webp";
-import luxo from "@/app/assets/houses/luxo.webp";
+import sitesImage from "@/app/assets/images/Home/ecommerce2.webp";
+import TrafegoImage from "@/app/assets/images/Home/trafego6.webp";
+import consultImage from "@/app/assets/images/Home/bussinesswoman2.webp";
+import CulsttechImage from "@/app/assets/images/Home/developer.webp"
 import Image, { StaticImageData } from "next/image";
 
 interface FeatureProps {
@@ -19,34 +20,34 @@ interface FeatureProps {
 
 const features: FeatureProps[] = [
   {
-    title: "Popular",
+    title: "Desenvolvimento de Sitemas",
     description:
-      "Imóveis financiados pela caixa econõmica federal com direito a subsidio do governo e financiamento facilitado.",
-    image: mcmv,
+      "Deixe os detalhes técnicos conosco; cuidamos da configuração completa do seu site ou loja virtual, para que você possa focar no crescimento do seu negócio. ",
+    image: sitesImage,
   },
   {
-    title: "Médio e Alto Padrão",
+    title: "Anúncios Online",
     description:
-      "Imóveis com alto valor agregado, comodidades premium , localizações privilegiadas e  oportunidades de valorização.",
-    image: medio,
+      "Maximize o impacto do seu conteúdo . Com estratégias de segmentação precisas, entregamos suas mensagens para o público certo, no momento certo. ",
+    image: TrafegoImage,
   },
   {
-    title: "Luxo",
+    title: "Design e conteúdo",
     description:
-      "Imóveis esplendorosos com o mais alto nível de sofisticação. Arquiteturas deslumbrantes e imponetes com o apíce da elegância ",
-    image: luxo,
+      "Criação de criativos para encantar seus cliente atráves de design moderno e alinhado com a identidade do seu negócio. ",
+    image: CulsttechImage,
   },
 ];
 
 const featureList: string[] = [
-  "Financiamento",
-  "Entrada Facilitada",
-  "Melhores Localizações",
-  "Comodidades",
-  "Projetos Modernos",
-  "Alta valorização",
-  "Lazer completo",
-  "Conforto",
+  "Funil de Vendas",
+  "Ecommerce",
+  "SEO",
+  "Gerenciamento de Tráfego",
+  "Desenvolvimento de Software",
+  "Social media",
+  "Copywrite",
+  "Filmmaker",
 ];
 
 export const Features = () => {
@@ -56,9 +57,9 @@ export const Features = () => {
       className="container py-24 sm:py-32 space-y-8"
     >
       <h2 className="text-3xl lg:text-4xl font-bold md:text-center">
-        Lançamentos{" "}
+        Tudo em um {" "}
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          em Todos Seguimentos do Mercado
+        único serviço
         </span>
       </h2>
 
