@@ -1,6 +1,6 @@
-import { Button } from "../../../components/ui/button";
-import { buttonVariants } from "../../../components/ui/button";
-import { HeroCards } from "../../../components/HeroCards";
+import { Button } from "../../../../components/ui/button";
+import { buttonVariants } from "../../../../components/ui/button";
+import { HeroCards } from "../../../../components/HeroCards";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 // import { GitHubLogoIcon } from "@radix-ui/react-icons";
@@ -23,7 +23,7 @@ export const HeroSites = () => {
           de{" "}
           <h2 className="inline">
             <span className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#0064e9] text-transparent bg-clip-text">
-            Copywiter em Belo Horizonte
+            Anúncios online  em Belo Horizonte
             </span>{" "}  Minas Gerais.
           </h2>
         </main>

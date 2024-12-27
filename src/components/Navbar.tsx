@@ -111,7 +111,7 @@ export const Navbar = () => {
                     })}`}
                   >
                     
-                    Area do cliente
+                    Login
                   </Link>
                 </nav>
                 
@@ -144,7 +144,7 @@ export const Navbar = () => {
               className={`border ${buttonVariants({ variant: "secondary" })}`}
             >
             
-              Area do cliente
+              Login
             </Link>
 
             {/* <ModeToggle /> */}

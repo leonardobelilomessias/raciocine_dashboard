@@ -13,6 +13,7 @@ import { Navbar } from "@/components/Navbar";
 import {  BlogPosting, WithContext} from 'schema-dts'
  import moment from 'moment'
 import { StructureData } from "@/app/ui/components/StructureData";
+import { ArrowLeft } from "lucide-react";
 interface PortableTextComponents {
   block: Record<string, PortableTextBlockComponent>;
   mark: Record<string, PortableTextMarkComponent>;
@@ -78,6 +79,9 @@ export default async function PostPage({
   const postImageUrl = post.image
     ? urlForfix(post.image)?.width(550).height(310).url()
     : null;
+    const authorImageurl = post.author.image
+    ? urlForfix(post.author.image)?.width(550).height(310).url()
+    : null;
 console.log(post)
 const schemaData :WithContext<BlogPosting> = {
   "@context":"https://schema.org",
@@ -105,8 +109,9 @@ const schemaData :WithContext<BlogPosting> = {
     <>
     <StructureData data={schemaData}/>
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-      <Link href="/blog" className="hover:underline">
-        ← Back to posts
+      <Link href="/blog" className="hover:underline flex gap-2 my-5">
+          <ArrowLeft/>
+          <p>Voltar para Posts to posts</p>
       </Link>
       {postImageUrl && (
         <Image
@@ -122,7 +127,16 @@ const schemaData :WithContext<BlogPosting> = {
       <article className="prose">
          < PortableTextComponent value={post.body}/>
       </article>
-      author:{post.author.name}
+      <div>
+        <p className="font-bold">Autor</p>
+        <div>
+          {
+            authorImageurl &&
+          <Image width={50} height={150} src={authorImageurl} alt={`autor ${post.author.name}`} />
+          }
+         <p>{post.author.name}</p>
+        </div>
+      </div>
     </main>
 </>
   );

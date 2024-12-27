@@ -28,7 +28,11 @@ export default async function IndexPage() {
   return (
     <>
     <main className="container  mx-auto min-h-screen max-w-9xl p-8">
-      <h1 className="text-4xl font-bold mb-8">Posts</h1>
+      <div className="flex flex-col items-center justify-center mb-8 gap-2">
+        <h1 className="text-center text-5xl font-bold ">Blog</h1>
+        <p className="text-gray-600 max-w-4xl text-center text-sm">Fique por dentro de informaçoes de software,empreeendedorismo, e marketing digital em Belo Horizonte. Conteúdo atualizado para você ficar por dentro das melhores indromações do mercado.</p>
+      </div>
+        <h2 className="text-3xl font-bold mb-8">Posts</h2>
       <ul className="flex flex-wrap gap-4">
 
         {posts.map((post) => {  

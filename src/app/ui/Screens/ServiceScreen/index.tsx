@@ -64,7 +64,7 @@ export function ServiceScreen(){
         <div className="flex mt-10 gap-4 flex-wrap items-center mx-auto">
         {
             services.map((service)=>(
-                <Link className="w-[420px]" href={service.link}>
+                <Link className="w-[420px]" href={`/servicos/${service.link}`}>
                 <Card className=" items-center" key={service.title}>
                 <CardHeader className="text-center">
                     <CardTitle>{service.title}</CardTitle>
