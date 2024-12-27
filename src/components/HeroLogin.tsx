@@ -7,7 +7,6 @@ import { Navbar } from "./Navbar";
 export const HeroLogin = () => {
   return (
     <div className=" min-h-screen">
-        <Navbar/>
     <section className="container p-4 flex flex-col   gap-10">
       {/* Título - Comunidade Apartamento na Planta Belo Horizonte */}
       <div className=" p-4 rounded-xl  pb-60 pt-4 gap-6 ">
@@ -18,14 +17,14 @@ export const HeroLogin = () => {
 
           <h1 className="inline text-center">
             <span className="inline  bg-gradient-to-r from-[#F596D3] to-[#D247BF] text-transparent bg-clip-text">
-              Comunidade
+              Empreendedores 
             </span>{" "}
-            Apartamento
+            do 
           </h1>{" "}
-          na{" "}
+          Futuro{" "}
           <h2 className="inline">
             <span className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text">
-              Planta
+            em
             </span>{" "}
             Minas Gerais
           </h2>
@@ -49,7 +48,7 @@ src="https://www.youtube.com/embed/OhagXaxl72k?si=uoYsOfHG1GuVS2NL&amp;controls=
         <div className=" px-2 flex flex-col flex-1  max-w-lg m-auto ">
 
           <p className="flex text-center">
-            A jornada do seu apartamento mais prazerosa e sem complicações.
+            Faça login para ter acesso a sua conta.
           </p>
           <FormSingIn/>
           <div className="flex flex-col md:flex-row lg:flex-col gap-4 lg:gap-6 mt-6 lg:mt-10 ">

@@ -29,19 +29,19 @@ interface RouteProps {
 
 const routeList: RouteProps[] = [
   {
-    href: "#features",
+    href: "/",
     label: "Inicio",
   },
   {
-    href: "#pricing",
+    href: "/servicos",
     label: "Serviços",
   },
+  // {
+  //   href: "/sobre-nos",
+  //   label: "Sobre Nós",
+  // },
   {
-    href: "#testimonials",
-    label: "Sobre Nós",
-  },
-  {
-    href: "#faq",
+    href: "/contato",
     label: "Contato",
   },
   {
@@ -102,7 +102,7 @@ export const Navbar = () => {
                       {label}
                     </Link>
                   ))}
-                  <a
+                  <Link
                     rel="noreferrer noopener"
                     href="/entrar"
       
@@ -111,8 +111,8 @@ export const Navbar = () => {
                     })}`}
                   >
                     
-                    Entrar
-                  </a>
+                    Area do cliente
+                  </Link>
                 </nav>
                 
               </SheetContent>
@@ -122,7 +122,7 @@ export const Navbar = () => {
           {/* desktop */}
           <nav className="hidden md:flex gap-2">
             {routeList.map((route: RouteProps, i) => (
-              <a
+              <Link
                 rel="noreferrer noopener"
                 href={route.href}
                 key={i}
@@ -131,7 +131,7 @@ export const Navbar = () => {
                 })}`}
               >
                 {route.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -144,7 +144,7 @@ export const Navbar = () => {
               className={`border ${buttonVariants({ variant: "secondary" })}`}
             >
             
-              Entrar
+              Area do cliente
             </Link>
 
             {/* <ModeToggle /> */}

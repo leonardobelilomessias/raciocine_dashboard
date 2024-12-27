@@ -18,7 +18,6 @@ import { Testimonials } from "@/components/Testimonials";
 export function HomeScreen(){
     return(    
     <>
-      <Navbar />
       <Hero />
       <Sponsors />
       <Results/>
@@ -32,7 +31,6 @@ export function HomeScreen(){
       <Pricing /> */}
       <LocationMap/>
       <Newsletter />
-      <Footer />
       <ScrollToTop />
 
     </>

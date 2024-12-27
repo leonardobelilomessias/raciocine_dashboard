@@ -16,7 +16,7 @@ export const Results = () => {
       <Image src={BusinessManImage2} alt="Bussines Man" height={500} width={500}/>
       <div className=" flex flex-col p-10 rounded-lg  items-center bg-zinc-100 max-w-[600px]">
         <div>
-          <p className="text-2xl md:text-4xl font-bold mb-2  text-gray-800">Resultados do Jeito Mineiro.</p>
+          <p className="text-2xl md:text-4xl font-bold mb-2  text-gray-800">Mais Clientes do Jeito Mineiro.</p>
           <p>Com estrategias personalizadas e focadas no público mineiro você pode alcançar resultados como nunca antes.</p>
         </div>
           <InfoIcons/>
@@ -33,7 +33,7 @@ function InfoIcons(){
         <div>
           <Users2 className="text-black-600" size={40}/>
           <p  className="text-lg md:text-2xl font-bold text-black-600">639K</p>
-          <p className="text-md md:text-xl font-regular text-black-600">Novos Clientes</p>
+          <p className="text-md md:text-xl font-regular text-black-600">Novos Leads</p>
         </div>
         <div>
           <PiggyBank className="text-black-600" size={40}/>

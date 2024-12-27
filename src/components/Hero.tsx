@@ -4,11 +4,14 @@ import { HeroCards } from "./HeroCards";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 // import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import LogoBrain from '@/app/assets/logos/brain_logo.png'
+import Image from "next/image";
 
 export const Hero = () => {
   return (
-    <section className="container grid lg:grid-cols-2 place-items-center py-10 md:py-40 gap-10">
-      <div className="text-center lg:text-start space-y-6">
+    <section className="container grid lg:grid-cols-2 place-items-center py-10 md:py-40 gap-10 ">
+    <Image src={LogoBrain} alt="logo raciocine" className="absolute right-40 top-10 opacity-[6%] z-0 md:opacity-20"/>
+      <div className="text-center lg:text-start space-y-6 z-10">
         <main className="text-4xl md:text-6xl font-bold">
           <h1 className="inline">
             Especialistas em&nbsp; &#10;

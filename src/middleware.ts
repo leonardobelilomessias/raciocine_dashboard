@@ -11,11 +11,20 @@ const publicRoutes = ["/",
   '/landing', 
   '/cadastro', 
   '/entrar',
-  '/criacao-de-sites-em-belo-horizonte',
+  '/seo-em-belo-horizonte',
+  '/copywriter-em-belo-horizonte',
+  '/filmmaker-em-belo-horizonte',
+  '/criacao-de-site-em-belo-horizonte',
+  '/social-media-em-belo-horizonte',
+  '/anuncios-online-em-belo-horizonte',
   '/marketing-digital-em-belo-horizonte',
   '/consultoria-digital-em-belo-horizonte',
+  '/design-grafico-em-belo-horizonte',
   '/studio',
-  '/studio-blog-raciocine'
+  '/studio-blog-raciocine',
+  '/servicos',
+  '/sobre-nos',
+  '/contato'
 ];
 
 export async function middleware(req: NextRequest) {
