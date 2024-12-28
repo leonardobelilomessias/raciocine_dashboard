@@ -72,7 +72,7 @@ const pricingList: PricingProps[] = [
   },
 ];
 
-export const PricingSites = () => {
+export const PricingSites = async() => {
   return (
     <section
       id="pricing"

@@ -1,9 +1,5 @@
 import { Banknote, Group, GroupIcon, LucideGroup, PiggyBank, Users, Users2 } from "lucide-react";
-import { FaMoneyBill, FaWhatsapp } from "react-icons/fa"
-import { FaMoneyBillTrendUp, FaUserGroup } from "react-icons/fa6";
-import { GiGroupedDrops, GiProfit } from "react-icons/gi";
-import BusinessManImage from '@/app/assets/images/Home/business-man.webp'
-import BusinessManImage2 from '@/app/assets/images/Home/men-bh.png'
+import BusinessManImage2 from '@/app/assets/images/Home/men-bh.webp'
 
 import Image from "next/image";
 

@@ -6,7 +6,7 @@ import { PricingSites } from "@/app/(public)/servicos/criacao-de-site-em-belo-ho
 import { SitesTypes } from "./SitesTypes";
 import { HeroSites } from "./HeroSites";
 
-export default  function WebDevelopmentOffer  () {
+export default  async function WebDevelopmentOffer  () {
   return (
       <main>
         <HeroSites/>

@@ -1,16 +1,11 @@
 import { Radar } from "lucide-react";
-import sudoesteLogo from '@/app/assets/logos/sudoeste.png'
-import mrvLogo from '@/app/assets/logos/mrv.png'
-import direcionalLogo from '@/app/assets/logos/direcional.png'
-import quartzoLogo from '@/app/assets/logos/quartzo.png'
-import patrimarLogo from '@/app/assets/logos/patrimar.png'
-import vicLogo from '@/app/assets/logos/vic3.png'
-import youtubeLogo from '@/app/assets/logos/sponsors/youtubelogo.png'
-import googleLogo from '@/app/assets/logos/sponsors/googleLogo.png'
-import metaLogo from '@/app/assets/logos/sponsors/metaLogo.png'
-import analiticsLogo from '@/app/assets/logos/sponsors/Google-Analytics-Logo.png'
-import awsLogo from '@/app/assets/logos/sponsors/awsLogo.png'
-import reactLogo from '@/app/assets/logos/sponsors/reactLogo.png'
+
+import youtubeLogo from '@/app/assets/logos/sponsors/youtubelogo.webp'
+import googleLogo from '@/app/assets/logos/sponsors/googleLogo.webp'
+import metaLogo from '@/app/assets/logos/sponsors/metaLogo.webp'
+import analiticsLogo from '@/app/assets/logos/sponsors/Google-Analytics-Logo.webp'
+import awsLogo from '@/app/assets/logos/sponsors/awsLogo.webp'
+import reactLogo from '@/app/assets/logos/sponsors/reactLogo.webp'
 
 
 

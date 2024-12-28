@@ -34,6 +34,7 @@ export function FormSingIn(){
       setLoad(true)
         try{
           const user =   await axios.post("/api/singin",{email:values.email, password:values.password})
+          console.log('user aqui no entrar fomr', user.data)
           if(user.data?.uid){
       
             router.replace('/dashboard')

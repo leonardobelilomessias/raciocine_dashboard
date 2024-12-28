@@ -34,7 +34,7 @@ const features = [
   }
 ];
 
-export function FeacturesSection() {
+export async function FeacturesSection() {
   return (
     <div className="min-h-screen flex flex-col items-center">
       <main className="container mx-auto py-12 px-6 flex flex-col items-center">

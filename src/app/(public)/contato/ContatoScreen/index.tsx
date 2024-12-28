@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroSingup from '@/app/public/images/herosingup.jpg'
 import ConsultImage from '@/app/assets/images/Home/consult-image.png'
-import ConsultImage2 from '@/app/assets/images/Home/consult-image2.png'
+import ConsultImage2 from '@/app/assets/images/Home/consult-image2.webp'
 import { FormContact } from "./FormContact";
 
 
 export function ContactScreen(){
     return(
         <>
-        <div className="flex flex-row  h-screen mb-40">
+        <div className="flex flex-row  min-h-screen mb-40">
             <div className="  w-screen hidden md:flex flex-1    h-50 content-center relative">
             <Image alt="real estate"  fill  style={{objectFit: "cover"}}    src={ConsultImage2}/>
             </div>

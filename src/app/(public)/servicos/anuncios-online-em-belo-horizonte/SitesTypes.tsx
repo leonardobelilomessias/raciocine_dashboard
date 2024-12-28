@@ -1,8 +1,8 @@
 import { Blocks, Brush, ChartBarDecreasing, Gauge, MessageCircleQuestion, MonitorSmartphone, Search } from "lucide-react";
 import React from "react";
-import LandImage from '@/app/assets/images/services/sites/landing-service.png'
-import InstitucionalImage from '@/app/assets/images/services/sites/institucional-service.png'
-import EcommerceImage from '@/app/assets/images/services/sites/ecommerce-service.png'
+import LandImage from '@/app/assets/images/services/sites/landing-service.webp'
+import InstitucionalImage from '@/app/assets/images/services/sites/institucional-service.webp'
+import EcommerceImage from '@/app/assets/images/services/sites/ecommerce-service.webp'
 
 
 import Image from "next/image";

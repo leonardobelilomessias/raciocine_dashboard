@@ -1,6 +1,6 @@
 import { Hotel } from "lucide-react";
 import { LogoIcon } from "./Icons";
-import BrainLogo from '@/app/assets/logos/brain_logo.png' 
+import BrainLogo from '@/app/assets/logos/brain_logo.webp' 
 import Image from "next/image";
 
 export const Footer = () => {

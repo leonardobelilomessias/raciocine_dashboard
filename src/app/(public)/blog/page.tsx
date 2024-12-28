@@ -16,7 +16,7 @@ const POSTS_QUERY = `*[
   && defined(slug.current)
 ]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt,image, description}`;
 
-const options = { next: { revalidate: 30 } };
+const options = { next: { revalidate: 3000 } };
 
 export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
@@ -40,7 +40,7 @@ export default async function IndexPage() {
   ? urlFor(post.image)?.width(550).height(310).url()
   : null;
             return (
-                    <Link href={`/blog/${post.slug.current}`}>
+                    <Link key={post._id} href={`/blog/${post.slug.current}`}>
             <li className="hover:underline flex max-w-xl " key={post._id}>
                 <div className="max-w-lg flex">
 
