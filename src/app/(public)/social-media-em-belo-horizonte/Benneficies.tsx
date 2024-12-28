@@ -34,7 +34,7 @@ const features = [
   }
 ];
 
-export function Benneficies() {
+export async function Benneficies() {
   return (
 <div className="bg-white py-12">
   <h2 className="text-4xl font-bold text-center">O que nossos clientes dizem</h2>

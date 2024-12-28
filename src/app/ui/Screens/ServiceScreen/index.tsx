@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import ImageLog from '@/app/assets/images/services/service-develop.png'
-import ImageSEO from '@/app/assets/images/services/service-seo.png'
-import ImageAds from '@/app/assets/images/services/service-ads.png'
-import ImageSocial from '@/app/assets/images/services/service-social-mesia.png'
-import ImageCopy from '@/app/assets/images/services/service-copywriter.png'
-import ImageFilm from '@/app/assets/images/services/service-filmmaker.png'
-import ImageDesign from '@/app/assets/images/services/service-design.png'
+import ImageLog from '@/app/assets/images/services/service-develop.webp'
+import ImageSEO from '@/app/assets/images/services/service-seo.webp'
+import ImageAds from '@/app/assets/images/services/service-ads.webp'
+import ImageSocial from '@/app/assets/images/services/service-social-mesia.webp'
+import ImageCopy from '@/app/assets/images/services/service-copywriter.webp'
+import ImageFilm from '@/app/assets/images/services/service-filmmaker.webp'
+import ImageDesign from '@/app/assets/images/services/service-design.webp'
 
 
 import Image from "next/image";
@@ -64,7 +64,7 @@ export function ServiceScreen(){
         <div className="flex mt-10 gap-4 flex-wrap items-center mx-auto">
         {
             services.map((service)=>(
-                <Link className="w-[420px]" href={`/servicos/${service.link}`}>
+                <Link key={service.title} className="w-[420px]" href={`/servicos/${service.link}`}>
                 <Card className=" items-center" key={service.title}>
                 <CardHeader className="text-center">
                     <CardTitle>{service.title}</CardTitle>

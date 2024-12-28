@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react";
-import BrainLogo from '@/app/assets/logos/brain_logo.png' 
+import BrainLogo from '@/app/assets/logos/brain_logo.webp' 
 import {
   NavigationMenu,
   NavigationMenuItem,

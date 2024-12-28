@@ -3,7 +3,7 @@ import { FormConsult } from "./FormConsult";
 import Link from "next/link";
 import HeroSingup from '@/app/public/images/herosingup.jpg'
 import ConsultImage from '@/app/assets/images/Home/consult-image.png'
-import ConsultImage2 from '@/app/assets/images/Home/consult-image2.png'
+import ConsultImage2 from '@/app/assets/images/Home/consult-image2.webp'
 
 
 export function ConsultScreen(){

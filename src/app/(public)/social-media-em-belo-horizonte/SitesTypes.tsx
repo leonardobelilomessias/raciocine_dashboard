@@ -1,8 +1,8 @@
 import { Blocks, Brush, ChartBarDecreasing, Gauge, MessageCircleQuestion, MonitorSmartphone, Search } from "lucide-react";
 import React from "react";
-import LandImage from '@/app/assets/images/services/sites/landing-service.png'
-import InstitucionalImage from '@/app/assets/images/services/sites/institucional-service.png'
-import EcommerceImage from '@/app/assets/images/services/sites/ecommerce-service.png'
+import LandImage from '@/app/assets/images/services/sites/landing-service.webp'
+import InstitucionalImage from '@/app/assets/images/services/sites/institucional-service.webp'
+import EcommerceImage from '@/app/assets/images/services/sites/ecommerce-service.webp'
 
 
 import Image from "next/image";
@@ -27,7 +27,7 @@ const features = [
   }
 ];
 
-export function SitesTypes() {
+export async function SitesTypes() {
   return (
   
       <main className="container mx-auto py-12 px-6 flex flex-col items-center">
@@ -41,7 +41,7 @@ export function SitesTypes() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
           {features.map((feature, index) => (
             <div key={index} className="bg-white shadow-lg rounded-lg p-6">
-              <Image src={feature.img} alt={feature.alt}/>
+              <Image loading="lazy" src={feature.img} alt={feature.alt}/>
               <h2 className="text-xl font-semibold mb-2 mt-4">{feature.title}</h2>
               <p className="text-gray-600">{feature.description}</p>
             </div>
