@@ -26,68 +26,68 @@ interface PricingProps {
 
 const pricingList: PricingProps[] = [
   {
-    title: "Landing Page",
+    title: "Configuração de Campanhas",
     popular: 0,
     price: 0,
     description:
-      "Pagina de Captura de leads. Ideal para cadastrar novos clientes",
+      "Configuração de ecossistemas para veiculação de anúncios",
       buttonText: "Solicitar oraçamento",
     benefitList: [
-      "OnePage",
-      "Desing Responsivo",
-      "Cadastro de Contatos",
-      "Integração Email Marketing",
+      "Configuração gerenciado de anúncios",
+      "Criação Meta Pixel",
+      "Implementação Google Tag Manage",
+      "Criação Funil de vendas",
       "Ads Tracking",
     ],
   },
   {
-    title: "Institucional",
-    popular: 1,
+    title: "Criação de Criativos",
+    popular: 0,
     price: 50,
     description:
-      "Mostre detalhes da sua empresa  ou serviço. Seja encontrado nos mecanismos de busca.",
+      "Peças publicitárias para alcance de audiência e público definido.",
     buttonText: "Solicitar oraçamento",
     benefitList: [
-      "Responsividade",
-      "Multiplas Páginas",
-      "Blog de conteúdo",
-      "Otimização Mecanismos de Buscas",
-      "Marketing Tools(analitcs,ads e etc.)",
+      "Design de criativo",
+      "Copywrite",
+      "Testes A/B",
+      "Planejamento de veiculação",
+      "Seguimentação de midias",
     ],
   },
   {
-    title: "Loja Vitual",
+    title: "Gerenciamento",
     popular: 0,
     price: 200,
     description:
-      " Vendas 24 horas todos os dias. Permita que seus clientes comprem e façam pagamantos online. ",
+      " Monitoramento de Resultados e Otimização de Campanhas.",
       buttonText: "Solicitar oraçamento",
     benefitList: [
-      "Responsividade",
-      "Pagamento Online",
-      "Cálculo de frete",
-      "Controle de Estoque",
-      "Gerenciamento de clientes",
+      "Analise diária",
+      "Exploraçao de oportunidade",
+      "Refinamento de Campanha",
+      "Configuraçao de Remarketing",
+      "Relatórios semanais",
     ],
   },
 ];
 
-export const PricingSites = async() => {
+export const ProductDelivery = () => {
   return (
     <section
       id="pricing"
-      className="container "
+      className="container  my-20"
     >
       <h2 className="text-3xl md:text-4xl font-bold text-center">
-        Escolha
+        Saiba
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
           {" "}
-          Já  Sua  {" "}
+          oque  {" "}
         </span>
-        Opção de Site
+        Nós Te Entragamos
       </h2>
       <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8">
-        Escolha o melhor modalidade que te atende na sua jornada de mercado.
+        Saiba detalhes da entrega do servico de anúncios online para sua empresa em Belo Horizonte.
       </h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {pricingList.map((pricing: PricingProps) => (
@@ -139,7 +139,7 @@ export const PricingSites = async() => {
             </CardFooter>
             <CardFooter>
 
-                                <Button className="w-full">{pricing.buttonText}</Button>
+                                {/* <Button className="w-full">{pricing.buttonText}</Button> */}
             </CardFooter>
           </Card>
         ))}

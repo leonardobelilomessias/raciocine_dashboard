@@ -25,7 +25,7 @@ type PostsForumType={
 // Manipulador de requisições da API
 export  async function GET(request: NextRequest) {
     const product  = request.nextUrl.searchParams
-    const session = cookies().get("user_id")
+    const session = await cookies().get("user_id")
     const user_id = session?.value as string
     const id = product.get('id') as string
     try {

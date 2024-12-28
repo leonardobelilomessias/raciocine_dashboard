@@ -40,9 +40,16 @@ export function FormContact(){
       setLoad(true)
         try{
           const consult = {...values}
-          await axiosApi.post("/api/contact",{consult})
-      
-            console.log(consult)
+          const response = await axiosApi.post("/api/contact",{consult})
+          if(response.status ==200){
+            toast({
+              variant: "default",
+              title: "Mendagem enviada com sucesso",
+              description: "Recebemos sua mensagem e em breve retornaremos contato.",
+            })
+          }
+            
+            
           }catch(error){
             if (error instanceof FirebaseError) {
               if(error.code==='auth/invalid-credential'){

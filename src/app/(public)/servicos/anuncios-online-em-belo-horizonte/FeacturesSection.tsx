@@ -1,49 +1,52 @@
-import { Blocks, Brush, ChartBarDecreasing, Gauge, MessageCircleQuestion, MonitorSmartphone, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Binoculars, Blocks, Brush, ChartArea, ChartBarDecreasing, ChartPie, Flag, Gamepad, Gamepad2, Gauge, Gem, Highlighter, Medal, MessageCircleQuestion, MonitorSmartphone, Search, TowerControl } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const features = [
   {
-    title: "Design Personalizado",
-    description: "Websites únicos criados para refletir a identidade da sua marca.",
-    icon: Brush 
+  title: "Autoridade",
+  description: "Mostre sua expertise de mercado, posicionando-se como uma autoridade em Belo Horizonte.",
+  icon: Medal
   },
   {
-    title: "Responsividade",
-    description: "Sites que se adaptam a todos os dispositivos, de desktops a smartphones.",
-    icon: MonitorSmartphone
+  title: "Valor",
+  description: "Aumente a percepção de valor do seu produto ou serviço, tornando-o objeto de desejo dos clientes.",
+  icon: Gem
   },
   {
-    title: "SEO Otimizado",
-    description: "Mais visibilidade no Google com otimização profissional de SEO.",
-    icon: Search
+  title: "Branding",
+  description: "Crie uma marca que se torne referência quando seus clientes pensam no seu produto ou serviço em Belo Horizonte.",
+  icon: Flag
   },
   {
-    title: "Velocidade",
-    description: "Experiência de navegação rápida e fluida para seus usuários.",
-    icon: Gauge
+  title: "Escala",
+  description: "Conquiste novos espaços e escale seu negócio para outras localidades ou setores em Belo Horizonte.",
+  icon: ChartArea
   },
   {
-    title: "Integrações",
-    description: "Conectamos seu site às principais ferramentas, como WhatsApp e Google Analytics.",
-    icon: Blocks
+  title: "Controle",
+  description: "Saiba onde, como e quando seus leads estão se convertendo em clientes por meio de métricas de anúncios.",
+  icon: Gamepad2
   },
   {
-    title: "Suporte Contínuo",
-    description: "Oferecemos suporte técnico para manter seu site sempre atualizado.",
-    icon: MessageCircleQuestion
+  title: "Previsibilidade",
+  description: "Planeje campanhas de marketing digital com base em dados de mercado para garantir melhor eficiência de suas publicidades digitais.",
+  icon: Binoculars
   }
-];
+  ];
+  
+  
 
 export function FeacturesSection() {
   return (
-    <div className="min-h-screen flex flex-col items-center">
+    <section className="min-h-screen flex flex-col items-center">
       <main className="container mx-auto py-12 px-6 flex flex-col items-center">
         <h2 className="text-4xl font-bold text-center">
-          Transforme sua Presença Online com um Site Profissional
+          Porque Criar Campanhas de  Publicidade Digital
         </h2>
         <p className="text-lg text-gray-700 mt-4 text-center">
-          Criamos websites modernos, responsivos e otimizados para SEO, 
-          perfeitos para destacar sua marca no mercado.
+          Alguns dos motivos  para criar uma estratégia de de Publicidade online em Belo Horizonte para seu produto ou serviço.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
@@ -61,11 +64,15 @@ export function FeacturesSection() {
           <p className="text-lg mt-2">
             Crie seu site agora e ganhe uma <strong>consultoria gratuita</strong> em marketing digital!
           </p>
-          <button className="mt-4 bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">
-            Solicitar Orçamento
-          </button>
+          <Link
+            href="https://wa.me/5531986261771?text=Olá! Gostaria de saber mais informações sobre os serviços de anuncios online."
+
+            >
+            <Button className="mt-4 bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">Solicitar Orçamento</Button>
+            
+          </Link>
         </div>
       </main>
-    </div>
+    </section>
   );
 }

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   },
   description: "Empresa especialista em Criação de sites, desenvolvimento de software, anuncios online, seo, social media e marketing digital em Belo Horizonte.",
   metadataBase: new URL('https://raciocine.com'),
+
   
 };
 
