@@ -1,23 +1,21 @@
 import { Banknote, Group, GroupIcon, LucideGroup, PiggyBank, Users, Users2 } from "lucide-react";
-import BusinessManImage2 from '@/app/assets/images/Home/men-bh.webp'
+import AdstrackingImage from '@/app/assets/images/services/ads/adstracking.webp'
 
-import Image from "next/image";
-import { Button } from "./ui/button";
+import Image, { StaticImageData } from "next/image";
 
-export const Results = () => {
+export const TriggerService = ({img, title,description,link}:{img:StaticImageData,title:string,description:string,link:string}) => {
   return (
     <section
       id="sponsors"
-      className="container pt-8 sm:py-22 overflow-hidden flex flex-col md:flex-row justify-items-center justify-center content-center items-center my-10"
+      className="container pt-8 sm:py-22 overflow-hidden flex flex-col md:flex-row-reverse md:flex-row justify-items-center justify-center content-center items-center my-10"
     >
-      <Image src={BusinessManImage2} alt="Bussines Man" height={500} width={500}/>
+      <Image src={AdstrackingImage} alt="Bussines Man" height={500} width={500}/>
       <div className=" flex flex-col p-10 rounded-lg  items-center bg-zinc-100 max-w-[600px]">
         <div>
-          <p className="text-2xl md:text-4xl font-bold mb-2  text-gray-800">Mais Clientes Qualificados do Jeito Mineiro.</p>
-          <p>Com estrategias personalizadas e focadas no público mineiro você pode alcançar resultados como nunca antes.</p>
+          <h2 className="text-2xl md:text-4xl font-bold mb-2  text-gray-800">{title}</h2>
+          <p className="text-lg">{description}</p>
         </div>
-          <InfoIcons/>
-          <Button className="justify-self-start md:self-start mt-4 ">Mais Informações</Button>
+          {/* <InfoIcons/> */}
       </div>
       
     </section>

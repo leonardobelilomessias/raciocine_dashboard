@@ -2,6 +2,7 @@ import { Hotel } from "lucide-react";
 import { LogoIcon } from "./Icons";
 import BrainLogo from '@/app/assets/logos/brain_logo.webp' 
 import Image from "next/image";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
@@ -11,7 +12,7 @@ export const Footer = () => {
       <section className="container py-20 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
         <div className="col-span-full xl:col-span-2">
           <a
-            rel="noreferrer noopener"
+            rel="noopener"
             href="/"
             className="font-bold text-xl flex gap-2"
           >
@@ -23,33 +24,35 @@ export const Footer = () => {
         <div className="flex flex-col gap-2">
           <h3 className="font-bold text-lg">Siga-nos</h3>
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
+            <Link target="_blank"
+              rel="noopener"
+              href="https://www.instagram.com/raciocinesolucoes"
               className="opacity-60 hover:opacity-100"
             >
               Instagram
-            </a>
+            </Link>
           </div>
 
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
+            <Link
+              target="_blank"
+              rel="noopener"
+              href="https://www.youtube.com/channel/UCMzeWJnftwbxYFTDekhRwzg"
               className="opacity-60 hover:opacity-100"
             >
               Youtube
-            </a>
+            </Link>
           </div>
 
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
+            <Link
+              target="_blank"
+              rel="noopener"
+              href="https://www.facebook.com/profile.php?id=61554327154649"
               className="opacity-60 hover:opacity-100"
             >
               Facebook
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -57,7 +60,7 @@ export const Footer = () => {
           <h3 className="font-bold text-lg">Links</h3>
           <div>
             <a
-              rel="noreferrer noopener"
+              rel=" noopener"
               href="#"
               className="opacity-60 hover:opacity-100"
             >
@@ -89,33 +92,33 @@ export const Footer = () => {
         <div className="flex flex-col gap-2">
           <h3 className="font-bold text-lg">Sobre</h3>
           <div>
-            <a
+            <Link
               rel="noreferrer noopener"
               href="#"
               className="opacity-60 hover:opacity-100"
             >
               Quem somos
-            </a>
+            </Link>
           </div>
 
           <div>
-            <a
+            <Link
               rel="noreferrer noopener"
               href="#"
               className="opacity-60 hover:opacity-100"
             >
               Missão
-            </a>
+            </Link>
           </div>
 
           <div>
-            <a
+            <Link
               rel="noreferrer noopener"
               href="#"
               className="opacity-60 hover:opacity-100"
             >
               FAQ
-            </a>
+            </Link>
           </div>
         </div>
 

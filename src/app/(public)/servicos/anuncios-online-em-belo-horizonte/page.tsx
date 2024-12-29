@@ -11,10 +11,11 @@ import HowItWorks from "./HowItWorks";
 import { ProductDelivery } from "./ProductDelivery";
 import { ServiceTestimonials } from "./ServiceTestimonials";
 import { Timer } from "./Timer";
-import FaqService from "./FaqService";
+import FaqService from "./FaqServiceAds";
+import FaqServiceAds from "./FaqServiceAds";
 export const metadata: Metadata = {
   title: 'Anúncios online em Belo Hozionte',
-  keywords: "anuncios online, trafego pago, gestao de trafego, anúncios online Belo Horizonte, publicidade digital BH, marketing online BH, anúncios em Belo Horizonte, propaganda online BH"
+  keywords: "anuncios online, trafego pago, gestao de trafego, anúncios online Belo Horizonte, publicidade digital BH, marketing online BH, anúncios em Belo Horizonte, propaganda online BH, Belo Horizonte, Minas Gerais,"
 };
 export default function WebDevelopmentOffer() {
   return (
@@ -30,7 +31,7 @@ export default function WebDevelopmentOffer() {
       <ProductDelivery />
       <Timer/>
       <ServiceTestimonials/>
-      <FaqService/>
+      <FaqServiceAds/>
     </section>
   );
 };

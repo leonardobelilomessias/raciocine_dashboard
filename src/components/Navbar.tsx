@@ -108,10 +108,10 @@ export const Navbar = () => {
       
                     className={`w-[110px] border ${buttonVariants({
                       variant: "secondary",
-                    })}`}
+                    })} hidden`}
                   >
                     
-                    Login
+                    Login 1
                   </Link>
                 </nav>
                 
@@ -141,10 +141,10 @@ export const Navbar = () => {
               href="/entrar"
     
               
-              className={`border ${buttonVariants({ variant: "secondary" })}`}
+              className={`border ${buttonVariants({ variant: "secondary" })} hidden`}
             >
             
-              Login
+              Login 2
             </Link>
 
             {/* <ModeToggle /> */}

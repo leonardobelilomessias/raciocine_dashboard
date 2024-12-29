@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { truncateText } from "@/app/util/textTrincate";
 import { PaginationBlog } from "./PaginationBlog";
 
-const POSTS_PER_PAGE = 1;
+const POSTS_PER_PAGE = 6;
 interface dataFeathPost{
   postsData:any[]
   totalCount:number
@@ -54,19 +54,8 @@ export default async  function IndexPage(props: {
   const end = start + POSTS_PER_PAGE
   const {postsData, totalCount} = await fetchPosts(start,end)
   const totalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
-  console.log('query=>',page)
+  console.log('end e start=>',end,start)
 
-  // const currentPage = parseInt(searchParams?.get("page") || "1", 10);
-  // const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
-
-  // const start = (currentPage - 1) * POSTS_PER_PAGE;
-  // const end = start + POSTS_PER_PAGE;
-
-  
-
-  // const handlePageChange = (page: number) => {
-  //   router.push(`?page=${page}`);
-  // };
   
   const urlFor = (source: SanityImageSource) =>
     projectId && dataset
@@ -74,7 +63,7 @@ export default async  function IndexPage(props: {
       : null;
   return (
     <Suspense fallback={<div>Carregando página...</div>}>
-      <main className="container mx-auto min-h-screen pb-52 max-w-9xl p-8">
+      <main className="container  mx-auto min-h-screen pb-52 max-w-9xl p-8">
         {/* Header */}
         <div className="mb-8 gap-2">
           <h1 className="text-center text-5xl font-bold">Blog</h1>
@@ -85,10 +74,10 @@ export default async  function IndexPage(props: {
         </div>
 
         {/* Posts */}
-        <h2 className="text-3xl ml-1 md:ml-20 font-bold mb-8">Posts</h2>
-        <div className="flex flex-col items-center justify-center">
+        <h2 className="text-3xl ml-1  md:ml-20 font-bold mb-8">Posts</h2>
+        <div className="flex flex-col  items-center place-items-center align-middle justify-items-center justify-center">
          
-            <ul className="flex flex-wrap gap-4">
+            <ul className="flex  max-w-6xl  flex-wrap gap-4">
               {postsData.map((post) => {
                 const postImageUrl = post.image
                   ? urlFor(post.image)?.width(550).height(310).url()
@@ -131,7 +120,7 @@ export default async  function IndexPage(props: {
           
         </div>
 
-              <PaginationBlog page={page} currentPage={currentPage} totalPages={totalCount} />
+              <PaginationBlog page={page} currentPage={currentPage} totalPages={totalPages} />
       </main>
     </Suspense>
   );

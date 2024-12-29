@@ -22,7 +22,7 @@ export const About = () => {
             <div className="pb-6">
               <h2 className="text-3xl md:text-4xl font-bold">
                 <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-                Fazemos Parte {" "}
+                Fazemos Parte da{" "}
                 </span>
                 San Pedro Valley Startups de Belo Horizonte
               </h2>
