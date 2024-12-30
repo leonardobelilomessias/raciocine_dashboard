@@ -69,6 +69,7 @@ export const Services = () => {
         <div className="relative hidden md:flex h-[600px] w-[700px] ">
 
         <Image
+        loading="lazy"
           fill
           src={woman2}
           style={{objectFit: "cover"}}

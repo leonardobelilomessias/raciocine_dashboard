@@ -132,7 +132,7 @@ export const Team = () => {
               className="bg-muted/50 relative mt-8 flex flex-col justify-center items-center"
             >
               <CardHeader className="mt-8 flex justify-center items-center pb-2">
-                <Image
+                <Image loading="lazy"
                         width={50}
                         height={50}
                   src={imageUrl}

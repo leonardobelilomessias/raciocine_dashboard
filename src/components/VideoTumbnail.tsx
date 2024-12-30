@@ -8,7 +8,7 @@ export function VideoYoutube() {
  return (
    <div>
      {!playing ? (
-       <Image
+       <Image loading="lazy"
        alt='tmbnail'
          src={tumb}
          onClick={() => setPlaying(true)}

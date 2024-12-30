@@ -15,35 +15,35 @@ import reactLogo from '@/app/assets/logos/sponsors/reactLogo.webp'
 
 
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 interface SponsorProps {
-  icon: JSX.Element;
+  image: StaticImageData;
   name: string;
 }
 
 const sponsors: SponsorProps[] = [
   {
-    icon: <Image src={metaLogo}  alt="sudoes-logo" />,
+    image: metaLogo ,
     name: "Sponsor 1",
   },
   {
-    icon: <Image src={googleLogo}  alt="sudoes-logo" />,
+    image: googleLogo,
     name: "Sponsor 2",
   },
   {
-    icon: <Image src={youtubeLogo}  alt="sudoes-logo" />,
+    image: youtubeLogo,
     name: "Sponsor 3",
   },
   {
-    icon: <Image src={analiticsLogo}  alt="sudoes-logo" />,
+    image: analiticsLogo,
     name: "Sponsor 4",
   },
   {
-    icon: <Image src={awsLogo}  alt="sudoes-logo" />,
+    image:awsLogo,
     name: "Sponsor 5",
   },
   {
-    icon: <Image src={reactLogo}  alt="sudoes-logo" />,
+    image: reactLogo,
     name: "Sponsor 6",
   },
   
@@ -60,21 +60,21 @@ export const Sponsors = () => {
       </h2>
 
       <div className="flex h-[150px]  justify-center items-center gap-4 md:gap-8  animate-marqueeSm md:animate-marquee min-w-[2800px] ">
-        {sponsors.map(({ icon, name }: SponsorProps) => (
+        {sponsors.map(({ image, name }: SponsorProps) => (
           <div
             key={name}
             className="flex min-h-[50px]  min-w-[200px] items-center gap-1 text-muted-foreground/60"
           >
-            <span>{icon}</span>
+            <span><Image loading="lazy" src={image} width={200} height={200} alt={name}/></span>
 
           </div>
         ))}
-            {sponsors.map(({ icon, name }: SponsorProps) => (
+            {sponsors.map(({ image, name }: SponsorProps) => (
           <div
             key={name}
             className="flex min-h-[50px]  min-w-[200px] items-center gap-1 text-muted-foreground/60"
           >
-            <span>{icon}</span>
+            <span><Image loading="lazy" src={image} width={200} height={200} alt={name}/></span>
 
           </div>
         ))}

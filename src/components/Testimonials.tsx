@@ -92,6 +92,7 @@ export const Testimonials = () => {
                   <AvatarImage
                     alt=""
                     src={image}
+                    loading="lazy"
                   />
                   <AvatarFallback>OM</AvatarFallback>
                 </Avatar>

@@ -16,7 +16,7 @@ export const Footer = () => {
             href="/"
             className="font-bold text-xl flex gap-2"
           >
-            <Image alt="raciocine-logo-marketing" width={27} height={60} src={BrainLogo} />
+            <Image  loading="lazy" alt="raciocine-logo-marketing" width={27} height={60} src={BrainLogo} />
           Raciocine
           </a>
         </div>

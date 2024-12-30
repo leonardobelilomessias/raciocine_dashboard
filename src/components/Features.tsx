@@ -90,6 +90,7 @@ export const Features = () => {
             <div className="relative w-full h-[300px]">
 
               <Image
+              loading="lazy"
               sizes="(max-width: 768px) 100vw, 33vw"
 
               fill

@@ -9,7 +9,7 @@ export const TriggerService = ({img, title,description,link}:{img:StaticImageDat
       id="sponsors"
       className="container pt-8 sm:py-22 overflow-hidden flex flex-col md:flex-row-reverse md:flex-row justify-items-center justify-center content-center items-center my-10"
     >
-      <Image src={AdstrackingImage} alt="Bussines Man" height={500} width={500}/>
+      <Image loading="lazy" src={AdstrackingImage} alt="Bussines Man" height={500} width={500}/>
       <div className=" flex flex-col p-10 rounded-lg  items-center bg-zinc-100 max-w-[600px]">
         <div>
           <h2 className="text-2xl md:text-4xl font-bold mb-2  text-gray-800">{title}</h2>

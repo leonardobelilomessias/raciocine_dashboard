@@ -1,11 +1,6 @@
-import { Button } from "./ui/button";
-import { buttonVariants } from "./ui/button";
-import { HeroCards } from "./HeroCards";
+
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
-// import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import LogoBrain from '@/app/assets/logos/brain_logo.webp'
-import robotHero from '@/app/assets/images/Home/robotHero.webp'
 
 import Image from "next/image";
 
@@ -55,18 +50,18 @@ export const HeroHomeSectionImage = () => {
 
 function ImageHero(){
   return(
-    <Image className="hidden md:block" src={robotHero} alt="image hero" width={500} height={500}/>
+    <Image priority className="hidden md:block" src={"/images/robotHero.webp"} alt="image hero" width={500} height={500}/>
   )
 }
 function ImageHeroMobile(){
   return(
-    <Image className="md:hidden" src={robotHero} alt="image hero" width={600} height={600}/>
+    <Image priority className="md:hidden" src={"/images/robotHero.webp"} alt="image hero" width={600} height={600}/>
   )
 }
 
 function ImageBacground(){
   return(
-  <Image src={robotHero}
+  <Image width={600} height={500} priority src={"/images/robotHero.webp"}
      alt="logo raciocine" 
      className="absolute right-40 top-10 opacity-[6%] z-0 md:opacity-5"/>
     )

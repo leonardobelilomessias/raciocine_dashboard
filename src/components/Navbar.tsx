@@ -62,7 +62,7 @@ export const Navbar = () => {
               href="/"
               className="ml-2 font-bold text-xl flex gap-2"
             >
-              <Image alt="logo-brain" width={27} height={60} src={BrainLogo} />
+              <Image priority alt="logo-brain" width={27} height={60} src={BrainLogo} />
             <p className="text-xl">Raciocine</p>  
             </Link>
           </NavigationMenuItem>

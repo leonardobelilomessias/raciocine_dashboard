@@ -1,12 +1,8 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { LandingPageScreen } from "../ui/Screens/LandingPageScreen";
+
 import { HomeScreen } from "../ui/Screens/HomeScreen";
 import { Metadata } from "next";
-import { client } from "@/sanity/lib/client";
-import { site } from "../../../site";
-import { urlFor } from "@/sanity/lib/image";
 import { StructureData } from "../ui/components/StructureData";
+import Head from "next/head";
 
 
 export const metadata: Metadata = {
@@ -80,6 +76,11 @@ const schemaData = {
 export default function Home() {
   return (
     <>
+    <Head>
+    <link rel="preload" href="http://raciocine.com/images/robotHero.webp" as="image" />
+    
+      <link rel="preload" href="http://localhost:3000/images/robotHero.webp" as="image" />
+    </Head>
       <StructureData data={schemaData}/>
       <main >
         <HomeScreen/>

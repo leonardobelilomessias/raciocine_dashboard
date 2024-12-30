@@ -13,7 +13,7 @@ export const About = () => {
       <div className="bg-muted/50 border rounded-lg py-12">
         <div className="px-6 flex flex-col items-center md:flex-row gap-8 md:gap-12">
           <Image
-      
+            loading="lazy"
             src={pilot }
             alt=""
             className="w-[300px] object-contain rounded-lg"
