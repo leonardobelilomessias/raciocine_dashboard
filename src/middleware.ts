@@ -36,7 +36,7 @@ export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 console.log(pathname)
 
-  if (pathname.startsWith("/blog" ) || pathname.startsWith("/servicos" ) ) {
+  if (pathname.startsWith("/blog" ) || pathname.startsWith("/servicos" )|| pathname.startsWith("/images" ) ) {
     return NextResponse.next();
   }
   if (publicRoutes.includes(pathname)) {

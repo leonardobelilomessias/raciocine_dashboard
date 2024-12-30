@@ -40,11 +40,6 @@ export const authorType = defineType({
       ],
     }),
     defineField({
-        name:"slug",
-        type:"slug",
-        options:{source:"name"},
-    }),
-    defineField({
       name: 'instagram',
       title: 'Instagram',
       type: 'url',

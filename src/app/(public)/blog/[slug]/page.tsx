@@ -8,12 +8,10 @@ import Image from "next/image";
 import { site } from "../../../../../site";
 import { Metadata } from "next";
 import { urlFor } from "@/sanity/lib/image";
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
 import { BlogPosting, WithContext } from 'schema-dts';
 import moment from 'moment';
 import { StructureData } from "@/app/ui/components/StructureData";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar, Instagram, Linkedin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 interface ExtendedPortableTextComponents {
@@ -37,6 +35,7 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug]{
   body,
   image,
   publishedAt,
+  keywords,
   author->
 }[0]`;
 
@@ -56,6 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     body,
     image,
+    keywords,
   }[0]`;
   const data = await client.fetch(query, { slug: params.slug });
   return {
@@ -64,6 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadataBase: new URL(site.url),
     title: data.title,
     description: data.description,
+    keywords:data.keywords,
     openGraph: {
       title: data.title,
       description: data.description,
@@ -84,8 +85,8 @@ export default async function PostPage({
   const postImageUrl = post.image
     ? urlForfix(post.image)?.width(550).height(310).url()
     : null;
-  const authorImageurl = post.author.image
-    ? urlForfix(post.author.image)?.width(500).height(500).url()
+  const authorImageurl = post.author.photo
+    ? urlForfix(post.author.photo)?.width(500).height(500).url()
     : null;
 
   const schemaData: WithContext<BlogPosting> = {
@@ -128,6 +129,7 @@ export default async function PostPage({
           />
         )}
         <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
+        <p>keywords=={JSON.stringify(post.keywords)}</p>
         <div className="flex gap-2 items-center text-gray-500">
           <Calendar size={16} />
           <p className="text-sm">Publicado em {new Date(post.publishedAt).toLocaleDateString()}</p>
@@ -138,19 +140,28 @@ export default async function PostPage({
         <Separator />
         <div>
           <p className="font-bold">Autor</p>
-          <div className="flex gap-2 mt-2">
-            {authorImageurl && (
-              <Image
-                className="rounded-full"
-                width={50}
-                height={150}
-                src={authorImageurl}
-                alt={`autor ${post.author.name}`}
-              />
-            )}
+          <div className="flex gap-2 mt-2 items-center">
+            <div>
+                {authorImageurl && (
+                  <Image
+                    className="rounded-full"
+                    width={80}
+                    height={80}
+                    src={authorImageurl}
+                    alt={`autor ${post.author.name}`}
+                  />
+                )}
+            </div>
+
             <div>
               <p className="font-bold text-sm">{post.author.name}</p>
-              <p className="text-gray-500 text-sm">Desenvolvedor</p>
+              <p className="text-gray-500 text-sm">{post.author.profession}</p>
+              <i className='text-sm text-gray-400'>{post.author.bio}</i>
+              <div className='flex gap-2'>
+                <Link href={"/"}> <Instagram  size={20} /></Link>
+                <Link href={"/"}> <Linkedin  size={20} /></Link>
+
+              </div>
             </div>
           </div>
         </div>
