@@ -2,12 +2,12 @@ import { Banknote, Group, GroupIcon, LucideGroup, PiggyBank, Users, Users2 } fro
 import BusinessManImage2 from '@/app/assets/images/Home/trafego6.webp'
 
 import Image from "next/image";
- 
+
 export const GreatOffer = () => {
   return (
     <section
       id="sponsors"
-      className="container pt-8 z-50 sm:py-22 overflow-hidden flex flex-col md:flex-row justify-items-center justify-center content-center items-center my-10"
+      className="container pt-8 sm:py-22 overflow-hidden flex flex-col md:flex-row justify-items-center justify-center content-center items-center my-10"
     >
       <Image src={BusinessManImage2} alt="Bussines Man" height={500} width={500}/>
       <div className=" flex flex-col p-10 rounded-lg  items-center bg-zinc-100 max-w-[600px]">

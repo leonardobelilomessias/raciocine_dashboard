@@ -31,7 +31,7 @@ export const HeroLogin = () => {
          </div>
         </main>
       </div>
-<div className=" flex flex-row sm:gap-10  flex-col justify-center lg:flex-row ">
+<div className=" flex  sm:gap-10  flex-col justify-center lg:flex-row ">
     <div className="flex  min-h-60  flex-1 ">
     <iframe
     className="min-h-60 md:min-h-[420px] xl:min-h-[420px]"

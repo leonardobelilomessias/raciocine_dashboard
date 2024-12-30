@@ -1,13 +1,11 @@
-import { Button } from "./ui/button";
-import { buttonVariants } from "./ui/button";
-import { HeroCards } from "./HeroCards";
+
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 // import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import LogoBrain from '@/app/assets/logos/brain_logo.webp'
 import Image, { StaticImageData } from "next/image";
 
-export const HeroHomeSectionVideo = () => {
+export const HeroAdsSectionVideo = () => {
   const testtext = "Especialistas em software e marketing em belo horioznte minas gerais."
   return (
     <section className="container grid lg:grid-cols-2 place-items-center py-6 md:py-30 gap-10 ">

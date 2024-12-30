@@ -1,34 +1,20 @@
-import { Button } from "./ui/button";
-import { buttonVariants } from "./ui/button";
-import { HeroCards } from "./HeroCards";
+
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
-// import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import LogoBrain from '@/app/assets/logos/brain_logo.webp'
 import Image, { StaticImageData } from "next/image";
+import { TitleHero } from "./TitleHero";
 
-export const HeroHomeSectionVideo = () => {
-  const testtext = "Especialistas em software e marketing em belo horioznte minas gerais."
+export const HeroGeralSectionVideo = ({ title, highlightPink, highlightBlue,description }: { title: string, highlightPink: string, highlightBlue: string ,description:string}) => {
+
   return (
     <section className="container grid lg:grid-cols-2 place-items-center py-6 md:py-30 gap-10 ">
       <ImageBacground/>
       <div className="text-center lg:text-start space-y-6 z-10">
-        <main className="text-4xl md:text-6xl font-bold">
-          <h1 className="inline">
-            Especialistas  em
-            <span className="inline bg-gradient-to-r from-[#F596D3] to-[#D247BF] text-transparent bg-clip-text">
-              {" "}Software{" "}
-            </span>
-          </h1>
-          
-          <h2 className="inline">
-            <span className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#0064e9] text-transparent bg-clip-text">
-            {" "} Marketing Digital{" "}
-            </span>{" "} em Belo Horizonte, Minas Gerais.
-          </h2>
-        </main>
+      <TitleHero highlightBlue={highlightBlue} title={title} highlightPink={highlightPink} />
+
         <VideoHeroMobile/>
-        <p>Transforme seu negócio com estratégias de <strong>software</strong>  e <strong>Marketing Digital em Belo Horizonte</strong>. Ajudamos empresas mineiras a alcançar mais clientes e expandir sua presença online.</p>
+        <p>{description}</p>
         <div className="flex gap-4 flex-col md:flex-row">
           <Link
             className="w-full flex gap-2  border-[1px] p-2 rounded border-black text-center text-white bg-black items-center align-center justify-center"
