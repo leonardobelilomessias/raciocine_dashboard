@@ -24,7 +24,10 @@ const publicRoutes = ["/",
   '/studio-blog-raciocine',
   '/servicos',
   '/sobre-nos',
-  '/contato'
+  '/contato',
+  "/sitemap.xml",
+  "/sitemap-0.xml"
+
 ];
 
 export async function middleware(req: NextRequest) {
