@@ -8,6 +8,7 @@ export const config = {
 };
 
 const publicRoutes = ["/",
+  '/politica-privacidade',
   '/landing', 
   '/cadastro', 
   '/entrar',
